@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contradiction Diary | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A private reflective tool for mapping existential contradictions in AI-mediated work and life."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+ <header class="site-header">
+  <a class="brand" href="index.html">Meaning After Work</a>
+
+  <nav>
+  <a href="meaning-after-work.html">Manifesto</a>
+  <a href="essays.html">Essays</a>
+  <a href="research.html">EHCAI Forum</a>
+  <a href="contradiction-diary.html">Contradiction Diary</a>
+  <a href="products.html">Future Practice</a>
+  <a href="about.html">About & Contact</a>
+</nav>
+</header>
+
+  <main class="page">
+    <section class="page-hero">
+      <p class="eyebrow">Reflective tool</p>
+
+      <h1>Contradiction Diary</h1>
+
+      <p class="lead">
+        A private reflection exercise for noticing the tensions we live with in AI-mediated work and life.
+      </p>
+    </section>
+
+    <section class="content-section callout">
+      <h2>Before you begin</h2>
+
+      <p>
+        This page does not send, store or analyse your responses. Everything you write here stays
+        in your browser unless you choose to copy it elsewhere.
+      </p>
+
+      <p>
+        Please do not enter names of other people, confidential workplace information, medical details
+        or identifiable sensitive data. This is not therapy, diagnosis, legal advice or professional counselling.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>What is an existential contradiction?</h2>
+
+      <p>
+        An existential contradiction is not simply a problem to be solved. It is a human situation in which
+        different demands pull us in incompatible directions.
+      </p>
+
+      <p>
+        We may feel pulled between efficiency and dependency, care and exhaustion, responsibility and survival,
+        creativity and skill erosion, productivity and meaning, or adaptation and self-betrayal.
+      </p>
+
+      <p>
+        The purpose of this diary is not to remove contradiction immediately. It is to help you name it,
+        understand its pressures and ask what responsible agency might look like within it.
+      </p>
+    </section>
+
+    <section class="content-section diary-tool">
+      <h2>Name a contradiction you are living</h2>
+
+      <label>
+        What contradiction are you currently experiencing?
+        <textarea id="contradiction" placeholder="I feel pulled between..."></textarea>
+      </label>
+
+      <label>
+        What does one side demand from you?
+        <textarea id="sideA" placeholder="One side demands..."></textarea>
+      </label>
+
+      <label>
+        What does the other side demand from you?
+        <textarea id="sideB" placeholder="The other side demands..."></textarea>
+      </label>
+
+      <label>
+        What would resignation look like here?
+        <textarea id="resignation" placeholder="Resignation would look like..."></textarea>
+      </label>
+
+      <label>
+        What would an unethical or self-betraying shortcut look like?
+        <textarea id="shortcut" placeholder="A shortcut would look like..."></textarea>
+      </label>
+
+      <label>
+        What would responsible revolt or renewed agency look like?
+        <textarea id="revolt" placeholder="Responsible action might look like..."></textarea>
+      </label>
+
+      <label>
+        What form of co-being, dialogue or support is needed?
+        <textarea id="cobeing" placeholder="What is needed between people is..."></textarea>
+      </label>
+
+      <button class="button primary" type="button" onclick="generateReflection()">
+        Generate private reflection
+      </button>
+
+      <button class="button secondary" type="button" onclick="copyReflection()">
+        Copy reflection
+      </button>
+
+      <div id="reflection-output" class="reflection-output" aria-live="polite"></div>
+    </section>
+
+    <section class="content-section">
+      <h2>Contribute your experience</h2>
+
+      <p>
+        In the future, this page may link to an EUSurvey form where participants can voluntarily contribute
+        anonymized experiences for research on existential contradictions, AI and meaningful work.
+      </p>
+
+      <p>
+        That future form will include an information sheet and consent statement before any data are submitted.
+        No experience will be collected through this page without explicit consent.
+      </p>
+
+      <p>
+        <strong>Status:</strong> the EUSurvey contribution form is not active yet.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Meaning After Work is a public project of The Existential Human-Centred AI Forum.
+    </p>
+
+    <p>
+      Independent pre-launch research-and-practice initiative. Not an official university project unless explicitly stated.
+    </p>
+  </footer>
+
+  <script>
+    function value(id) {
+      return document.getElementById(id).value.trim() || "Not yet written.";
+    }
+
+    function buildReflectionText() {
+      return (
+        "Your private contradiction map\\n\\n" +
+        "The contradiction:\\n" + value("contradiction") + "\\n\\n" +
+        "One side demands:\\n" + value("sideA") + "\\n\\n" +
+        "The other side demands:\\n" + value("sideB") + "\\n\\n" +
+        "Risk of resignation:\\n" + value("resignation") + "\\n\\n" +
+        "Risk of shortcut:\\n" + value("shortcut") + "\\n\\n" +
+        "Responsible revolt / renewed agency:\\n" + value("revolt") + "\\n\\n" +
+        "Needed co-being:\\n" + value("cobeing") + "\\n\\n" +
+        "This reflection was generated locally in your browser. It has not been sent or stored."
+      );
+    }
+
+    function generateReflection() {
+      const output = `
+        <h2>Your private contradiction map</h2>
+
+        <p><strong>The contradiction:</strong><br>${value("contradiction")}</p>
+
+        <p><strong>One side demands:</strong><br>${value("sideA")}</p>
+
+        <p><strong>The other side demands:</strong><br>${value("sideB")}</p>
+
+        <p><strong>Risk of resignation:</strong><br>${value("resignation")}</p>
+
+        <p><strong>Risk of shortcut:</strong><br>${value("shortcut")}</p>
+
+        <p><strong>Responsible revolt / renewed agency:</strong><br>${value("revolt")}</p>
+
+        <p><strong>Needed co-being:</strong><br>${value("cobeing")}</p>
+
+        <p class="small-note">
+          This reflection was generated locally in your browser. It has not been sent or stored.
+        </p>
+      `;
+
+      document.getElementById("reflection-output").innerHTML = output;
+    }
+
+    function copyReflection() {
+      const text = buildReflectionText();
+
+      navigator.clipboard.writeText(text).then(function() {
+        alert("Reflection copied to clipboard.");
+      }).catch(function() {
+        alert("Copying did not work in this browser. Please select and copy the reflection manually.");
+      });
+    }
+  </script>
+</body>
+</html>
