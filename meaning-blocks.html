@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Meaning Blocks | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A reflective falling-block experience about AI, work, care, pressure and human meaning."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Contradiction Diary</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About & Contact</a>
+    </nav>
+  </header>
+
+  <main class="page blocks-page">
+    <section class="page-hero">
+      <p class="eyebrow">Reflective Experience / Prototype</p>
+
+      <h1>Meaning Blocks</h1>
+
+      <p class="lead">
+        A reflective falling-block experience about AI, work, care, pressure and human meaning.
+      </p>
+
+      <p class="small-note">
+        This is a reflective tool, not a diagnostic or therapeutic instrument.
+        Nothing is stored or sent anywhere.
+      </p>
+    </section>
+
+    <section class="content-section blocks-shell">
+      <div id="blocksIntro" class="blocks-intro">
+        <div class="blocks-visual intro-blocks-visual">
+          <div class="blocks-glow"></div>
+
+          <div class="intro-block block-ai">AI</div>
+          <div class="intro-block block-work">Work</div>
+          <div class="intro-block block-care">Care</div>
+          <div class="intro-block block-rest">Rest</div>
+          <div class="intro-block block-meaning">Meaning</div>
+
+          <p class="blocks-visual-caption">
+            Life is not an empty grid. Every block you place changes the pattern of what remains human.
+          </p>
+        </div>
+
+        <h2>How it works</h2>
+
+        <p>
+          Blocks will appear one by one. Each block represents a force in contemporary work:
+          AI, deadlines, care, responsibility, ambition, rest or reflection.
+        </p>
+
+        <p>
+          Place each block into the grid. Some combinations increase pressure.
+          Others open space for meaning, agency or co-being.
+        </p>
+
+        <p>
+          There are no correct answers. The aim is to notice the pattern you are building.
+        </p>
+
+        <button id="beginBlocksButton" class="blocks-button" type="button">
+          Begin arranging
+        </button>
+      </div>
+
+      <div id="blocksGame" class="blocks-game hidden">
+        <div class="blocks-layout">
+          <div class="blocks-board-wrap">
+            <div class="current-block-panel">
+              <p class="blocks-progress" id="blocksProgress">Block 1 of 16</p>
+              <p class="current-block-label">Current block</p>
+
+              <div id="currentBlock" class="current-block">
+                Work
+              </div>
+
+              <p id="currentBlockMeaning" class="current-block-meaning">
+                A force entering the grid.
+              </p>
+            </div>
+
+            <div id="blocksBoard" class="blocks-board" aria-label="Meaning Blocks board"></div>
+
+            <div class="blocks-controls">
+              <button id="blocksLeftButton" class="blocks-control-button" type="button">← Left</button>
+              <button id="blocksPlaceButton" class="blocks-control-button primary-control" type="button">Place</button>
+              <button id="blocksRightButton" class="blocks-control-button" type="button">Right →</button>
+            </div>
+
+            <p class="small-note">
+              Keyboard: use ← and → to move, Enter or Space to place.
+            </p>
+          </div>
+
+          <div class="blocks-side">
+            <div class="blocks-metrics">
+              <div class="blocks-metric">
+                <div class="blocks-metric-row">
+                  <span>Pressure</span>
+                  <span id="pressureValue">40</span>
+                </div>
+                <div class="blocks-bar"><div id="pressureBar" class="blocks-fill pressure-fill"></div></div>
+              </div>
+
+              <div class="blocks-metric">
+                <div class="blocks-metric-row">
+                  <span>Meaning</span>
+                  <span id="blocksMeaningValue">50</span>
+                </div>
+                <div class="blocks-bar"><div id="blocksMeaningBar" class="blocks-fill"></div></div>
+              </div>
+
+              <div class="blocks-metric">
+                <div class="blocks-metric-row">
+                  <span>Agency</span>
+                  <span id="blocksAgencyValue">50</span>
+                </div>
+                <div class="blocks-bar"><div id="blocksAgencyBar" class="blocks-fill"></div></div>
+              </div>
+
+              <div class="blocks-metric">
+                <div class="blocks-metric-row">
+                  <span>Co-being</span>
+                  <span id="blocksCoBeingValue">50</span>
+                </div>
+                <div class="blocks-bar"><div id="blocksCoBeingBar" class="blocks-fill"></div></div>
+              </div>
+            </div>
+
+            <div class="blocks-pattern-card">
+              <p class="eyebrow">Current pattern</p>
+              <p id="patternMessage">
+                The grid is still open.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="blocksResult" class="blocks-result hidden">
+        <div class="blocks-visual result-blocks-visual">
+          <div class="blocks-glow"></div>
+
+          <div class="intro-block block-ai result-b1">AI</div>
+          <div class="intro-block block-work result-b2">Work</div>
+          <div class="intro-block block-care result-b3">Care</div>
+          <div class="intro-block block-rest result-b4">Rest</div>
+          <div class="intro-block block-meaning result-b5">Meaning</div>
+
+          <p class="blocks-visual-caption">
+            A life pattern is not only made from what enters it, but from what is allowed to remain connected.
+          </p>
+        </div>
+
+        <p class="eyebrow">Your reflection</p>
+
+        <h2 id="blocksResultProfile" class="blocks-result-profile">Profile</h2>
+        <p id="blocksResultSummary" class="blocks-result-summary"></p>
+        <p id="blocksResultQuestion" class="blocks-result-question"></p>
+
+        <div class="blocks-score-grid">
+          <div class="blocks-score-card">
+            <span class="blocks-score-label">Pressure</span>
+            <span id="finalPressure" class="blocks-score-value">0</span>
+          </div>
+
+          <div class="blocks-score-card">
+            <span class="blocks-score-label">Meaning</span>
+            <span id="finalBlocksMeaning" class="blocks-score-value">0</span>
+          </div>
+
+          <div class="blocks-score-card">
+            <span class="blocks-score-label">Agency</span>
+            <span id="finalBlocksAgency" class="blocks-score-value">0</span>
+          </div>
+
+          <div class="blocks-score-card">
+            <span class="blocks-score-label">Co-being</span>
+            <span id="finalBlocksCoBeing" class="blocks-score-value">0</span>
+          </div>
+        </div>
+
+        <div class="blocks-actions">
+          <button id="restartBlocksButton" class="blocks-button" type="button">
+            Restart
+          </button>
+
+          <button id="copyBlocksButton" class="blocks-button blocks-button-secondary" type="button">
+            Copy reflection
+          </button>
+        </div>
+
+        <p class="small-note">
+          This prototype is part of Meaning After Work and The Existential Human-Centred AI Forum.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Meaning After Work is a public project of The Existential Human-Centred AI Forum.
+    </p>
+
+    <p>
+      Independent pre-launch research-and-practice initiative. Not an official university project unless explicitly stated.
+    </p>
+  </footer>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9677cb0fa87845fe8d5de700ddd3a513"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  <script>
+    const blockRows = 8;
+    const blockCols = 6;
+    const maxPlacedBlocks = 16;
+
+    const blockTypes = [
+      {
+        label: "AI",
+        className: "block-ai",
+        family: "system",
+        meaning: "Intelligence enters the grid, promising speed while asking for judgment.",
+        effects: { pressure: 4, meaning: -2, agency: -3, cobeing: -1 }
+      },
+      {
+        label: "Work",
+        className: "block-work",
+        family: "system",
+        meaning: "Work gives structure, but can become the only measure of worth.",
+        effects: { pressure: 5, meaning: 1, agency: 0, cobeing: -1 }
+      },
+      {
+        label: "Deadline",
+        className: "block-deadline",
+        family: "pressure",
+        meaning: "The deadline compresses time and narrows attention.",
+        effects: { pressure: 9, meaning: -3, agency: -2, cobeing: -2 }
+      },
+      {
+        label: "Care",
+        className: "block-care",
+        family: "human",
+        meaning: "Care interrupts efficiency with the presence of another person.",
+        effects: { pressure: 1, meaning: 5, agency: 1, cobeing: 7 }
+      },
+      {
+        label: "Rest",
+        className: "block-rest",
+        family: "rest",
+        meaning: "Rest creates space where usefulness does not have to justify existence.",
+        effects: { pressure: -7, meaning: 4, agency: 2, cobeing: 1 }
+      },
+      {
+        label: "Reflection",
+        className: "block-reflection",
+        family: "reflective",
+        meaning: "Reflection slows the grid enough for judgment to return.",
+        effects: { pressure: -3, meaning: 6, agency: 6, cobeing: 2 }
+      },
+      {
+        label: "Responsibility",
+        className: "block-responsibility",
+        family: "reflective",
+        meaning: "Responsibility asks who is affected by the pattern being built.",
+        effects: { pressure: 2, meaning: 5, agency: 5, cobeing: 4 }
+      },
+      {
+        label: "Relationship",
+        className: "block-relationship",
+        family: "human",
+        meaning: "Relationship keeps the grid from becoming only a system of output.",
+        effects: { pressure: 0, meaning: 5, agency: 1, cobeing: 8 }
+      },
+      {
+        label: "Ambition",
+        className: "block-ambition",
+        family: "pressure",
+        meaning: "Ambition can move the pattern forward, but it can also tighten the grid.",
+        effects: { pressure: 6, meaning: 1, agency: 4, cobeing: -3 }
+      },
+      {
+        label: "Silence",
+        className: "block-silence",
+        family: "pressure",
+        meaning: "Silence makes contradiction easier to carry and harder to transform.",
+        effects: { pressure: 5, meaning: -5, agency: -4, cobeing: -5 }
+      }
+    ];
+
+    let blocksBoard = [];
+    let activeColumn = 2;
+    let currentBlockType = null;
+    let placedBlocks = 0;
+    let lastPatternMessage = "The grid is still open.";
+
+    let blocksScores = {
+      pressure: 40,
+      meaning: 50,
+      agency: 50,
+      cobeing: 50
+    };
+
+    function clampBlocks(value) {
+      return Math.max(0, Math.min(100, value));
+    }
+
+    function showBlocksSection(id) {
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function hideBlocksSection(id) {
+      document.getElementById(id).classList.add("hidden");
+    }
+
+    function resetBlocksState() {
+      blocksBoard = Array.from({ length: blockRows }, () => Array(blockCols).fill(null));
+      activeColumn = 2;
+      placedBlocks = 0;
+      lastPatternMessage = "The grid is still open.";
+
+      blocksScores = {
+        pressure: 40,
+        meaning: 50,
+        agency: 50,
+        cobeing: 50
+      };
+
+      currentBlockType = getRandomBlock();
+    }
+
+    function startBlocks() {
+      resetBlocksState();
+      hideBlocksSection("blocksIntro");
+      hideBlocksSection("blocksResult");
+      showBlocksSection("blocksGame");
+      renderBlocksBoard();
+      renderCurrentBlock();
+      updateBlocksMetrics();
+      updatePatternMessage();
+    }
+
+    function getRandomBlock() {
+      const index = Math.floor(Math.random() * blockTypes.length);
+      return blockTypes[index];
+    }
+
+    function renderBlocksBoard() {
+      const board = document.getElementById("blocksBoard");
+      board.innerHTML = "";
+
+      for (let row = 0; row < blockRows; row += 1) {
+        for (let col = 0; col < blockCols; col += 1) {
+          const cell = document.createElement("button");
+          cell.type = "button";
+          cell.className = "blocks-cell";
+          cell.dataset.col = col;
+
+          if (col === activeColumn) {
+            cell.classList.add("active-column");
+          }
+
+          const block = blocksBoard[row][col];
+
+          if (block) {
+            cell.classList.add("filled", block.className);
+            cell.textContent = block.label;
+          }
+
+          cell.addEventListener("click", () => {
+            activeColumn = col;
+            renderBlocksBoard();
+          });
+
+          board.appendChild(cell);
+        }
+      }
+    }
+
+    function renderCurrentBlock() {
+      const current = document.getElementById("currentBlock");
+      current.className = `current-block ${currentBlockType.className}`;
+      current.textContent = currentBlockType.label;
+
+      document.getElementById("currentBlockMeaning").textContent = currentBlockType.meaning;
+      document.getElementById("blocksProgress").textContent =
+        `Block ${placedBlocks + 1} of ${maxPlacedBlocks}`;
+    }
+
+    function moveBlockLeft() {
+      activeColumn = Math.max(0, activeColumn - 1);
+      renderBlocksBoard();
+    }
+
+    function moveBlockRight() {
+      activeColumn = Math.min(blockCols - 1, activeColumn + 1);
+      renderBlocksBoard();
+    }
+
+    function placeCurrentBlock() {
+      const targetRow = findAvailableRow(activeColumn);
+
+      if (targetRow === -1) {
+        applyBlockEffects({ pressure: 8, meaning: -3, agency: -2, cobeing: -2 });
+        lastPatternMessage = "The column overflowed. Pressure rises when the grid has no space left.";
+        updateBlocksMetrics();
+        updatePatternMessage();
+        return;
+      }
+
+      blocksBoard[targetRow][activeColumn] = currentBlockType;
+      placedBlocks += 1;
+
+      applyBlockEffects(currentBlockType.effects);
+      evaluateLocalPattern(targetRow, activeColumn, currentBlockType);
+
+      if (placedBlocks >= maxPlacedBlocks || isBoardFull()) {
+        finishBlocks();
+        return;
+      }
+
+      currentBlockType = getRandomBlock();
+      renderBlocksBoard();
+      renderCurrentBlock();
+      updateBlocksMetrics();
+      updatePatternMessage();
+    }
+
+    function findAvailableRow(col) {
+      for (let row = blockRows - 1; row >= 0; row -= 1) {
+        if (!blocksBoard[row][col]) {
+          return row;
+        }
+      }
+
+      return -1;
+    }
+
+    function isBoardFull() {
+      return blocksBoard[0].every((cell) => cell !== null);
+    }
+
+    function applyBlockEffects(effects) {
+      blocksScores.pressure = clampBlocks(blocksScores.pressure + effects.pressure);
+      blocksScores.meaning = clampBlocks(blocksScores.meaning + effects.meaning);
+      blocksScores.agency = clampBlocks(blocksScores.agency + effects.agency);
+      blocksScores.cobeing = clampBlocks(blocksScores.cobeing + effects.cobeing);
+    }
+
+    function evaluateLocalPattern(row, col, block) {
+      const neighbors = getNeighbors(row, col);
+      const families = neighbors.map((neighbor) => neighbor.family);
+
+      lastPatternMessage = "A new block entered the grid.";
+
+      if (block.family === "system" && families.includes("system")) {
+        applyBlockEffects({ pressure: 4, meaning: -2, agency: -1, cobeing: -1 });
+        lastPatternMessage = "System blocks are clustering. Efficiency grows, but pressure begins to thicken.";
+      }
+
+      if (block.family === "human" && families.includes("human")) {
+        applyBlockEffects({ pressure: -2, meaning: 3, agency: 1, cobeing: 5 });
+        lastPatternMessage = "Human blocks are connecting. The grid becomes more relational.";
+      }
+
+      if (block.family === "reflective" && families.includes("system")) {
+        applyBlockEffects({ pressure: -2, meaning: 3, agency: 4, cobeing: 1 });
+        lastPatternMessage = "Reflection touches the system. Judgment returns to the pattern.";
+      }
+
+      if (block.family === "rest" && families.includes("pressure")) {
+        applyBlockEffects({ pressure: -6, meaning: 3, agency: 2, cobeing: 1 });
+        lastPatternMessage = "Rest meets pressure. The grid opens a small space for human recovery.";
+      }
+
+      const columnHeight = getColumnHeight(col);
+
+      if (columnHeight >= 6) {
+        applyBlockEffects({ pressure: 5, meaning: -2, agency: -1, cobeing: -1 });
+        lastPatternMessage = "One column is becoming overloaded. A life pattern cannot carry everything in one place.";
+      }
+    }
+
+    function getNeighbors(row, col) {
+      const positions = [
+        [row - 1, col],
+        [row + 1, col],
+        [row, col - 1],
+        [row, col + 1]
+      ];
+
+      return positions
+        .filter(([r, c]) => r >= 0 && r < blockRows && c >= 0 && c < blockCols)
+        .map(([r, c]) => blocksBoard[r][c])
+        .filter((cell) => cell !== null);
+    }
+
+    function getColumnHeight(col) {
+      let height = 0;
+
+      for (let row = 0; row < blockRows; row += 1) {
+        if (blocksBoard[row][col]) {
+          height += 1;
+        }
+      }
+
+      return height;
+    }
+
+    function updateBlocksMetrics() {
+      document.getElementById("pressureValue").textContent = blocksScores.pressure;
+      document.getElementById("blocksMeaningValue").textContent = blocksScores.meaning;
+      document.getElementById("blocksAgencyValue").textContent = blocksScores.agency;
+      document.getElementById("blocksCoBeingValue").textContent = blocksScores.cobeing;
+
+      document.getElementById("pressureBar").style.width = `${blocksScores.pressure}%`;
+      document.getElementById("blocksMeaningBar").style.width = `${blocksScores.meaning}%`;
+      document.getElementById("blocksAgencyBar").style.width = `${blocksScores.agency}%`;
+      document.getElementById("blocksCoBeingBar").style.width = `${blocksScores.cobeing}%`;
+    }
+
+    function updatePatternMessage() {
+      document.getElementById("patternMessage").textContent = lastPatternMessage;
+    }
+
+    function getBlocksProfile() {
+      if (blocksScores.pressure >= 78 && blocksScores.meaning < 58) {
+        return {
+          name: "The Overloaded Grid",
+          summary:
+            "Your pattern became dense with pressure. Work, speed or system demands may have taken up more space than meaning could sustain.",
+          question:
+            "Reflection: Which block in your life keeps falling again and again, even when there is no room left for it?"
+        };
+      }
+
+      if (blocksScores.cobeing >= 68) {
+        return {
+          name: "The Relational Pattern",
+          summary:
+            "Your grid preserved connection. Care, relationship and shared responsibility prevented the pattern from becoming only a structure of output.",
+          question:
+            "Reflection: Which relationship helps your work remain human rather than merely efficient?"
+        };
+      }
+
+      if (blocksScores.meaning >= 68 && blocksScores.agency >= 62) {
+        return {
+          name: "The Reflective Arranger",
+          summary:
+            "Your pattern suggests that you do not simply accept falling demands. You create pauses, boundaries and reflective arrangements where judgment can return.",
+          question:
+            "Reflection: Where can you place one reflective block before the next demand lands?"
+        };
+      }
+
+      if (blocksScores.pressure <= 45 && blocksScores.meaning >= 60) {
+        return {
+          name: "The Spacious Composer",
+          summary:
+            "Your grid preserved space. You allowed rest, reflection or care to interrupt the pressure of usefulness.",
+          question:
+            "Reflection: What kind of space must be protected before meaning becomes crowded out?"
+        };
+      }
+
+      return {
+        name: "The Fragile Composition",
+        summary:
+          "Your pattern held together, but remains fragile. The grid contains both meaningful and pressuring elements, and its future depends on what you allow to cluster.",
+        question:
+          "Reflection: Which two blocks in your life need to be rearranged before the pattern hardens?"
+      };
+    }
+
+    function finishBlocks() {
+      hideBlocksSection("blocksGame");
+      showBlocksSection("blocksResult");
+
+      const profile = getBlocksProfile();
+
+      document.getElementById("blocksResultProfile").textContent = profile.name;
+      document.getElementById("blocksResultSummary").textContent = profile.summary;
+      document.getElementById("blocksResultQuestion").textContent = profile.question;
+
+      document.getElementById("finalPressure").textContent = blocksScores.pressure;
+      document.getElementById("finalBlocksMeaning").textContent = blocksScores.meaning;
+      document.getElementById("finalBlocksAgency").textContent = blocksScores.agency;
+      document.getElementById("finalBlocksCoBeing").textContent = blocksScores.cobeing;
+    }
+
+    function restartBlocks() {
+      hideBlocksSection("blocksResult");
+      showBlocksSection("blocksIntro");
+      resetBlocksState();
+    }
+
+    function copyBlocksReflection() {
+      const text = `Meaning Blocks Reflection
+
+Profile: ${document.getElementById("blocksResultProfile").textContent}
+
+${document.getElementById("blocksResultSummary").textContent}
+
+${document.getElementById("blocksResultQuestion").textContent}
+
+Scores:
+Pressure: ${blocksScores.pressure}
+Meaning: ${blocksScores.meaning}
+Agency: ${blocksScores.agency}
+Co-being: ${blocksScores.cobeing}`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Reflection copied to clipboard.");
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const beginButton = document.getElementById("beginBlocksButton");
+      const leftButton = document.getElementById("blocksLeftButton");
+      const rightButton = document.getElementById("blocksRightButton");
+      const placeButton = document.getElementById("blocksPlaceButton");
+      const restartButton = document.getElementById("restartBlocksButton");
+      const copyButton = document.getElementById("copyBlocksButton");
+
+      if (beginButton) {
+        beginButton.addEventListener("click", startBlocks);
+      }
+
+      if (leftButton) {
+        leftButton.addEventListener("click", moveBlockLeft);
+      }
+
+      if (rightButton) {
+        rightButton.addEventListener("click", moveBlockRight);
+      }
+
+      if (placeButton) {
+        placeButton.addEventListener("click", placeCurrentBlock);
+      }
+
+      if (restartButton) {
+        restartButton.addEventListener("click", restartBlocks);
+      }
+
+      if (copyButton) {
+        copyButton.addEventListener("click", copyBlocksReflection);
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (document.getElementById("blocksGame").classList.contains("hidden")) {
+          return;
+        }
+
+        if (event.key === "ArrowLeft") {
+          moveBlockLeft();
+        }
+
+        if (event.key === "ArrowRight") {
+          moveBlockRight();
+        }
+
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          placeCurrentBlock();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
