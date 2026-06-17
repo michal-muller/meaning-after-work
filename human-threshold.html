@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Human Threshold | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A short reflective game about staying human under pressure in the age of AI and work."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Contradiction Diary</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About & Contact</a>
+    </nav>
+  </header>
+
+  <main class="page threshold-page">
+    <section class="page-hero">
+      <p class="eyebrow">Reflective Game / Prototype</p>
+
+      <h1>The Human Threshold</h1>
+
+      <p class="lead">
+        A short game about staying human under pressure.
+      </p>
+
+      <p class="small-note">
+        This is a reflective game, not a diagnostic, therapeutic or productivity assessment tool.
+        Your personal best is stored only in your browser.
+      </p>
+    </section>
+
+    <section class="content-section threshold-shell">
+      <div id="thresholdIntro" class="threshold-intro">
+        <div class="threshold-visual">
+          <div class="threshold-glow"></div>
+          <div class="threshold-ring"></div>
+          <div class="threshold-core">Human<br />Threshold</div>
+
+          <div class="threshold-orbit orbit-one">AI</div>
+          <div class="threshold-orbit orbit-two">Work</div>
+          <div class="threshold-orbit orbit-three">Care</div>
+          <div class="threshold-orbit orbit-four">Pressure</div>
+
+          <p class="threshold-visual-caption">
+            The challenge is not to maximize everything. The challenge is to remain human while pressure rises.
+          </p>
+        </div>
+
+        <h2>How it works</h2>
+
+        <p>
+          You will face a fast sequence of workplace and AI-related pressures.
+          Each decision changes five dimensions: <strong>Meaning</strong>, <strong>Agency</strong>,
+          <strong>Responsibility</strong>, <strong>Co-being</strong> and <strong>Pressure</strong>.
+        </p>
+
+        <p>
+          Your score rises when you preserve a living human balance under pressure.
+          The game ends when time runs out, or when pressure and collapse become too strong.
+        </p>
+
+        <p>
+          The goal is not pure efficiency. The goal is to stay above the human threshold.
+        </p>
+
+        <button id="beginThresholdButton" class="threshold-button" type="button">
+          Start the challenge
+        </button>
+      </div>
+
+      <div id="thresholdGame" class="threshold-game hidden">
+        <div class="threshold-hud">
+          <div class="threshold-hud-card">
+            <span>Time</span>
+            <strong id="thresholdTime">75</strong>
+          </div>
+
+          <div class="threshold-hud-card">
+            <span>Level</span>
+            <strong id="thresholdLevel">1</strong>
+          </div>
+
+          <div class="threshold-hud-card">
+            <span>Score</span>
+            <strong id="thresholdScore">0</strong>
+          </div>
+
+          <div class="threshold-hud-card">
+            <span>Best</span>
+            <strong id="thresholdBest">0</strong>
+          </div>
+        </div>
+
+        <div class="threshold-layout">
+          <div class="threshold-event-card">
+            <p id="thresholdEventType" class="threshold-event-type">Incoming pressure</p>
+            <h2 id="thresholdEventTitle">Event title</h2>
+            <p id="thresholdEventText">Event text</p>
+
+            <div id="thresholdActions" class="threshold-actions-grid"></div>
+
+            <p id="thresholdFeedback" class="threshold-feedback">
+              Choose a response.
+            </p>
+          </div>
+
+          <div class="threshold-side">
+            <div class="threshold-metrics">
+              <div class="threshold-metric">
+                <div class="threshold-metric-row">
+                  <span>Meaning</span>
+                  <span id="thresholdMeaningValue">60</span>
+                </div>
+                <div class="threshold-bar"><div id="thresholdMeaningBar" class="threshold-fill"></div></div>
+              </div>
+
+              <div class="threshold-metric">
+                <div class="threshold-metric-row">
+                  <span>Agency</span>
+                  <span id="thresholdAgencyValue">60</span>
+                </div>
+                <div class="threshold-bar"><div id="thresholdAgencyBar" class="threshold-fill"></div></div>
+              </div>
+
+              <div class="threshold-metric">
+                <div class="threshold-metric-row">
+                  <span>Responsibility</span>
+                  <span id="thresholdResponsibilityValue">60</span>
+                </div>
+                <div class="threshold-bar"><div id="thresholdResponsibilityBar" class="threshold-fill"></div></div>
+              </div>
+
+              <div class="threshold-metric">
+                <div class="threshold-metric-row">
+                  <span>Co-being</span>
+                  <span id="thresholdCoBeingValue">60</span>
+                </div>
+                <div class="threshold-bar"><div id="thresholdCoBeingBar" class="threshold-fill"></div></div>
+              </div>
+
+              <div class="threshold-metric pressure-metric">
+                <div class="threshold-metric-row">
+                  <span>Pressure</span>
+                  <span id="thresholdPressureValue">35</span>
+                </div>
+                <div class="threshold-bar"><div id="thresholdPressureBar" class="threshold-fill pressure-fill"></div></div>
+              </div>
+            </div>
+
+            <div class="threshold-status-card">
+              <p class="eyebrow">Status</p>
+              <p id="thresholdStatus">
+                Stable, but pressure is rising.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="thresholdResult" class="threshold-result hidden">
+        <div class="threshold-visual result-threshold-visual">
+          <div class="threshold-glow"></div>
+          <div class="threshold-ring"></div>
+          <div id="resultThresholdCore" class="threshold-core">Result</div>
+
+          <p class="threshold-visual-caption">
+            The score is not a measure of your worth. It is a trace of how the pattern held under pressure.
+          </p>
+        </div>
+
+        <p class="eyebrow">Your run</p>
+
+        <h2 id="thresholdResultTitle" class="threshold-result-title">Result title</h2>
+        <p id="thresholdResultSummary" class="threshold-result-summary"></p>
+        <p id="thresholdResultQuestion" class="threshold-result-question"></p>
+
+        <div class="threshold-score-grid">
+          <div class="threshold-score-card">
+            <span class="threshold-score-label">Final score</span>
+            <span id="finalThresholdScore" class="threshold-score-value">0</span>
+          </div>
+
+          <div class="threshold-score-card">
+            <span class="threshold-score-label">Level reached</span>
+            <span id="finalThresholdLevel" class="threshold-score-value">1</span>
+          </div>
+
+          <div class="threshold-score-card">
+            <span class="threshold-score-label">Collapse risk</span>
+            <span id="finalThresholdRisk" class="threshold-score-value small-score-text">—</span>
+          </div>
+
+          <div class="threshold-score-card">
+            <span class="threshold-score-label">Personal best</span>
+            <span id="finalThresholdBest" class="threshold-score-value">0</span>
+          </div>
+        </div>
+
+        <div class="threshold-actions">
+          <button id="restartThresholdButton" class="threshold-button" type="button">
+            Play again
+          </button>
+
+          <button id="copyThresholdButton" class="threshold-button threshold-button-secondary" type="button">
+            Copy result
+          </button>
+        </div>
+
+        <p class="small-note">
+          This prototype is part of Meaning After Work and The Existential Human-Centred AI Forum.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Meaning After Work is a public project of The Existential Human-Centred AI Forum.
+    </p>
+
+    <p>
+      Independent pre-launch research-and-practice initiative. Not an official university project unless explicitly stated.
+    </p>
+  </footer>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9677cb0fa87845fe8d5de700ddd3a513"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  <script>
+    const thresholdEvents = [
+      {
+        type: "Email",
+        title: "The Difficult Email",
+        text: "AI can answer a difficult email instantly. The answer is polite, efficient and not quite yours.",
+        actions: [
+          {
+            label: "Send the AI answer",
+            feedback: "Efficient, but your judgment became less visible.",
+            effects: { meaning: -4, agency: -6, responsibility: -3, cobeing: -2, pressure: -4 }
+          },
+          {
+            label: "Rewrite with judgment",
+            feedback: "Slower, but authorship returned.",
+            effects: { meaning: 6, agency: 7, responsibility: 5, cobeing: 1, pressure: 3 }
+          },
+          {
+            label: "Ask the person directly",
+            feedback: "The task became relational rather than merely efficient.",
+            effects: { meaning: 5, agency: 2, responsibility: 4, cobeing: 8, pressure: 5 }
+          },
+          {
+            label: "Postpone it",
+            feedback: "Relief arrived, but responsibility remained unresolved.",
+            effects: { meaning: -3, agency: -2, responsibility: -6, cobeing: -1, pressure: 5 }
+          }
+        ]
+      },
+      {
+        type: "Deadline",
+        title: "The Compressed Task",
+        text: "A deadline is closing in. You can optimize, ask for help, slow down or pretend the pressure is normal.",
+        actions: [
+          {
+            label: "Optimize everything",
+            feedback: "Speed increased, but pressure thickened.",
+            effects: { meaning: -4, agency: -3, responsibility: 2, cobeing: -4, pressure: 7 }
+          },
+          {
+            label: "Create a human checkpoint",
+            feedback: "You added friction, but also responsibility.",
+            effects: { meaning: 5, agency: 6, responsibility: 8, cobeing: 2, pressure: 3 }
+          },
+          {
+            label: "Ask for shared prioritization",
+            feedback: "The burden became less solitary.",
+            effects: { meaning: 4, agency: 3, responsibility: 5, cobeing: 8, pressure: -2 }
+          },
+          {
+            label: "Push silently",
+            feedback: "You survived the moment, but silence became costly.",
+            effects: { meaning: -6, agency: -5, responsibility: 0, cobeing: -6, pressure: 8 }
+          }
+        ]
+      },
+      {
+        type: "AI Shortcut",
+        title: "The Beautiful Shortcut",
+        text: "A tool produces a clean solution. Nobody will know whether you understood it.",
+        actions: [
+          {
+            label: "Use it without review",
+            feedback: "The shortcut worked, but responsibility thinned.",
+            effects: { meaning: -5, agency: -7, responsibility: -7, cobeing: -1, pressure: -5 }
+          },
+          {
+            label: "Explain it back to yourself",
+            feedback: "You restored understanding before acting.",
+            effects: { meaning: 6, agency: 8, responsibility: 6, cobeing: 0, pressure: 2 }
+          },
+          {
+            label: "Discuss the solution",
+            feedback: "Understanding became shared.",
+            effects: { meaning: 5, agency: 5, responsibility: 7, cobeing: 7, pressure: 3 }
+          },
+          {
+            label: "Reject all shortcuts",
+            feedback: "Agency rose, but the refusal became rigid.",
+            effects: { meaning: 2, agency: 5, responsibility: 1, cobeing: -2, pressure: 6 }
+          }
+        ]
+      },
+      {
+        type: "Care",
+        title: "The Human Interruption",
+        text: "A colleague needs real attention. Helping them will cost time.",
+        actions: [
+          {
+            label: "Ignore and continue",
+            feedback: "Efficiency remained intact, but relation weakened.",
+            effects: { meaning: -5, agency: 0, responsibility: -4, cobeing: -9, pressure: -2 }
+          },
+          {
+            label: "Offer quick advice",
+            feedback: "You helped, but remained half absent.",
+            effects: { meaning: 1, agency: 1, responsibility: 2, cobeing: 2, pressure: 1 }
+          },
+          {
+            label: "Become present",
+            feedback: "You protected co-being at the cost of time.",
+            effects: { meaning: 7, agency: 2, responsibility: 5, cobeing: 10, pressure: 6 }
+          },
+          {
+            label: "Redesign the burden together",
+            feedback: "The interruption became a shared rethinking.",
+            effects: { meaning: 8, agency: 6, responsibility: 7, cobeing: 8, pressure: 1 }
+          }
+        ]
+      },
+      {
+        type: "Silence",
+        title: "The Quiet Room",
+        text: "Everyone feels the AI transition is changing the work, but nobody names it.",
+        actions: [
+          {
+            label: "Stay quiet",
+            feedback: "Silence became easier, but agency fell.",
+            effects: { meaning: -6, agency: -7, responsibility: -2, cobeing: -5, pressure: 5 }
+          },
+          {
+            label: "Name the tension carefully",
+            feedback: "A small truth entered the room.",
+            effects: { meaning: 7, agency: 8, responsibility: 6, cobeing: 3, pressure: 4 }
+          },
+          {
+            label: "Create a conversation",
+            feedback: "The pressure became speakable.",
+            effects: { meaning: 6, agency: 4, responsibility: 5, cobeing: 9, pressure: 2 }
+          },
+          {
+            label: "Escape into productivity",
+            feedback: "Output replaced reflection for a while.",
+            effects: { meaning: -5, agency: -4, responsibility: 0, cobeing: -5, pressure: 6 }
+          }
+        ]
+      },
+      {
+        type: "Recognition",
+        title: "The Praise of Speed",
+        text: "You are praised for producing more with AI. The praise feels good, but also narrows what counts as valuable.",
+        actions: [
+          {
+            label: "Chase the praise",
+            feedback: "Recognition rose, but worth became tied to speed.",
+            effects: { meaning: -5, agency: -3, responsibility: 0, cobeing: -4, pressure: 7 }
+          },
+          {
+            label: "Receive it, but question the measure",
+            feedback: "You accepted recognition without surrendering judgment.",
+            effects: { meaning: 6, agency: 7, responsibility: 5, cobeing: 1, pressure: 2 }
+          },
+          {
+            label: "Share credit",
+            feedback: "The praise became less isolating.",
+            effects: { meaning: 4, agency: 2, responsibility: 4, cobeing: 8, pressure: 0 }
+          },
+          {
+            label: "Reject the praise angrily",
+            feedback: "Resistance appeared, but became less relational.",
+            effects: { meaning: 2, agency: 6, responsibility: 1, cobeing: -4, pressure: 5 }
+          }
+        ]
+      },
+      {
+        type: "Fatigue",
+        title: "The Tired Judgment",
+        text: "You are tired. Your choices are becoming faster, flatter and less yours.",
+        actions: [
+          {
+            label: "Keep going",
+            feedback: "The system moved, but the self thinned.",
+            effects: { meaning: -6, agency: -6, responsibility: -2, cobeing: -4, pressure: 8 }
+          },
+          {
+            label: "Take a short pause",
+            feedback: "Rest reopened judgment.",
+            effects: { meaning: 5, agency: 5, responsibility: 2, cobeing: 1, pressure: -8 }
+          },
+          {
+            label: "Ask for help",
+            feedback: "Fatigue became shared rather than hidden.",
+            effects: { meaning: 4, agency: 2, responsibility: 4, cobeing: 8, pressure: -4 }
+          },
+          {
+            label: "Automate more",
+            feedback: "The immediate load dropped, but agency weakened.",
+            effects: { meaning: -3, agency: -6, responsibility: -3, cobeing: -2, pressure: -5 }
+          }
+        ]
+      }
+    ];
+
+    let thresholdState = {};
+    let thresholdTimer = null;
+    let currentThresholdEvent = null;
+    let thresholdBest = Number(localStorage.getItem("humanThresholdBestScore") || 0);
+    let thresholdBestLevel = Number(localStorage.getItem("humanThresholdBestLevel") || 1);
+
+    function clampThreshold(value) {
+      return Math.max(0, Math.min(100, value));
+    }
+
+    function showThresholdSection(id) {
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function hideThresholdSection(id) {
+      document.getElementById(id).classList.add("hidden");
+    }
+
+    function resetThresholdState() {
+      thresholdState = {
+        time: 75,
+        level: 1,
+        score: 0,
+        choices: 0,
+        meaning: 60,
+        agency: 60,
+        responsibility: 60,
+        cobeing: 60,
+        pressure: 35,
+        endedBy: "time"
+      };
+    }
+
+    function startThreshold() {
+      resetThresholdState();
+      hideThresholdSection("thresholdIntro");
+      hideThresholdSection("thresholdResult");
+      showThresholdSection("thresholdGame");
+      thresholdBest = Number(localStorage.getItem("humanThresholdBestScore") || 0);
+      thresholdBestLevel = Number(localStorage.getItem("humanThresholdBestLevel") || 1);
+      renderThresholdEvent();
+      updateThresholdDisplay();
+
+      if (thresholdTimer) {
+        clearInterval(thresholdTimer);
+      }
+
+      thresholdTimer = setInterval(tickThreshold, 1000);
+    }
+
+    function tickThreshold() {
+      thresholdState.time -= 1;
+
+      if (thresholdState.time % 6 === 0) {
+        thresholdState.pressure = clampThreshold(thresholdState.pressure + thresholdState.level);
+      }
+
+      updateThresholdDisplay();
+
+      if (thresholdState.time <= 0) {
+        thresholdState.endedBy = "time";
+        finishThreshold();
+      }
+
+      if (isThresholdCollapsed()) {
+        thresholdState.endedBy = "collapse";
+        finishThreshold();
+      }
+    }
+
+    function getRandomThresholdEvent() {
+      const index = Math.floor(Math.random() * thresholdEvents.length);
+      return thresholdEvents[index];
+    }
+
+    function renderThresholdEvent() {
+      currentThresholdEvent = getRandomThresholdEvent();
+
+      document.getElementById("thresholdEventType").textContent = currentThresholdEvent.type;
+      document.getElementById("thresholdEventTitle").textContent = currentThresholdEvent.title;
+      document.getElementById("thresholdEventText").textContent = currentThresholdEvent.text;
+
+      const actions = document.getElementById("thresholdActions");
+      actions.innerHTML = "";
+
+      currentThresholdEvent.actions.forEach((action) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "threshold-action-button";
+        button.textContent = action.label;
+        button.addEventListener("click", () => chooseThresholdAction(action));
+        actions.appendChild(button);
+      });
+    }
+
+    function chooseThresholdAction(action) {
+      applyThresholdEffects(action.effects);
+
+      thresholdState.choices += 1;
+
+      if (thresholdState.choices % 5 === 0) {
+        thresholdState.level += 1;
+        thresholdState.pressure = clampThreshold(thresholdState.pressure + 4);
+      }
+
+      addThresholdScore();
+
+      document.getElementById("thresholdFeedback").textContent = action.feedback;
+
+      if (isThresholdCollapsed()) {
+        thresholdState.endedBy = "collapse";
+        finishThreshold();
+        return;
+      }
+
+      renderThresholdEvent();
+      updateThresholdDisplay();
+    }
+
+    function applyThresholdEffects(effects) {
+      thresholdState.meaning = clampThreshold(thresholdState.meaning + effects.meaning);
+      thresholdState.agency = clampThreshold(thresholdState.agency + effects.agency);
+      thresholdState.responsibility = clampThreshold(thresholdState.responsibility + effects.responsibility);
+      thresholdState.cobeing = clampThreshold(thresholdState.cobeing + effects.cobeing);
+      thresholdState.pressure = clampThreshold(thresholdState.pressure + effects.pressure);
+    }
+
+    function addThresholdScore() {
+      const humanAverage =
+        (thresholdState.meaning +
+          thresholdState.agency +
+          thresholdState.responsibility +
+          thresholdState.cobeing) / 4;
+
+      const balancePenalty =
+        Math.abs(thresholdState.meaning - 65) +
+        Math.abs(thresholdState.agency - 65) +
+        Math.abs(thresholdState.responsibility - 65) +
+        Math.abs(thresholdState.cobeing - 65);
+
+      const balanceBonus = Math.max(0, 60 - balancePenalty / 2);
+      const pressurePenalty = thresholdState.pressure * 0.35;
+
+      const gained = Math.max(
+        5,
+        Math.round(8 + thresholdState.level * 4 + humanAverage / 6 + balanceBonus / 4 - pressurePenalty / 3)
+      );
+
+      thresholdState.score += gained;
+    }
+
+    function isThresholdCollapsed() {
+      return (
+        thresholdState.pressure >= 100 ||
+        thresholdState.meaning <= 0 ||
+        thresholdState.agency <= 0 ||
+        thresholdState.responsibility <= 0 ||
+        thresholdState.cobeing <= 0
+      );
+    }
+
+    function getCollapseRisk() {
+      const values = [
+        ["Meaning", thresholdState.meaning],
+        ["Agency", thresholdState.agency],
+        ["Responsibility", thresholdState.responsibility],
+        ["Co-being", thresholdState.cobeing]
+      ];
+
+      values.sort((a, b) => a[1] - b[1]);
+
+      if (thresholdState.pressure >= 82) {
+        return "Pressure";
+      }
+
+      return values[0][0];
+    }
+
+    function getThresholdStatus() {
+      if (thresholdState.pressure >= 85) {
+        return "Critical pressure. One more careless move may break the pattern.";
+      }
+
+      if (thresholdState.cobeing < 35) {
+        return "Isolation risk. You are carrying too much without relation.";
+      }
+
+      if (thresholdState.agency < 35) {
+        return "Agency risk. The system is moving faster than your judgment.";
+      }
+
+      if (thresholdState.meaning < 35) {
+        return "Meaning risk. Usefulness is beginning to replace purpose.";
+      }
+
+      if (thresholdState.responsibility < 35) {
+        return "Responsibility risk. Speed is weakening accountability.";
+      }
+
+      if (thresholdState.level >= 4) {
+        return "High pressure, but the human threshold is still holding.";
+      }
+
+      return "Stable, but pressure is rising.";
+    }
+
+    function updateThresholdDisplay() {
+      document.getElementById("thresholdTime").textContent = thresholdState.time;
+      document.getElementById("thresholdLevel").textContent = thresholdState.level;
+      document.getElementById("thresholdScore").textContent = thresholdState.score;
+      document.getElementById("thresholdBest").textContent = thresholdBest;
+
+      document.getElementById("thresholdMeaningValue").textContent = thresholdState.meaning;
+      document.getElementById("thresholdAgencyValue").textContent = thresholdState.agency;
+      document.getElementById("thresholdResponsibilityValue").textContent = thresholdState.responsibility;
+      document.getElementById("thresholdCoBeingValue").textContent = thresholdState.cobeing;
+      document.getElementById("thresholdPressureValue").textContent = thresholdState.pressure;
+
+      document.getElementById("thresholdMeaningBar").style.width = `${thresholdState.meaning}%`;
+      document.getElementById("thresholdAgencyBar").style.width = `${thresholdState.agency}%`;
+      document.getElementById("thresholdResponsibilityBar").style.width = `${thresholdState.responsibility}%`;
+      document.getElementById("thresholdCoBeingBar").style.width = `${thresholdState.cobeing}%`;
+      document.getElementById("thresholdPressureBar").style.width = `${thresholdState.pressure}%`;
+
+      document.getElementById("thresholdStatus").textContent = getThresholdStatus();
+    }
+
+    function getThresholdProfile() {
+      const risk = getCollapseRisk();
+
+      if (thresholdState.endedBy === "collapse") {
+        return {
+          title: "Threshold Collapse",
+          summary:
+            `The run ended because the pattern crossed a collapse point. The main risk was ${risk}. This is not failure as a personal judgment; it is a signal that the system became too costly for one human pattern to hold.`,
+          question:
+            "Reflection: What collapsed first — pressure, meaning, agency, responsibility or co-being?"
+        };
+      }
+
+      if (thresholdState.level >= 5 && thresholdState.score >= 750) {
+        return {
+          title: "Human Threshold Held",
+          summary:
+            "You preserved a strong human pattern under rising pressure. The run suggests that balance, not maximization, was your most effective strategy.",
+          question:
+            "Reflection: Which response helped you remain human without becoming passive?"
+        };
+      }
+
+      if (thresholdState.cobeing >= 75) {
+        return {
+          title: "Relational Resilience",
+          summary:
+            "Your strongest protection was co-being. You did not treat pressure as a solitary burden, and relation helped the pattern remain human.",
+          question:
+            "Reflection: Who helps you stay human when work accelerates?"
+        };
+      }
+
+      if (thresholdState.agency >= 75 && thresholdState.responsibility >= 70) {
+        return {
+          title: "Responsible Agency",
+          summary:
+            "Your run preserved judgment and responsibility. You did not reject AI or pressure automatically, but you resisted surrendering accountability to speed.",
+          question:
+            "Reflection: Where can you create one human checkpoint before the next automation?"
+        };
+      }
+
+      if (thresholdState.pressure < 55 && thresholdState.meaning >= 65) {
+        return {
+          title: "Spacious Balance",
+          summary:
+            "You kept enough space for meaning to survive. The pattern suggests that rest, pause or careful refusal can be strategic, not merely passive.",
+          question:
+            "Reflection: What space must be protected before work becomes only reaction?"
+        };
+      }
+
+      return {
+        title: "Fragile Threshold",
+        summary:
+          "You stayed in the game, but the pattern remained fragile. Your score reflects movement under pressure, but the next run may require a different kind of balance.",
+        question:
+          `Reflection: The main risk was ${risk}. What could you do earlier next time?`
+      };
+    }
+
+    function finishThreshold() {
+      if (thresholdTimer) {
+        clearInterval(thresholdTimer);
+        thresholdTimer = null;
+      }
+
+      hideThresholdSection("thresholdGame");
+      showThresholdSection("thresholdResult");
+
+      if (thresholdState.score > thresholdBest) {
+        thresholdBest = thresholdState.score;
+        thresholdBestLevel = thresholdState.level;
+        localStorage.setItem("humanThresholdBestScore", String(thresholdBest));
+        localStorage.setItem("humanThresholdBestLevel", String(thresholdBestLevel));
+      }
+
+      const profile = getThresholdProfile();
+
+      document.getElementById("thresholdResultTitle").textContent = profile.title;
+      document.getElementById("thresholdResultSummary").textContent = profile.summary;
+      document.getElementById("thresholdResultQuestion").textContent = profile.question;
+      document.getElementById("finalThresholdScore").textContent = thresholdState.score;
+      document.getElementById("finalThresholdLevel").textContent = thresholdState.level;
+      document.getElementById("finalThresholdRisk").textContent = getCollapseRisk();
+      document.getElementById("finalThresholdBest").textContent = thresholdBest;
+      document.getElementById("resultThresholdCore").innerHTML = `${thresholdState.score}<br />points`;
+    }
+
+    function restartThreshold() {
+      hideThresholdSection("thresholdResult");
+      showThresholdSection("thresholdIntro");
+      resetThresholdState();
+    }
+
+    function copyThresholdResult() {
+      const text = `The Human Threshold Result
+
+Score: ${thresholdState.score}
+Level reached: ${thresholdState.level}
+Collapse risk: ${getCollapseRisk()}
+Personal best: ${thresholdBest}
+
+${document.getElementById("thresholdResultTitle").textContent}
+
+${document.getElementById("thresholdResultSummary").textContent}
+
+${document.getElementById("thresholdResultQuestion").textContent}
+
+https://meaningafterwork.com/human-threshold.html`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Result copied to clipboard.");
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const beginButton = document.getElementById("beginThresholdButton");
+      const restartButton = document.getElementById("restartThresholdButton");
+      const copyButton = document.getElementById("copyThresholdButton");
+
+      if (beginButton) {
+        beginButton.addEventListener("click", startThreshold);
+      }
+
+      if (restartButton) {
+        restartButton.addEventListener("click", restartThreshold);
+      }
+
+      if (copyButton) {
+        copyButton.addEventListener("click", copyThresholdResult);
+      }
+    });
+  </script>
+</body>
+</html>
