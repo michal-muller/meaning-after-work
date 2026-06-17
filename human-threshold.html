@@ -432,14 +432,339 @@
             effects: { meaning: -3, agency: -6, responsibility: -3, cobeing: -2, pressure: -5 }
           }
         ]
+      },       {
+        type: "Meeting",
+        title: "The Automated Meeting",
+        text: "A meeting could be summarized by AI. Everyone would save time, but nobody may really hear what was left unsaid.",
+        actions: [
+          {
+            label: "Rely only on the summary",
+            feedback: "The meeting became efficient, but less relational.",
+            effects: { meaning: -4, agency: -3, responsibility: -2, cobeing: -6, pressure: -3 }
+          },
+          {
+            label: "Read the summary critically",
+            feedback: "Efficiency remained, but judgment returned.",
+            effects: { meaning: 5, agency: 6, responsibility: 5, cobeing: 1, pressure: 1 }
+          },
+          {
+            label: "Ask what the summary missed",
+            feedback: "The unsaid became visible.",
+            effects: { meaning: 6, agency: 5, responsibility: 6, cobeing: 7, pressure: 3 }
+          },
+          {
+            label: "Skip the meeting entirely",
+            feedback: "Time was saved, but relation weakened.",
+            effects: { meaning: -3, agency: 1, responsibility: -5, cobeing: -6, pressure: -4 }
+          }
+        ]
+      },
+      {
+        type: "Approval",
+        title: "The Unread Decision",
+        text: "A system asks you to approve an AI-generated recommendation. It looks plausible, but you do not fully understand its basis.",
+        actions: [
+          {
+            label: "Approve it quickly",
+            feedback: "The system moved forward, but accountability thinned.",
+            effects: { meaning: -5, agency: -6, responsibility: -9, cobeing: -1, pressure: -3 }
+          },
+          {
+            label: "Ask for explanation",
+            feedback: "You slowed the process to protect responsibility.",
+            effects: { meaning: 5, agency: 7, responsibility: 9, cobeing: 1, pressure: 4 }
+          },
+          {
+            label: "Discuss the risk with someone affected",
+            feedback: "Responsibility became relational.",
+            effects: { meaning: 6, agency: 5, responsibility: 8, cobeing: 8, pressure: 5 }
+          },
+          {
+            label: "Reject it without review",
+            feedback: "You resisted, but without understanding.",
+            effects: { meaning: 1, agency: 4, responsibility: 1, cobeing: -2, pressure: 5 }
+          }
+        ]
+      },
+      {
+        type: "Metrics",
+        title: "The Dashboard",
+        text: "A dashboard shows that productivity has improved. It does not show fatigue, trust, dignity or quiet resentment.",
+        actions: [
+          {
+            label: "Trust the dashboard",
+            feedback: "The visible metric became the whole reality.",
+            effects: { meaning: -6, agency: -4, responsibility: -3, cobeing: -5, pressure: 4 }
+          },
+          {
+            label: "Ask what is missing",
+            feedback: "You widened the field of attention.",
+            effects: { meaning: 7, agency: 6, responsibility: 6, cobeing: 3, pressure: 2 }
+          },
+          {
+            label: "Add a human check-in",
+            feedback: "The metric met lived experience.",
+            effects: { meaning: 6, agency: 4, responsibility: 6, cobeing: 8, pressure: 3 }
+          },
+          {
+            label: "Ignore all metrics",
+            feedback: "You resisted reduction, but lost useful information.",
+            effects: { meaning: 2, agency: 3, responsibility: -2, cobeing: 0, pressure: 3 }
+          }
+        ]
+      },
+      {
+        type: "Learning",
+        title: "The Skill That Fades",
+        text: "AI helps you complete a task you once understood deeply. You notice that the skill is becoming less alive in you.",
+        actions: [
+          {
+            label: "Let the tool handle it",
+            feedback: "The task was completed, but skill became more distant.",
+            effects: { meaning: -5, agency: -7, responsibility: -2, cobeing: -1, pressure: -4 }
+          },
+          {
+            label: "Practice the skill manually once",
+            feedback: "You kept the capacity alive.",
+            effects: { meaning: 6, agency: 8, responsibility: 4, cobeing: 0, pressure: 5 }
+          },
+          {
+            label: "Use AI as a tutor",
+            feedback: "The tool became a medium of learning rather than replacement.",
+            effects: { meaning: 7, agency: 7, responsibility: 5, cobeing: 1, pressure: 2 }
+          },
+          {
+            label: "Ask a colleague to compare approaches",
+            feedback: "Learning became shared.",
+            effects: { meaning: 6, agency: 5, responsibility: 4, cobeing: 8, pressure: 3 }
+          }
+        ]
+      },
+      {
+        type: "Boundary",
+        title: "The After-Hours Ping",
+        text: "A message arrives after work. AI could help you answer quickly, but answering would teach the system that you are always available.",
+        actions: [
+          {
+            label: "Answer immediately",
+            feedback: "Responsiveness rose, but the boundary weakened.",
+            effects: { meaning: -4, agency: -5, responsibility: 2, cobeing: -2, pressure: 7 }
+          },
+          {
+            label: "Schedule a reply for tomorrow",
+            feedback: "You preserved responsibility without surrendering the boundary.",
+            effects: { meaning: 6, agency: 7, responsibility: 6, cobeing: 1, pressure: -2 }
+          },
+          {
+            label: "Clarify expectations",
+            feedback: "The boundary became explicit and relational.",
+            effects: { meaning: 6, agency: 6, responsibility: 6, cobeing: 7, pressure: 1 }
+          },
+          {
+            label: "Ignore it with resentment",
+            feedback: "The boundary held, but silently and tensely.",
+            effects: { meaning: 0, agency: 3, responsibility: -3, cobeing: -5, pressure: 3 }
+          }
+        ]
+      },
+      {
+        type: "Delegation",
+        title: "The Invisible Assistant",
+        text: "AI quietly handles more of your work. Nobody complains. But you are less sure where your contribution begins.",
+        actions: [
+          {
+            label: "Let invisibility continue",
+            feedback: "The work flowed, but authorship blurred.",
+            effects: { meaning: -6, agency: -6, responsibility: -2, cobeing: -2, pressure: -3 }
+          },
+          {
+            label: "Mark where human judgment enters",
+            feedback: "You made authorship visible again.",
+            effects: { meaning: 7, agency: 8, responsibility: 6, cobeing: 1, pressure: 2 }
+          },
+          {
+            label: "Discuss authorship openly",
+            feedback: "The question became shared rather than private.",
+            effects: { meaning: 6, agency: 5, responsibility: 6, cobeing: 8, pressure: 3 }
+          },
+          {
+            label: "Stop using the assistant entirely",
+            feedback: "You restored control, but perhaps too rigidly.",
+            effects: { meaning: 2, agency: 6, responsibility: 2, cobeing: -2, pressure: 6 }
+          }
+        ]
+      },
+      {
+        type: "Conflict",
+        title: "The Sanitized Conflict",
+        text: "AI can soften a difficult message until it becomes polite, smooth and almost meaningless.",
+        actions: [
+          {
+            label: "Send the softened version",
+            feedback: "Conflict was avoided, but truth became diluted.",
+            effects: { meaning: -5, agency: -3, responsibility: -4, cobeing: -3, pressure: -3 }
+          },
+          {
+            label: "Keep the truth, soften only the harm",
+            feedback: "You protected both honesty and relation.",
+            effects: { meaning: 8, agency: 7, responsibility: 7, cobeing: 5, pressure: 3 }
+          },
+          {
+            label: "Speak directly in person",
+            feedback: "The conflict became relationally risky, but human.",
+            effects: { meaning: 7, agency: 6, responsibility: 6, cobeing: 7, pressure: 5 }
+          },
+          {
+            label: "Avoid the message",
+            feedback: "The conflict disappeared only temporarily.",
+            effects: { meaning: -4, agency: -3, responsibility: -7, cobeing: -2, pressure: 5 }
+          }
+        ]
+      },
+      {
+        type: "Surveillance",
+        title: "The Productivity Trace",
+        text: "A system tracks activity and suggests who is productive. It cannot see care, thinking, hesitation or moral difficulty.",
+        actions: [
+          {
+            label: "Adapt to what is tracked",
+            feedback: "You became legible to the system, but less whole.",
+            effects: { meaning: -7, agency: -6, responsibility: -2, cobeing: -4, pressure: 6 }
+          },
+          {
+            label: "Question the measure",
+            feedback: "You resisted being reduced to trace data.",
+            effects: { meaning: 7, agency: 8, responsibility: 5, cobeing: 1, pressure: 4 }
+          },
+          {
+            label: "Ask how invisible work will be recognized",
+            feedback: "The unseen became part of the conversation.",
+            effects: { meaning: 7, agency: 5, responsibility: 6, cobeing: 7, pressure: 3 }
+          },
+          {
+            label: "Game the metric",
+            feedback: "You gained advantage, but responsibility weakened.",
+            effects: { meaning: -4, agency: 2, responsibility: -7, cobeing: -4, pressure: 0 }
+          }
+        ]
+      },
+      {
+        type: "Hiring",
+        title: "The Efficient Screening",
+        text: "AI ranks candidates quickly. The ranking looks objective, but you wonder what kind of personhood has been made invisible.",
+        actions: [
+          {
+            label: "Trust the ranking",
+            feedback: "The process accelerated, but responsibility narrowed.",
+            effects: { meaning: -5, agency: -4, responsibility: -7, cobeing: -3, pressure: -3 }
+          },
+          {
+            label: "Review edge cases manually",
+            feedback: "You protected human judgment where reduction was risky.",
+            effects: { meaning: 7, agency: 7, responsibility: 8, cobeing: 3, pressure: 4 }
+          },
+          {
+            label: "Discuss fairness with the team",
+            feedback: "Responsibility became collective.",
+            effects: { meaning: 6, agency: 4, responsibility: 8, cobeing: 7, pressure: 4 }
+          },
+          {
+            label: "Reject the tool without discussion",
+            feedback: "You resisted reduction, but lost a chance to redesign the process.",
+            effects: { meaning: 2, agency: 5, responsibility: 1, cobeing: -2, pressure: 5 }
+          }
+        ]
+      },
+      {
+        type: "Creativity",
+        title: "The Generated Idea",
+        text: "AI gives you ten creative ideas. They are good. You feel both inspired and replaced.",
+        actions: [
+          {
+            label: "Use the best idea immediately",
+            feedback: "The output improved, but ownership weakened.",
+            effects: { meaning: -3, agency: -4, responsibility: 0, cobeing: -1, pressure: -2 }
+          },
+          {
+            label: "Use the ideas as provocation",
+            feedback: "The tool sparked your own authorship.",
+            effects: { meaning: 7, agency: 8, responsibility: 3, cobeing: 1, pressure: 1 }
+          },
+          {
+            label: "Invite human co-creation",
+            feedback: "Creativity became relational.",
+            effects: { meaning: 7, agency: 5, responsibility: 3, cobeing: 8, pressure: 3 }
+          },
+          {
+            label: "Reject the ideas defensively",
+            feedback: "You protected selfhood, but maybe closed the space too soon.",
+            effects: { meaning: 1, agency: 4, responsibility: 0, cobeing: -2, pressure: 4 }
+          }
+        ]
+      },
+      {
+        type: "Ethics",
+        title: "The Convenient Blind Spot",
+        text: "A decision would be easier if you did not ask where the data came from.",
+        actions: [
+          {
+            label: "Do not ask",
+            feedback: "Convenience won, but responsibility fell.",
+            effects: { meaning: -6, agency: -3, responsibility: -9, cobeing: -2, pressure: -3 }
+          },
+          {
+            label: "Ask about the data",
+            feedback: "You slowed the process to keep accountability alive.",
+            effects: { meaning: 6, agency: 7, responsibility: 9, cobeing: 2, pressure: 4 }
+          },
+          {
+            label: "Ask who might be affected",
+            feedback: "The ethical question became human rather than abstract.",
+            effects: { meaning: 7, agency: 5, responsibility: 8, cobeing: 7, pressure: 4 }
+          },
+          {
+            label: "Delegate the question away",
+            feedback: "The discomfort moved elsewhere, but did not disappear.",
+            effects: { meaning: -3, agency: -4, responsibility: -6, cobeing: -1, pressure: -1 }
+          }
+        ]
+      },
+      {
+        type: "Identity",
+        title: "The Useful Self",
+        text: "You feel most valuable when you are useful, fast and needed. The game asks what remains when usefulness is not enough.",
+        actions: [
+          {
+            label: "Become more useful",
+            feedback: "Usefulness intensified, but worth narrowed.",
+            effects: { meaning: -5, agency: -2, responsibility: 1, cobeing: -4, pressure: 7 }
+          },
+          {
+            label: "Ask what matters beyond usefulness",
+            feedback: "Meaning widened beyond output.",
+            effects: { meaning: 9, agency: 6, responsibility: 3, cobeing: 2, pressure: 2 }
+          },
+          {
+            label: "Share the question with someone",
+            feedback: "The identity question became less solitary.",
+            effects: { meaning: 7, agency: 3, responsibility: 3, cobeing: 8, pressure: 1 }
+          },
+          {
+            label: "Dismiss the question",
+            feedback: "The discomfort was silenced, but not resolved.",
+            effects: { meaning: -6, agency: -4, responsibility: -1, cobeing: -3, pressure: 4 }
+          }
+        ]
       }
     ];
 
-    let thresholdState = {};
-    let thresholdTimer = null;
-    let currentThresholdEvent = null;
-    let thresholdBest = Number(localStorage.getItem("humanThresholdBestScore") || 0);
-    let thresholdBestLevel = Number(localStorage.getItem("humanThresholdBestLevel") || 1);
+   let thresholdState = {};
+let thresholdTimer = null;
+let currentThresholdEvent = null;
+let lastThresholdEventIndex = -1;
+let thresholdEventBag = [];
+let thresholdBest = Number(localStorage.getItem("humanThresholdBestScore") || 0);
+let thresholdBestLevel = Number(localStorage.getItem("humanThresholdBestLevel") || 1);
 
     function clampThreshold(value) {
       return Math.max(0, Math.min(100, value));
@@ -505,10 +830,29 @@
       }
     }
 
-    function getRandomThresholdEvent() {
-      const index = Math.floor(Math.random() * thresholdEvents.length);
-      return thresholdEvents[index];
-    }
+    function shuffleThresholdEvents() {
+  thresholdEventBag = thresholdEvents.map((event, index) => index);
+
+  for (let i = thresholdEventBag.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [thresholdEventBag[i], thresholdEventBag[j]] = [thresholdEventBag[j], thresholdEventBag[i]];
+  }
+
+  if (thresholdEventBag[0] === lastThresholdEventIndex && thresholdEventBag.length > 1) {
+    [thresholdEventBag[0], thresholdEventBag[1]] = [thresholdEventBag[1], thresholdEventBag[0]];
+  }
+}
+
+function getRandomThresholdEvent() {
+  if (thresholdEventBag.length === 0) {
+    shuffleThresholdEvents();
+  }
+
+  const index = thresholdEventBag.shift();
+  lastThresholdEventIndex = index;
+
+  return thresholdEvents[index];
+}
 
     function renderThresholdEvent() {
       currentThresholdEvent = getRandomThresholdEvent();
