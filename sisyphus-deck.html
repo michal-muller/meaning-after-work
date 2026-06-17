@@ -167,276 +167,211 @@
   <!-- End Cloudflare Web Analytics -->
 
   <script>
-    const cards = [
-      {
-        theme: "Pressure",
-        title: "The Deadline",
-        text: "A deadline is approaching. AI can finish the work faster, but you feel your judgment beginning to disappear.",
-        options: [
-          {
-            label: "Push harder and use AI without hesitation.",
-            effects: { meaning: -8, agency: -10, responsibility: 4, coBeing: -6 }
-          },
-          {
-            label: "Refuse AI completely and do everything yourself.",
-            effects: { meaning: 4, agency: 6, responsibility: -2, coBeing: -2 }
-          },
-          {
-            label: "Use AI, but create a human checkpoint before submission.",
-            effects: { meaning: 6, agency: 8, responsibility: 10, coBeing: 2 }
-          },
-          {
-            label: "Pause and talk with someone about the discomfort.",
-            effects: { meaning: 5, agency: 2, responsibility: 4, coBeing: 10 }
-          }
-        ]
-      },
-      {
-        theme: "Convenience",
-        title: "The Shortcut",
-        text: "A tool offers a clean summary of a difficult problem. You know it saves time, but you also sense a temptation to stop thinking.",
-        options: [
-          {
-            label: "Take the summary and move on immediately.",
-            effects: { meaning: -6, agency: -8, responsibility: 2, coBeing: -4 }
-          },
-          {
-            label: "Ignore the tool and work from scratch.",
-            effects: { meaning: 4, agency: 6, responsibility: 0, coBeing: -1 }
-          },
-          {
-            label: "Use the summary as a draft, then rewrite in your own words.",
-            effects: { meaning: 7, agency: 9, responsibility: 8, coBeing: 1 }
-          },
-          {
-            label: "Use the summary, then discuss it with another person.",
-            effects: { meaning: 5, agency: 5, responsibility: 5, coBeing: 8 }
-          }
-        ]
-      },
-      {
-        theme: "Identity",
-        title: "The Invisible Judgment",
-        text: "Your organization praises speed and output. Quietly, you feel that your own judgment is becoming less visible—even to yourself.",
-        options: [
-          {
-            label: "Adapt silently. Visibility matters more than discomfort.",
-            effects: { meaning: -10, agency: -8, responsibility: 2, coBeing: -6 }
-          },
-          {
-            label: "Withdraw inwardly and keep your doubts to yourself.",
-            effects: { meaning: 0, agency: 2, responsibility: -2, coBeing: -8 }
-          },
-          {
-            label: "Name the tension and protect space for judgment.",
-            effects: { meaning: 8, agency: 10, responsibility: 8, coBeing: 2 }
-          },
-          {
-            label: "Invite a colleague into the tension and reflect together.",
-            effects: { meaning: 6, agency: 5, responsibility: 6, coBeing: 10 }
-          }
-        ]
-      },
-      {
-        theme: "Relationship",
-        title: "The Human Interruption",
-        text: "A colleague needs real attention, but you are under pressure to stay efficient. You can automate the interaction or remain present to it.",
-        options: [
-          {
-            label: "Automate the interaction and keep moving.",
-            effects: { meaning: -7, agency: -3, responsibility: -2, coBeing: -10 }
-          },
-          {
-            label: "Help briefly, but remain mentally elsewhere.",
-            effects: { meaning: -2, agency: 0, responsibility: 1, coBeing: -4 }
-          },
-          {
-            label: "Stay present and make room for the person.",
-            effects: { meaning: 7, agency: 2, responsibility: 5, coBeing: 10 }
-          },
-          {
-            label: "Acknowledge the pressure and co-design a better response together.",
-            effects: { meaning: 8, agency: 6, responsibility: 7, coBeing: 8 }
-          }
-        ]
-      },
-      {
-        theme: "Burden",
-        title: "The Stone",
-        text: "You realize the real burden may not be the amount of work alone, but the way your worth has become tied to usefulness and performance.",
-        options: [
-          {
-            label: "Carry the stone harder. Endurance is the answer.",
-            effects: { meaning: -8, agency: -2, responsibility: 2, coBeing: -6 }
-          },
-          {
-            label: "Drop the stone and reject the whole game.",
-            effects: { meaning: 2, agency: 5, responsibility: -6, coBeing: 0 }
-          },
-          {
-            label: "Redefine the climb and carry the stone differently.",
-            effects: { meaning: 10, agency: 8, responsibility: 8, coBeing: 4 }
-          },
-          {
-            label: "Share the burden and ask who should be carrying it with you.",
-            effects: { meaning: 8, agency: 4, responsibility: 6, coBeing: 10 }
-          }
-        ]
-      }
-    ];
-
-    let currentCard = 0;
-    let scores = {};
-    let reflections = [];
-
-    function resetState() {
-      currentCard = 0;
-      scores = {
-        meaning: 50,
-        agency: 50,
-        responsibility: 50,
-        coBeing: 50
-      };
-      reflections = [];
+  const cards = [
+    {
+      theme: "Pressure",
+      title: "The Deadline",
+      text: "A deadline is approaching. AI can finish the work faster, but you feel your judgment beginning to disappear.",
+      options: [
+        { label: "Push harder and use AI without hesitation.", effects: { meaning: -8, agency: -10, responsibility: 4, coBeing: -6 } },
+        { label: "Refuse AI completely and do everything yourself.", effects: { meaning: 4, agency: 6, responsibility: -2, coBeing: -2 } },
+        { label: "Use AI, but create a human checkpoint before submission.", effects: { meaning: 6, agency: 8, responsibility: 10, coBeing: 2 } },
+        { label: "Pause and talk with someone about the discomfort.", effects: { meaning: 5, agency: 2, responsibility: 4, coBeing: 10 } }
+      ]
+    },
+    {
+      theme: "Convenience",
+      title: "The Shortcut",
+      text: "A tool offers a clean summary of a difficult problem. You know it saves time, but you also sense a temptation to stop thinking.",
+      options: [
+        { label: "Take the summary and move on immediately.", effects: { meaning: -6, agency: -8, responsibility: 2, coBeing: -4 } },
+        { label: "Ignore the tool and work from scratch.", effects: { meaning: 4, agency: 6, responsibility: 0, coBeing: -1 } },
+        { label: "Use the summary as a draft, then rewrite in your own words.", effects: { meaning: 7, agency: 9, responsibility: 8, coBeing: 1 } },
+        { label: "Use the summary, then discuss it with another person.", effects: { meaning: 5, agency: 5, responsibility: 5, coBeing: 8 } }
+      ]
+    },
+    {
+      theme: "Identity",
+      title: "The Invisible Judgment",
+      text: "Your organization praises speed and output. Quietly, you feel that your own judgment is becoming less visible — even to yourself.",
+      options: [
+        { label: "Adapt silently. Visibility matters more than discomfort.", effects: { meaning: -10, agency: -8, responsibility: 2, coBeing: -6 } },
+        { label: "Withdraw inwardly and keep your doubts to yourself.", effects: { meaning: 0, agency: 2, responsibility: -2, coBeing: -8 } },
+        { label: "Name the tension and protect space for judgment.", effects: { meaning: 8, agency: 10, responsibility: 8, coBeing: 2 } },
+        { label: "Invite a colleague into the tension and reflect together.", effects: { meaning: 6, agency: 5, responsibility: 6, coBeing: 10 } }
+      ]
+    },
+    {
+      theme: "Relationship",
+      title: "The Human Interruption",
+      text: "A colleague needs real attention, but you are under pressure to stay efficient. You can automate the interaction or remain present to it.",
+      options: [
+        { label: "Automate the interaction and keep moving.", effects: { meaning: -7, agency: -3, responsibility: -2, coBeing: -10 } },
+        { label: "Help briefly, but remain mentally elsewhere.", effects: { meaning: -2, agency: 0, responsibility: 1, coBeing: -4 } },
+        { label: "Stay present and make room for the person.", effects: { meaning: 7, agency: 2, responsibility: 5, coBeing: 10 } },
+        { label: "Acknowledge the pressure and co-design a better response together.", effects: { meaning: 8, agency: 6, responsibility: 7, coBeing: 8 } }
+      ]
+    },
+    {
+      theme: "Burden",
+      title: "The Stone",
+      text: "You realize the real burden may not be the amount of work alone, but the way your worth has become tied to usefulness and performance.",
+      options: [
+        { label: "Carry the stone harder. Endurance is the answer.", effects: { meaning: -8, agency: -2, responsibility: 2, coBeing: -6 } },
+        { label: "Drop the stone and reject the whole game.", effects: { meaning: 2, agency: 5, responsibility: -6, coBeing: 0 } },
+        { label: "Redefine the climb and carry the stone differently.", effects: { meaning: 10, agency: 8, responsibility: 8, coBeing: 4 } },
+        { label: "Share the burden and ask who should be carrying it with you.", effects: { meaning: 8, agency: 4, responsibility: 6, coBeing: 10 } }
+      ]
     }
+  ];
 
-    function startDeck() {
-      resetState();
-      document.getElementById("deckIntro").classList.add("hidden");
-      document.getElementById("deckResult").classList.add("hidden");
-      document.getElementById("deckGame").classList.remove("hidden");
+  let currentCard = 0;
+  let scores = {
+    meaning: 50,
+    agency: 50,
+    responsibility: 50,
+    coBeing: 50
+  };
+
+  function clamp(value) {
+    return Math.max(0, Math.min(100, value));
+  }
+
+  function show(id) {
+    document.getElementById(id).classList.remove("hidden");
+  }
+
+  function hide(id) {
+    document.getElementById(id).classList.add("hidden");
+  }
+
+  function resetState() {
+    currentCard = 0;
+    scores = {
+      meaning: 50,
+      agency: 50,
+      responsibility: 50,
+      coBeing: 50
+    };
+  }
+
+  function startDeck() {
+    resetState();
+    hide("deckIntro");
+    hide("deckResult");
+    show("deckGame");
+    updateMeters();
+    renderCard();
+  }
+
+  function renderCard() {
+    const card = cards[currentCard];
+
+    document.getElementById("progressText").textContent =
+      `Card ${currentCard + 1} of ${cards.length}`;
+
+    document.getElementById("cardTheme").textContent = card.theme;
+    document.getElementById("cardTitle").textContent = card.title;
+    document.getElementById("cardText").textContent = card.text;
+
+    const optionsContainer = document.getElementById("deckOptions");
+    optionsContainer.innerHTML = "";
+
+    card.options.forEach((option) => {
+      const button = document.createElement("button");
+      button.className = "deck-option";
+      button.type = "button";
+      button.textContent = option.label;
+      button.addEventListener("click", () => chooseOption(option));
+      optionsContainer.appendChild(button);
+    });
+  }
+
+  function chooseOption(option) {
+    scores.meaning = clamp(scores.meaning + option.effects.meaning);
+    scores.agency = clamp(scores.agency + option.effects.agency);
+    scores.responsibility = clamp(scores.responsibility + option.effects.responsibility);
+    scores.coBeing = clamp(scores.coBeing + option.effects.coBeing);
+
+    currentCard += 1;
+
+    if (currentCard < cards.length) {
       updateMeters();
       renderCard();
+    } else {
+      updateMeters();
+      finishDeck();
     }
+  }
 
-    function renderCard() {
-      const card = cards[currentCard];
+  function updateMeters() {
+    document.getElementById("meaningValue").textContent = scores.meaning;
+    document.getElementById("agencyValue").textContent = scores.agency;
+    document.getElementById("responsibilityValue").textContent = scores.responsibility;
+    document.getElementById("coBeingValue").textContent = scores.coBeing;
 
-      document.getElementById("progressText").textContent = `Card ${currentCard + 1} of ${cards.length}`;
-      document.getElementById("cardTheme").textContent = card.theme;
-      document.getElementById("cardTitle").textContent = card.title;
-      document.getElementById("cardText").textContent = card.text;
+    document.getElementById("meaningBar").style.width = `${scores.meaning}%`;
+    document.getElementById("agencyBar").style.width = `${scores.agency}%`;
+    document.getElementById("responsibilityBar").style.width = `${scores.responsibility}%`;
+    document.getElementById("coBeingBar").style.width = `${scores.coBeing}%`;
+  }
 
-      const optionsContainer = document.getElementById("deckOptions");
-      optionsContainer.innerHTML = "";
-
-      card.options.forEach((option, index) => {
-        const button = document.createElement("button");
-        button.className = "deck-option";
-        button.textContent = option.label;
-        button.onclick = () => chooseOption(index);
-        optionsContainer.appendChild(button);
-      });
-    }
-
-    function chooseOption(index) {
-      const option = cards[currentCard].options[index];
-
-      applyEffects(option.effects);
-      reflections.push(option.label);
-
-      currentCard++;
-
-      if (currentCard < cards.length) {
-        updateMeters();
-        renderCard();
-      } else {
-        updateMeters();
-        finishDeck();
-      }
-    }
-
-    function applyEffects(effects) {
-      scores.meaning = clamp(scores.meaning + effects.meaning);
-      scores.agency = clamp(scores.agency + effects.agency);
-      scores.responsibility = clamp(scores.responsibility + effects.responsibility);
-      scores.coBeing = clamp(scores.coBeing + effects.coBeing);
-    }
-
-    function clamp(value) {
-      return Math.max(0, Math.min(100, value));
-    }
-
-    function updateMeters() {
-      document.getElementById("meaningValue").textContent = scores.meaning;
-      document.getElementById("agencyValue").textContent = scores.agency;
-      document.getElementById("responsibilityValue").textContent = scores.responsibility;
-      document.getElementById("coBeingValue").textContent = scores.coBeing;
-
-      document.getElementById("meaningBar").style.width = scores.meaning + "%";
-      document.getElementById("agencyBar").style.width = scores.agency + "%";
-      document.getElementById("responsibilityBar").style.width = scores.responsibility + "%";
-      document.getElementById("coBeingBar").style.width = scores.coBeing + "%";
-    }
-
-    function finishDeck() {
-      document.getElementById("deckGame").classList.add("hidden");
-      document.getElementById("deckResult").classList.remove("hidden");
-
-      const profile = getProfile(scores);
-
-      document.getElementById("resultProfile").textContent = profile.name;
-      document.getElementById("resultSummary").textContent = profile.summary;
-      document.getElementById("resultQuestion").textContent = profile.question;
-
-      document.getElementById("finalMeaning").textContent = scores.meaning;
-      document.getElementById("finalAgency").textContent = scores.agency;
-      document.getElementById("finalResponsibility").textContent = scores.responsibility;
-      document.getElementById("finalCoBeing").textContent = scores.coBeing;
-    }
-
-    function getProfile(scores) {
-      const { meaning, agency, responsibility, coBeing } = scores;
-
-      if (responsibility >= 68 && agency >= 62) {
-        return {
-          name: "The Responsible Rebel",
-          summary:
-            "You do not reject tools, but you resist surrendering judgment to them. Your path suggests that responsibility matters more to you than speed alone.",
-          question:
-            "Reflection: Where can you create one human checkpoint before automation becomes habit?"
-        };
-      }
-
-      if (coBeing >= 68) {
-        return {
-          name: "The Co-being Seeker",
-          summary:
-            "You tend to preserve relationship and presence even under pressure. Your path suggests that meaning is sustained when burden is shared rather than silently carried alone.",
-          question:
-            "Reflection: Who needs to be included, heard or protected in the next difficult decision?"
-        };
-      }
-
-      if (meaning >= 64 || agency >= 64) {
-        return {
-          name: "The Quiet Resister",
-          summary:
-            "You are sensitive to the loss of authorship and inner direction. Your path suggests a wish to remain intact rather than disappear inside convenience and pressure.",
-          question:
-            "Reflection: Where are you preserving yourself inwardly, but not yet speaking aloud?"
-        };
-      }
-
+  function getProfile() {
+    if (scores.responsibility >= 68 && scores.agency >= 62) {
       return {
-        name: "The Efficient Adapter",
-        summary:
-          "You move effectively through pressure, but your path suggests a risk of letting usefulness quietly replace meaning. You may remain functional while losing a clearer sense of why the work is still yours.",
-          question:
-            "Reflection: What part of your work has become efficient, but no longer feels fully human?"
-        };
+        name: "The Responsible Rebel",
+        summary: "You do not reject tools, but you resist surrendering judgment to them. Your path suggests that responsibility matters more to you than speed alone.",
+        question: "Reflection: Where can you create one human checkpoint before automation becomes habit?"
       };
     }
 
-    function restartDeck() {
-      document.getElementById("deckResult").classList.add("hidden");
-      document.getElementById("deckIntro").classList.remove("hidden");
-      resetState();
+    if (scores.coBeing >= 68) {
+      return {
+        name: "The Co-being Seeker",
+        summary: "You tend to preserve relationship and presence even under pressure. Your path suggests that meaning is sustained when burden is shared rather than silently carried alone.",
+        question: "Reflection: Who needs to be included, heard or protected in the next difficult decision?"
+      };
     }
 
-        function copyReflection() {
-      const text = `
-Sisyphus Deck Reflection
+    if (scores.meaning >= 64 || scores.agency >= 64) {
+      return {
+        name: "The Quiet Resister",
+        summary: "You are sensitive to the loss of authorship and inner direction. Your path suggests a wish to remain intact rather than disappear inside convenience and pressure.",
+        question: "Reflection: Where are you preserving yourself inwardly, but not yet speaking aloud?"
+      };
+    }
+
+    return {
+      name: "The Efficient Adapter",
+      summary: "You move effectively through pressure, but your path suggests a risk of letting usefulness quietly replace meaning. You may remain functional while losing a clearer sense of why the work is still yours.",
+      question: "Reflection: What part of your work has become efficient, but no longer feels fully human?"
+    };
+  }
+
+  function finishDeck() {
+    hide("deckGame");
+    show("deckResult");
+
+    const profile = getProfile();
+
+    document.getElementById("resultProfile").textContent = profile.name;
+    document.getElementById("resultSummary").textContent = profile.summary;
+    document.getElementById("resultQuestion").textContent = profile.question;
+
+    document.getElementById("finalMeaning").textContent = scores.meaning;
+    document.getElementById("finalAgency").textContent = scores.agency;
+    document.getElementById("finalResponsibility").textContent = scores.responsibility;
+    document.getElementById("finalCoBeing").textContent = scores.coBeing;
+  }
+
+  function restartDeck() {
+    hide("deckResult");
+    show("deckIntro");
+    resetState();
+  }
+
+  function copyReflection() {
+    const text = `Sisyphus Deck Reflection
 
 Profile: ${document.getElementById("resultProfile").textContent}
 
@@ -448,21 +383,20 @@ Scores:
 Meaning: ${scores.meaning}
 Agency: ${scores.agency}
 Responsibility: ${scores.responsibility}
-Co-being: ${scores.coBeing}
-      `.trim();
+Co-being: ${scores.coBeing}`;
 
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Reflection copied to clipboard.");
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const beginButton = document.getElementById("beginDeckButton");
-
-      if (beginButton) {
-        beginButton.addEventListener("click", startDeck);
-      }
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Reflection copied to clipboard.");
     });
-  </script>
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const beginButton = document.getElementById("beginDeckButton");
+
+    if (beginButton) {
+      beginButton.addEventListener("click", startDeck);
+    }
+  });
+</script>
 </body>
 </html>
