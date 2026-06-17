@@ -3340,3 +3340,94 @@ button.stone-option:hover,
     height: 165px;
   }
 }
+/* ===== Reflective Experiences Hub ===== */
+
+.experiences-hub {
+  max-width: 1120px;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.experience-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(214, 173, 83, 0.09), transparent 34%),
+    rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(214, 173, 83, 0.45);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(214, 173, 83, 0.16), transparent 36%),
+    rgba(214, 173, 83, 0.045);
+}
+
+.experience-card.featured-experience {
+  border-color: rgba(214, 173, 83, 0.34);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(214, 173, 83, 0.18), transparent 38%),
+    rgba(214, 173, 83, 0.07);
+}
+
+.experience-type {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experience-card h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.45rem;
+  line-height: 1.15;
+}
+
+.experience-card p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.experience-link {
+  margin-top: auto;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1050px) {
+  .experience-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-card {
+    min-height: auto;
+  }
+}
