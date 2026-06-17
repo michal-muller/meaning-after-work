@@ -3431,3 +3431,101 @@ button.stone-option:hover,
     min-height: auto;
   }
 }
+/* ===== Homepage orientation sections ===== */
+
+.orientation-section,
+.audience-section {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.orientation-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.orientation-step {
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(214, 173, 83, 0.08), transparent 34%),
+    rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.orientation-step:hover {
+  transform: translateY(-2px);
+  border-color: rgba(214, 173, 83, 0.45);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(214, 173, 83, 0.15), transparent 36%),
+    rgba(214, 173, 83, 0.045);
+}
+
+.orientation-step span {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.orientation-step h3,
+.audience-card h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.35rem;
+  line-height: 1.18;
+}
+
+.orientation-step p,
+.audience-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.audience-card {
+  min-height: 220px;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.14);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+@media (max-width: 1150px) {
+  .orientation-steps,
+  .audience-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .orientation-steps,
+  .audience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .orientation-step,
+  .audience-card {
+    min-height: auto;
+  }
+}
