@@ -58,7 +58,9 @@
           At the end, you will receive a brief reflection on how you tend to carry the stone.
         </p>
 
-        <button class="deck-button" onclick="startDeck()">Begin the deck</button>
+        <button id="beginDeckButton" class="deck-button" type="button">
+  Begin the deck
+</button>
       </div>
 
       <div id="deckGame" class="deck-game hidden">
@@ -453,6 +455,12 @@ Co-being: ${scores.coBeing}
         alert("Reflection copied to clipboard.");
       });
     }
-  </script>
+ document.addEventListener("DOMContentLoaded", function () {
+  const beginButton = document.getElementById("beginDeckButton");
+
+  if (beginButton) {
+    beginButton.addEventListener("click", startDeck);
+  }
+}); </script>
 </body>
 </html>
