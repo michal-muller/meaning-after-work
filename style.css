@@ -2942,3 +2942,401 @@ button.stone-option:hover,
     font-size: 0.9rem;
   }
 }
+/* ===== The Human Threshold ===== */
+
+.threshold-page {
+  max-width: 1120px;
+}
+
+.threshold-shell {
+  max-width: 1040px;
+  margin: 0 auto 70px;
+  padding: 34px;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+}
+
+.threshold-intro h2,
+.threshold-event-card h2,
+.threshold-result-title {
+  margin-top: 0;
+}
+
+.threshold-intro p,
+.threshold-event-card p,
+.threshold-result-summary,
+.threshold-result-question {
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.threshold-visual {
+  position: relative;
+  height: 340px;
+  margin-bottom: 32px;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(214, 173, 83, 0.18);
+  background:
+    radial-gradient(circle at 70% 24%, rgba(214, 173, 83, 0.18), transparent 25%),
+    radial-gradient(circle at 25% 18%, rgba(255, 255, 255, 0.06), transparent 24%),
+    linear-gradient(180deg, rgba(17, 24, 39, 0.98), rgba(8, 11, 17, 0.98));
+}
+
+.threshold-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  right: 8%;
+  top: 7%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(214, 173, 83, 0.25), transparent 64%);
+  opacity: 0.45;
+}
+
+.threshold-ring {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 2px solid rgba(214, 173, 83, 0.36);
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 26px rgba(214, 173, 83, 0.12),
+    inset 0 0 26px rgba(214, 173, 83, 0.08);
+}
+
+.threshold-core {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(214, 173, 83, 0.55);
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.13), transparent 25%),
+    rgba(214, 173, 83, 0.13);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.30);
+}
+
+.threshold-orbit {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  min-width: 76px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 173, 83, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(244, 239, 230, 0.86);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 0.86rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.orbit-one { left: 24%; top: 22%; }
+.orbit-two { right: 24%; top: 26%; }
+.orbit-three { left: 28%; top: 58%; }
+.orbit-four { right: 24%; top: 60%; }
+
+.threshold-visual-caption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 22px;
+  margin: 0;
+  color: rgba(244, 239, 230, 0.72);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  max-width: 760px;
+}
+
+.threshold-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 173, 83, 0.4);
+  background: var(--gold);
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 0.98rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(214, 173, 83, 0.22);
+}
+
+.threshold-button:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.threshold-button-secondary {
+  background: transparent;
+  color: var(--gold);
+}
+
+.threshold-hud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.threshold-hud-card {
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.threshold-hud-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.threshold-hud-card strong {
+  color: var(--gold);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.threshold-layout {
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) 340px;
+  gap: 28px;
+  align-items: start;
+}
+
+.threshold-event-card {
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(214, 173, 83, 0.05);
+}
+
+.threshold-event-type {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.threshold-event-card h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  line-height: 1.1;
+}
+
+.threshold-actions-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.threshold-action-button {
+  width: 100%;
+  text-align: left;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(214, 173, 83, 0.18);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.threshold-action-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(214, 173, 83, 0.45);
+  background: rgba(214, 173, 83, 0.08);
+}
+
+.threshold-feedback {
+  margin-top: 22px;
+  color: var(--gold);
+}
+
+.threshold-side {
+  display: grid;
+  gap: 18px;
+}
+
+.threshold-metrics {
+  display: grid;
+  gap: 14px;
+}
+
+.threshold-metric {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.threshold-metric-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 10px;
+  color: var(--text);
+  font-size: 0.97rem;
+}
+
+.threshold-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.threshold-fill {
+  height: 100%;
+  width: 60%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(214,173,83,0.55), rgba(214,173,83,1));
+  transition: width 0.28s ease;
+}
+
+.pressure-fill {
+  width: 35%;
+  background: linear-gradient(90deg, rgba(150,150,150,0.35), rgba(214,173,83,1));
+}
+
+.pressure-metric {
+  border-color: rgba(214, 173, 83, 0.20);
+}
+
+.threshold-status-card {
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(214, 173, 83, 0.05);
+}
+
+.threshold-status-card p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.threshold-result-title {
+  margin-bottom: 14px;
+  font-size: clamp(2rem, 3.4vw, 3.3rem);
+}
+
+.threshold-result-question {
+  color: var(--gold);
+  font-size: 1.12rem;
+}
+
+.threshold-score-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.threshold-score-card {
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.threshold-score-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.threshold-score-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.small-score-text {
+  font-size: 1.1rem;
+}
+
+.threshold-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+@media (max-width: 980px) {
+  .threshold-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .threshold-shell,
+  .threshold-event-card {
+    padding: 22px;
+  }
+
+  .threshold-score-grid,
+  .threshold-hud {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .threshold-score-grid,
+  .threshold-hud {
+    grid-template-columns: 1fr;
+  }
+
+  .threshold-actions {
+    flex-direction: column;
+  }
+
+  .threshold-button {
+    width: 100%;
+  }
+
+  .threshold-visual-caption {
+    left: 20px;
+    right: 20px;
+    font-size: 0.9rem;
+  }
+
+  .threshold-core {
+    width: 112px;
+    height: 112px;
+    font-size: 0.9rem;
+  }
+
+  .threshold-ring {
+    width: 165px;
+    height: 165px;
+  }
+}
