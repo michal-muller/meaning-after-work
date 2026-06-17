@@ -434,7 +434,7 @@
       resetState();
     }
 
-    function copyReflection() {
+        function copyReflection() {
       const text = `
 Sisyphus Deck Reflection
 
@@ -455,12 +455,14 @@ Co-being: ${scores.coBeing}
         alert("Reflection copied to clipboard.");
       });
     }
- document.addEventListener("DOMContentLoaded", function () {
-  const beginButton = document.getElementById("beginDeckButton");
 
-  if (beginButton) {
-    beginButton.addEventListener("click", startDeck);
-  }
-}); </script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const beginButton = document.getElementById("beginDeckButton");
+
+      if (beginButton) {
+        beginButton.addEventListener("click", startDeck);
+      }
+    });
+  </script>
 </body>
 </html>
