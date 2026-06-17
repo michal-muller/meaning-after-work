@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contradiction Labyrinth | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A reflective labyrinth about AI, work, contradiction, agency and co-being."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Contradiction Diary</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About & Contact</a>
+    </nav>
+  </header>
+
+  <main class="page labyrinth-page">
+    <section class="page-hero">
+      <p class="eyebrow">Reflective Experience / Prototype</p>
+
+      <h1>Contradiction Labyrinth</h1>
+
+      <p class="lead">
+        A reflective path through AI, work, pressure and human contradiction.
+      </p>
+
+      <p class="small-note">
+        This is a reflective tool, not a diagnostic or therapeutic instrument.
+        Nothing is stored or sent anywhere.
+      </p>
+    </section>
+
+    <section class="content-section labyrinth-shell">
+      <div id="labyrinthIntro" class="labyrinth-intro">
+        <div class="labyrinth-visual intro-labyrinth-visual">
+          <div class="labyrinth-glow"></div>
+          <div class="labyrinth-line line-one"></div>
+          <div class="labyrinth-line line-two"></div>
+          <div class="labyrinth-line line-three"></div>
+
+          <div class="labyrinth-room intro-room r0"><span>?</span></div>
+          <div class="labyrinth-room intro-room r1"><span>AI</span></div>
+          <div class="labyrinth-room intro-room r2"><span>!</span></div>
+          <div class="labyrinth-room intro-room r3"><span>∞</span></div>
+          <div class="labyrinth-room intro-room r4"><span>→</span></div>
+
+          <p class="labyrinth-visual-caption">
+            A contradiction is not always a problem to solve. Sometimes it is a passage to become more responsible.
+          </p>
+        </div>
+
+        <h2>How it works</h2>
+
+        <p>
+          You will enter five rooms. Each room presents a contradiction around AI, work, usefulness,
+          responsibility and human relationship. There are no correct answers.
+        </p>
+
+        <p>
+          Your choices leave traces: <strong>Resignation</strong>, <strong>Shortcut</strong>,
+          <strong>Revolt</strong> and <strong>Co-being</strong>. At the end, the Labyrinth returns
+          a short reflection on how you tend to move through contradiction.
+        </p>
+
+        <button id="beginLabyrinthButton" class="labyrinth-button" type="button">
+          Enter the labyrinth
+        </button>
+      </div>
+
+      <div id="labyrinthGame" class="labyrinth-game hidden">
+        <div class="labyrinth-visual">
+          <div class="labyrinth-glow" id="labyrinthGlow"></div>
+          <div class="labyrinth-line line-one"></div>
+          <div class="labyrinth-line line-two"></div>
+          <div class="labyrinth-line line-three"></div>
+
+          <div id="labyrinthRoom0" class="labyrinth-room r0"><span>1</span></div>
+          <div id="labyrinthRoom1" class="labyrinth-room r1"><span>2</span></div>
+          <div id="labyrinthRoom2" class="labyrinth-room r2"><span>3</span></div>
+          <div id="labyrinthRoom3" class="labyrinth-room r3"><span>4</span></div>
+          <div id="labyrinthRoom4" class="labyrinth-room r4"><span>5</span></div>
+
+          <p id="labyrinthVisualCaption" class="labyrinth-visual-caption">
+            The first room waits.
+          </p>
+        </div>
+
+        <div class="labyrinth-traces">
+          <div class="labyrinth-trace">
+            <div class="labyrinth-trace-row">
+              <span>Resignation</span>
+              <span id="resignationValue">0</span>
+            </div>
+            <div class="labyrinth-bar">
+              <div id="resignationBar" class="labyrinth-fill resignation-fill"></div>
+            </div>
+          </div>
+
+          <div class="labyrinth-trace">
+            <div class="labyrinth-trace-row">
+              <span>Shortcut</span>
+              <span id="shortcutValue">0</span>
+            </div>
+            <div class="labyrinth-bar">
+              <div id="shortcutBar" class="labyrinth-fill shortcut-fill"></div>
+            </div>
+          </div>
+
+          <div class="labyrinth-trace">
+            <div class="labyrinth-trace-row">
+              <span>Revolt</span>
+              <span id="revoltValue">0</span>
+            </div>
+            <div class="labyrinth-bar">
+              <div id="revoltBar" class="labyrinth-fill revolt-fill"></div>
+            </div>
+          </div>
+
+          <div class="labyrinth-trace">
+            <div class="labyrinth-trace-row">
+              <span>Co-being</span>
+              <span id="coBeingTraceValue">0</span>
+            </div>
+            <div class="labyrinth-bar">
+              <div id="coBeingTraceBar" class="labyrinth-fill cobeing-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="labyrinth-card">
+          <p id="labyrinthProgress" class="labyrinth-progress">Room 1 of 5</p>
+          <p id="labyrinthTheme" class="labyrinth-theme">Theme</p>
+          <h2 id="labyrinthTitle">Room title</h2>
+          <p id="labyrinthText">Room text</p>
+
+          <div id="labyrinthOptions" class="labyrinth-options"></div>
+        </div>
+      </div>
+
+      <div id="labyrinthResult" class="labyrinth-result hidden">
+        <div class="labyrinth-visual result-labyrinth-visual">
+          <div class="labyrinth-glow"></div>
+          <div class="labyrinth-line line-one"></div>
+          <div class="labyrinth-line line-two"></div>
+          <div class="labyrinth-line line-three"></div>
+
+          <div class="labyrinth-room result-room r0"><span>?</span></div>
+          <div class="labyrinth-room result-room r1"><span>AI</span></div>
+          <div class="labyrinth-room result-room r2"><span>!</span></div>
+          <div class="labyrinth-room result-room r3"><span>∞</span></div>
+          <div class="labyrinth-room result-room r4"><span>→</span></div>
+
+          <p class="labyrinth-visual-caption">
+            The exit is not the absence of contradiction. It is a different way of inhabiting it.
+          </p>
+        </div>
+
+        <p class="eyebrow">Your reflection</p>
+
+        <h2 id="labyrinthResultProfile" class="labyrinth-result-profile">Profile</h2>
+        <p id="labyrinthResultSummary" class="labyrinth-result-summary"></p>
+        <p id="labyrinthResultQuestion" class="labyrinth-result-question"></p>
+
+        <div class="labyrinth-score-grid">
+          <div class="labyrinth-score-card">
+            <span class="labyrinth-score-label">Resignation</span>
+            <span id="finalResignation" class="labyrinth-score-value">0</span>
+          </div>
+
+          <div class="labyrinth-score-card">
+            <span class="labyrinth-score-label">Shortcut</span>
+            <span id="finalShortcut" class="labyrinth-score-value">0</span>
+          </div>
+
+          <div class="labyrinth-score-card">
+            <span class="labyrinth-score-label">Revolt</span>
+            <span id="finalRevolt" class="labyrinth-score-value">0</span>
+          </div>
+
+          <div class="labyrinth-score-card">
+            <span class="labyrinth-score-label">Co-being</span>
+            <span id="finalCoBeingTrace" class="labyrinth-score-value">0</span>
+          </div>
+        </div>
+
+        <div class="labyrinth-actions">
+          <button id="restartLabyrinthButton" class="labyrinth-button" type="button">
+            Restart
+          </button>
+
+          <button id="copyLabyrinthButton" class="labyrinth-button labyrinth-button-secondary" type="button">
+            Copy reflection
+          </button>
+        </div>
+
+        <p class="small-note">
+          This prototype is part of Meaning After Work and The Existential Human-Centred AI Forum.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Meaning After Work is a public project of The Existential Human-Centred AI Forum.
+    </p>
+
+    <p>
+      Independent pre-launch research-and-practice initiative. Not an official university project unless explicitly stated.
+    </p>
+  </footer>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9677cb0fa87845fe8d5de700ddd3a513"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  <script>
+    const labyrinthRooms = [
+      {
+        theme: "Gate",
+        title: "The Gate of Efficiency",
+        text: "You stand before a gate. Behind it, AI promises speed, clarity and relief. But the gate also asks what part of your judgment may be left outside.",
+        caption: "Every shortcut is also a question about what remains human.",
+        options: [
+          {
+            label: "Enter quickly. The promise of efficiency is enough.",
+            effects: { resignation: 1, shortcut: 4, revolt: 0, cobeing: 0 }
+          },
+          {
+            label: "Turn away and protect your work from the tool completely.",
+            effects: { resignation: 1, shortcut: 0, revolt: 3, cobeing: 0 }
+          },
+          {
+            label: "Enter, but mark a boundary around human judgment.",
+            effects: { resignation: 0, shortcut: 1, revolt: 4, cobeing: 1 }
+          },
+          {
+            label: "Ask who else should help decide how the gate is used.",
+            effects: { resignation: 0, shortcut: 0, revolt: 1, cobeing: 4 }
+          }
+        ]
+      },
+      {
+        theme: "Mirror",
+        title: "The Mirror of Judgment",
+        text: "Inside the Labyrinth, a mirror shows a version of your work produced faster and cleaner than you could have made it. It looks impressive. It also feels strangely less yours.",
+        caption: "The mirror does not only reflect output. It reflects authorship.",
+        options: [
+          {
+            label: "Accept the cleaner version and ignore the discomfort.",
+            effects: { resignation: 2, shortcut: 4, revolt: 0, cobeing: 0 }
+          },
+          {
+            label: "Reject the mirror because only struggle feels authentic.",
+            effects: { resignation: 0, shortcut: 0, revolt: 3, cobeing: 0 }
+          },
+          {
+            label: "Use the mirror, then rewrite until your judgment returns.",
+            effects: { resignation: 0, shortcut: 1, revolt: 4, cobeing: 1 }
+          },
+          {
+            label: "Show the mirror to another person and ask what feels missing.",
+            effects: { resignation: 0, shortcut: 1, revolt: 1, cobeing: 4 }
+          }
+        ]
+      },
+      {
+        theme: "Silence",
+        title: "The Corridor of Silence",
+        text: "Everyone is adapting. Nobody speaks about the unease. The corridor is quiet, productive and strangely obedient.",
+        caption: "Silence can become architecture.",
+        options: [
+          {
+            label: "Keep walking. Naming the unease would only make things harder.",
+            effects: { resignation: 4, shortcut: 1, revolt: 0, cobeing: 0 }
+          },
+          {
+            label: "Use the silence to move faster than everyone else.",
+            effects: { resignation: 1, shortcut: 4, revolt: 0, cobeing: 0 }
+          },
+          {
+            label: "Name the contradiction carefully, without turning it into drama.",
+            effects: { resignation: 0, shortcut: 0, revolt: 4, cobeing: 2 }
+          },
+          {
+            label: "Create a small space where others can speak honestly.",
+            effects: { resignation: 0, shortcut: 0, revolt: 1, cobeing: 5 }
+          }
+        ]
+      },
+      {
+        theme: "Cost",
+        title: "The Chamber of Cost",
+        text: "The Labyrinth offers you a bargain: less friction, more output, fewer difficult conversations. In exchange, it asks you to stop noticing what the bargain costs.",
+        caption: "Not every cost appears as a loss of time. Some appear as a loss of relation.",
+        options: [
+          {
+            label: "Accept the bargain. Less friction is the practical choice.",
+            effects: { resignation: 2, shortcut: 4, revolt: 0, cobeing: 0 }
+          },
+          {
+            label: "Refuse the bargain, but keep the refusal private.",
+            effects: { resignation: 1, shortcut: 0, revolt: 3, cobeing: 0 }
+          },
+          {
+            label: "Ask what responsibility would require before accepting.",
+            effects: { resignation: 0, shortcut: 0, revolt: 5, cobeing: 1 }
+          },
+          {
+            label: "Ask who pays the hidden cost if nobody speaks.",
+            effects: { resignation: 0, shortcut: 0, revolt: 2, cobeing: 5 }
+          }
+        ]
+      },
+      {
+        theme: "Exit",
+        title: "The Door That Asks Back",
+        text: "At the end of the Labyrinth there is a door. It does not ask whether you solved the contradiction. It asks whether you became more truthful inside it.",
+        caption: "The exit is not escape. It is a more responsible form of presence.",
+        options: [
+          {
+            label: "Leave quietly. Nothing can really change.",
+            effects: { resignation: 5, shortcut: 0, revolt: 0, cobeing: 0 }
+          },
+          {
+            label: "Leave with a method for becoming more efficient next time.",
+            effects: { resignation: 0, shortcut: 4, revolt: 0, cobeing: 0 }
+          },
+          {
+            label: "Leave with one boundary you are willing to defend.",
+            effects: { resignation: 0, shortcut: 0, revolt: 5, cobeing: 1 }
+          },
+          {
+            label: "Leave with one conversation you are willing to begin.",
+            effects: { resignation: 0, shortcut: 0, revolt: 1, cobeing: 5 }
+          }
+        ]
+      }
+    ];
+
+    let currentLabyrinthRoom = 0;
+
+    let labyrinthTraces = {
+      resignation: 0,
+      shortcut: 0,
+      revolt: 0,
+      cobeing: 0
+    };
+
+    function showLabyrinthSection(id) {
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function hideLabyrinthSection(id) {
+      document.getElementById(id).classList.add("hidden");
+    }
+
+    function resetLabyrinthState() {
+      currentLabyrinthRoom = 0;
+      labyrinthTraces = {
+        resignation: 0,
+        shortcut: 0,
+        revolt: 0,
+        cobeing: 0
+      };
+    }
+
+    function startLabyrinth() {
+      resetLabyrinthState();
+      hideLabyrinthSection("labyrinthIntro");
+      hideLabyrinthSection("labyrinthResult");
+      showLabyrinthSection("labyrinthGame");
+      updateLabyrinthTraces();
+      updateLabyrinthVisual();
+      renderLabyrinthRoom();
+    }
+
+    function renderLabyrinthRoom() {
+      const room = labyrinthRooms[currentLabyrinthRoom];
+
+      document.getElementById("labyrinthProgress").textContent =
+        `Room ${currentLabyrinthRoom + 1} of ${labyrinthRooms.length}`;
+
+      document.getElementById("labyrinthTheme").textContent = room.theme;
+      document.getElementById("labyrinthTitle").textContent = room.title;
+      document.getElementById("labyrinthText").textContent = room.text;
+      document.getElementById("labyrinthVisualCaption").textContent = room.caption;
+
+      const options = document.getElementById("labyrinthOptions");
+      options.innerHTML = "";
+
+      room.options.forEach((option) => {
+        const button = document.createElement("button");
+        button.className = "labyrinth-option";
+        button.type = "button";
+        button.textContent = option.label;
+        button.addEventListener("click", () => chooseLabyrinthOption(option));
+        options.appendChild(button);
+      });
+    }
+
+    function chooseLabyrinthOption(option) {
+      labyrinthTraces.resignation += option.effects.resignation;
+      labyrinthTraces.shortcut += option.effects.shortcut;
+      labyrinthTraces.revolt += option.effects.revolt;
+      labyrinthTraces.cobeing += option.effects.cobeing;
+
+      currentLabyrinthRoom += 1;
+
+      updateLabyrinthTraces();
+      updateLabyrinthVisual();
+
+      if (currentLabyrinthRoom < labyrinthRooms.length) {
+        renderLabyrinthRoom();
+      } else {
+        finishLabyrinth();
+      }
+    }
+
+    function updateLabyrinthTraces() {
+      document.getElementById("resignationValue").textContent = labyrinthTraces.resignation;
+      document.getElementById("shortcutValue").textContent = labyrinthTraces.shortcut;
+      document.getElementById("revoltValue").textContent = labyrinthTraces.revolt;
+      document.getElementById("coBeingTraceValue").textContent = labyrinthTraces.cobeing;
+
+      document.getElementById("resignationBar").style.width = `${Math.min(100, labyrinthTraces.resignation * 6)}%`;
+      document.getElementById("shortcutBar").style.width = `${Math.min(100, labyrinthTraces.shortcut * 6)}%`;
+      document.getElementById("revoltBar").style.width = `${Math.min(100, labyrinthTraces.revolt * 6)}%`;
+      document.getElementById("coBeingTraceBar").style.width = `${Math.min(100, labyrinthTraces.cobeing * 6)}%`;
+    }
+
+    function updateLabyrinthVisual() {
+      for (let i = 0; i < labyrinthRooms.length; i += 1) {
+        const room = document.getElementById(`labyrinthRoom${i}`);
+
+        if (!room) {
+          continue;
+        }
+
+        room.classList.remove("active", "passed");
+
+        if (i < currentLabyrinthRoom) {
+          room.classList.add("passed");
+        }
+
+        if (i === currentLabyrinthRoom) {
+          room.classList.add("active");
+        }
+      }
+
+      const glow = document.getElementById("labyrinthGlow");
+
+      if (glow) {
+        const cobeingGlow = Math.min(0.72, 0.24 + labyrinthTraces.cobeing / 30);
+        glow.style.opacity = cobeingGlow;
+      }
+    }
+
+    function getDominantTrace() {
+      const entries = [
+        ["resignation", labyrinthTraces.resignation],
+        ["shortcut", labyrinthTraces.shortcut],
+        ["revolt", labyrinthTraces.revolt],
+        ["cobeing", labyrinthTraces.cobeing]
+      ];
+
+      entries.sort((a, b) => b[1] - a[1]);
+
+      return {
+        dominant: entries[0][0],
+        second: entries[1][0]
+      };
+    }
+
+    function getLabyrinthProfile() {
+      const result = getDominantTrace();
+
+      if (result.dominant === "cobeing") {
+        return {
+          name: "The Co-being Pathfinder",
+          summary:
+            "Your path suggests that contradiction becomes more human when it is shared. You do not try to escape tension alone; you seek forms of relation, dialogue and shared responsibility.",
+          question:
+            "Reflection: Who needs to be invited into the contradiction before it becomes silent, private or isolating?"
+        };
+      }
+
+      if (result.dominant === "revolt") {
+        return {
+          name: "The Responsible Rebel",
+          summary:
+            "Your path suggests a refusal to surrender judgment to convenience or pressure. You are drawn toward boundaries, responsibility and the difficult work of naming what should remain human.",
+          question:
+            "Reflection: What is one boundary you can defend without turning reflection into mere rejection?"
+        };
+      }
+
+      if (result.dominant === "shortcut") {
+        return {
+          name: "The Shortcut Walker",
+          summary:
+            "Your path suggests sensitivity to relief, speed and practical movement. The risk is not that shortcuts are always wrong, but that they can become a way of avoiding the deeper question.",
+          question:
+            "Reflection: Where has convenience helped you move forward, and where has it allowed you to stop noticing?"
+        };
+      }
+
+      return {
+        name: "The Resigned Wanderer",
+        summary:
+          "Your path suggests that contradiction can become heavy when it feels unchangeable. The danger is not weakness, but the slow normalization of silence, adaptation and lowered agency.",
+        question:
+          "Reflection: What small truth could be named before resignation becomes the architecture of the situation?"
+      };
+    }
+
+    function finishLabyrinth() {
+      hideLabyrinthSection("labyrinthGame");
+      showLabyrinthSection("labyrinthResult");
+
+      const profile = getLabyrinthProfile();
+
+      document.getElementById("labyrinthResultProfile").textContent = profile.name;
+      document.getElementById("labyrinthResultSummary").textContent = profile.summary;
+      document.getElementById("labyrinthResultQuestion").textContent = profile.question;
+
+      document.getElementById("finalResignation").textContent = labyrinthTraces.resignation;
+      document.getElementById("finalShortcut").textContent = labyrinthTraces.shortcut;
+      document.getElementById("finalRevolt").textContent = labyrinthTraces.revolt;
+      document.getElementById("finalCoBeingTrace").textContent = labyrinthTraces.cobeing;
+    }
+
+    function restartLabyrinth() {
+      hideLabyrinthSection("labyrinthResult");
+      showLabyrinthSection("labyrinthIntro");
+      resetLabyrinthState();
+    }
+
+    function copyLabyrinthReflection() {
+      const text = `Contradiction Labyrinth Reflection
+
+Profile: ${document.getElementById("labyrinthResultProfile").textContent}
+
+${document.getElementById("labyrinthResultSummary").textContent}
+
+${document.getElementById("labyrinthResultQuestion").textContent}
+
+Traces:
+Resignation: ${labyrinthTraces.resignation}
+Shortcut: ${labyrinthTraces.shortcut}
+Revolt: ${labyrinthTraces.revolt}
+Co-being: ${labyrinthTraces.cobeing}`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Reflection copied to clipboard.");
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const beginButton = document.getElementById("beginLabyrinthButton");
+      const restartButton = document.getElementById("restartLabyrinthButton");
+      const copyButton = document.getElementById("copyLabyrinthButton");
+
+      if (beginButton) {
+        beginButton.addEventListener("click", startLabyrinth);
+      }
+
+      if (restartButton) {
+        restartButton.addEventListener("click", restartLabyrinth);
+      }
+
+      if (copyButton) {
+        copyButton.addEventListener("click", copyLabyrinthReflection);
+      }
+    });
+  </script>
+</body>
+</html>
