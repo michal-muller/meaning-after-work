@@ -3782,3 +3782,23 @@ html {
     font-size: 1.1rem;
   }
 }
+/* ===== Essay heading size refinement ===== */
+
+.essay-article h2 {
+  margin-top: 52px;
+  margin-bottom: 18px;
+  color: var(--text);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.25;
+}
+
+.essay-article h1 {
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+}
+
+@media (max-width: 700px) {
+  .essay-article h2 {
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+}
