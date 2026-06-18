@@ -3961,3 +3961,34 @@ html {
     min-height: auto;
   }
 }
+/* ===== Public Talks page layout fix ===== */
+
+body:has(.talk-intro) .page-hero,
+body:has(.talk-intro) .content-section {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+body:has(.talk-intro) .page-hero {
+  padding-top: 72px;
+  padding-bottom: 54px;
+}
+
+body:has(.talk-intro) .page-hero h1 {
+  max-width: 980px;
+}
+
+body:has(.talk-intro) .page-hero .lead {
+  max-width: 900px;
+}
+
+@media (max-width: 700px) {
+  body:has(.talk-intro) .page-hero,
+  body:has(.talk-intro) .content-section {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}
