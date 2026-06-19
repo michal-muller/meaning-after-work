@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Agency Reactor | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A short reflective game about keeping human agency alive inside an automated system. Balance automation, judgment, responsibility, care and rest before the reactor collapses."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="agency-reactor-page">
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Experiences &amp; Games</a>
+      <a href="book.html">Book</a>
+      <a href="public-talks.html">Public Talks</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About &amp; Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Reflective game</p>
+
+      <h1>Agency Reactor</h1>
+
+      <p class="lead">
+        A short game about keeping human agency alive inside an automated system.
+      </p>
+    </section>
+
+    <section class="content-section agency-intro">
+      <h2>Can you keep the agency core stable?</h2>
+
+      <p>
+        You are managing a human agency reactor inside an AI-mediated organization.
+        Automation, judgment, responsibility, care and rest all matter — but too much
+        of one force can destabilize the whole system.
+      </p>
+
+      <p>
+        Your task is not to avoid AI. Your task is to keep automation connected to
+        human judgment, responsibility, care and rest before the reactor overheats.
+      </p>
+
+      <div class="agency-rules">
+        <h3>How to play</h3>
+
+        <ul>
+          <li><strong>Automate</strong> can reduce pressure quickly, but may weaken agency.</li>
+          <li><strong>Judge</strong> restores clarity and agency, but requires effort.</li>
+          <li><strong>Take responsibility</strong> strengthens accountability, but can increase burnout.</li>
+          <li><strong>Care</strong> protects the human field around the system.</li>
+          <li><strong>Rest</strong> cools the reactor and prevents collapse.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="agency-game-shell">
+        <div class="agency-dashboard">
+          <div class="agency-score-box">
+            <span>Score</span>
+            <strong id="agencyScore">0</strong>
+          </div>
+
+          <div class="agency-score-box">
+            <span>Time</span>
+            <strong id="agencyTime">120</strong>
+          </div>
+
+          <div class="agency-score-box">
+            <span>Level</span>
+            <strong id="agencyLevel">1</strong>
+          </div>
+
+          <div class="agency-score-box">
+            <span>Heat</span>
+            <strong id="agencyHeat">30</strong>
+          </div>
+        </div>
+
+        <div class="agency-meters">
+          <div class="agency-meter">
+            <div class="agency-meter-label">
+              <span>Agency</span>
+              <strong id="agencyValue">65</strong>
+            </div>
+            <div class="agency-meter-track">
+              <div class="agency-meter-fill" id="agencyMeter"></div>
+            </div>
+          </div>
+
+          <div class="agency-meter">
+            <div class="agency-meter-label">
+              <span>Clarity</span>
+              <strong id="clarityValue">60</strong>
+            </div>
+            <div class="agency-meter-track">
+              <div class="agency-meter-fill" id="clarityMeter"></div>
+            </div>
+          </div>
+
+          <div class="agency-meter">
+            <div class="agency-meter-label">
+              <span>Responsibility</span>
+              <strong id="responsibilityValue">55</strong>
+            </div>
+            <div class="agency-meter-track">
+              <div class="agency-meter-fill" id="responsibilityMeter"></div>
+            </div>
+          </div>
+
+          <div class="agency-meter">
+            <div class="agency-meter-label">
+              <span>Burnout Risk</span>
+              <strong id="burnoutValue">30</strong>
+            </div>
+            <div class="agency-meter-track danger-track">
+              <div class="agency-meter-fill danger-fill" id="burnoutMeter"></div>
+            </div>
+          </div>
+
+          <div class="agency-meter">
+            <div class="agency-meter-label">
+              <span>Stability</span>
+              <strong id="stabilityValue">70</strong>
+            </div>
+            <div class="agency-meter-track">
+              <div class="agency-meter-fill" id="stabilityMeter"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="agency-message" id="agencyMessage">
+          Click Start. Keep the agency core alive.
+        </div>
+
+        <div class="agency-reactor-arena" id="agencyArena">
+          <div class="reactor-grid"></div>
+
+          <div class="reactor-event-card" id="reactorEventCard">
+            <span id="eventType">System event</span>
+            <h3 id="eventTitle">The reactor is waiting.</h3>
+            <p id="eventText">
+              Start the game and respond to events before heat and burnout overwhelm agency.
+            </p>
+          </div>
+
+          <div class="reactor-core-wrap" id="reactorCoreWrap">
+            <div class="reactor-ring ring-one"></div>
+            <div class="reactor-ring ring-two"></div>
+            <div class="reactor-ring ring-three"></div>
+
+            <div class="reactor-core" id="reactorCore">
+              <span>Agency</span>
+              <strong>Core</strong>
+            </div>
+
+            <div class="reactor-burst" id="reactorBurst">
+              AGENCY CORE COLLAPSED
+            </div>
+          </div>
+
+          <div class="reactor-orbit orbit-automation">
+            <span>Automation</span>
+            <strong id="automationEnergy">50</strong>
+          </div>
+
+          <div class="reactor-orbit orbit-judgment">
+            <span>Judgment</span>
+            <strong id="judgmentEnergy">50</strong>
+          </div>
+
+          <div class="reactor-orbit orbit-responsibility">
+            <span>Responsibility</span>
+            <strong id="responsibilityEnergy">50</strong>
+          </div>
+
+          <div class="reactor-orbit orbit-care">
+            <span>Care</span>
+            <strong id="careEnergy">50</strong>
+          </div>
+
+          <div class="reactor-orbit orbit-rest">
+            <span>Rest</span>
+            <strong id="restEnergy">50</strong>
+          </div>
+        </div>
+
+        <div class="agency-actions">
+          <button type="button" class="agency-action-button" data-action="automate">
+            <span>Automate</span>
+            <small>fast relief, agency risk</small>
+          </button>
+
+          <button type="button" class="agency-action-button" data-action="judge">
+            <span>Judge</span>
+            <small>clarity and agency</small>
+          </button>
+
+          <button type="button" class="agency-action-button" data-action="responsibility">
+            <span>Take responsibility</span>
+            <small>accountability, load</small>
+          </button>
+
+          <button type="button" class="agency-action-button" data-action="care">
+            <span>Care</span>
+            <small>human field</small>
+          </button>
+
+          <button type="button" class="agency-action-button" data-action="rest">
+            <span>Rest</span>
+            <small>cool the core</small>
+          </button>
+        </div>
+
+        <div class="agency-controls">
+          <button type="button" class="button primary" id="startAgencyButton">Start</button>
+          <button type="button" class="button secondary" id="pauseAgencyButton">Pause</button>
+          <button type="button" class="button secondary" id="resetAgencyButton">Reset</button>
+        </div>
+
+        <div class="agency-result" id="agencyResult" hidden>
+          <p class="eyebrow">Reflection</p>
+          <h2 id="agencyResultTitle">Agency Keeper</h2>
+          <p id="agencyResultText">
+            You kept automation in relation to human judgment.
+          </p>
+          <p id="agencyResultStats"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section agency-note">
+      <p>
+        This prototype is a reflective game, not a psychological test, diagnosis,
+        productivity assessment or workplace assessment. It stores no data and sends
+        nothing anywhere. The reactor is a metaphor for agency under system pressure.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Meaning After Work is an independent public research-and-practice initiative.
+      Agency Reactor is an experimental reflective game and not a diagnostic tool.
+    </p>
+  </footer>
+
+  <script>
+    const agencyState = {
+      running: false,
+      paused: false,
+      time: 120,
+      level: 1,
+      score: 0,
+      agency: 65,
+      clarity: 60,
+      responsibility: 55,
+      burnout: 30,
+      heat: 30,
+      stability: 70,
+      automationEnergy: 50,
+      judgmentEnergy: 50,
+      responsibilityEnergy: 50,
+      careEnergy: 50,
+      restEnergy: 50,
+      eventIndex: 0,
+      currentEvent: null,
+      timerId: null,
+      eventId: null
+    };
+
+    const agencyEvents = [
+      {
+        type: "Automation",
+        title: "AI recommends an immediate decision.",
+        text: "The answer is fast, plausible and convenient. But no one has checked who carries the consequence.",
+        pressure: 6
+      },
+      {
+        type: "Management",
+        title: "A dashboard asks for measurable output.",
+        text: "The metric is clear. The human cost is not.",
+        pressure: 5
+      },
+      {
+        type: "Responsibility",
+        title: "A colleague asks who is accountable.",
+        text: "The system supported the decision, but the answer cannot be delegated.",
+        pressure: 7
+      },
+      {
+        type: "Care",
+        title: "Someone says: this process is harming people.",
+        text: "The issue slows everything down, but ignoring it would make the system morally thinner.",
+        pressure: 8
+      },
+      {
+        type: "Rest",
+        title: "The team is tired but keeps performing.",
+        text: "Nothing has collapsed yet. That is why the risk is easy to deny.",
+        pressure: 7
+      },
+      {
+        type: "Judgment",
+        title: "The AI summary misses the nuance.",
+        text: "The summary is efficient, but the important hesitation disappeared.",
+        pressure: 6
+      },
+      {
+        type: "Agency",
+        title: "People begin to wait for the system.",
+        text: "The tool has become useful. It has also become a place to hide.",
+        pressure: 8
+      },
+      {
+        type: "Burnout",
+        title: "Responsibility accumulates in one person.",
+        text: "Everyone agrees the work matters. Nobody asks who can still carry it.",
+        pressure: 9
+      },
+      {
+        type: "Ethics",
+        title: "A convenient shortcut appears.",
+        text: "It would save time. It would also make discomfort disappear before it speaks.",
+        pressure: 7
+      },
+      {
+        type: "Co-being",
+        title: "A human conversation is replaced by a summary.",
+        text: "The information moves faster. The relationship does not.",
+        pressure: 6
+      }
+    ];
+
+    const startAgencyButton = document.getElementById("startAgencyButton");
+    const pauseAgencyButton = document.getElementById("pauseAgencyButton");
+    const resetAgencyButton = document.getElementById("resetAgencyButton");
+    const agencyArena = document.getElementById("agencyArena");
+    const reactorCoreWrap = document.getElementById("reactorCoreWrap");
+    const agencyMessage = document.getElementById("agencyMessage");
+    const agencyResult = document.getElementById("agencyResult");
+    const agencyResultTitle = document.getElementById("agencyResultTitle");
+    const agencyResultText = document.getElementById("agencyResultText");
+    const agencyResultStats = document.getElementById("agencyResultStats");
+
+    function clampAgency(value, min = 0, max = 100) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function setAgencyMessage(text) {
+      agencyMessage.textContent = text;
+    }
+
+    function calculateStability() {
+      const humanStrength =
+        agencyState.agency * 0.32 +
+        agencyState.clarity * 0.22 +
+        agencyState.responsibility * 0.18 +
+        agencyState.careEnergy * 0.16 +
+        agencyState.restEnergy * 0.12;
+
+      const imbalance =
+        Math.abs(agencyState.automationEnergy - agencyState.judgmentEnergy) * 0.16 +
+        Math.abs(agencyState.responsibilityEnergy - agencyState.restEnergy) * 0.18 +
+        Math.abs(agencyState.careEnergy - agencyState.automationEnergy) * 0.1;
+
+      const risk = agencyState.heat * 0.42 + agencyState.burnout * 0.34 + imbalance;
+
+      return clampAgency(humanStrength - risk + 42);
+    }
+
+    function updateAgencyDisplay() {
+      agencyState.stability = calculateStability();
+
+      document.getElementById("agencyScore").textContent = agencyState.score;
+      document.getElementById("agencyTime").textContent = agencyState.time;
+      document.getElementById("agencyLevel").textContent = agencyState.level;
+      document.getElementById("agencyHeat").textContent = Math.round(agencyState.heat);
+
+      document.getElementById("agencyValue").textContent = Math.round(agencyState.agency);
+      document.getElementById("clarityValue").textContent = Math.round(agencyState.clarity);
+      document.getElementById("responsibilityValue").textContent = Math.round(agencyState.responsibility);
+      document.getElementById("burnoutValue").textContent = Math.round(agencyState.burnout);
+      document.getElementById("stabilityValue").textContent = Math.round(agencyState.stability);
+
+      document.getElementById("agencyMeter").style.width = agencyState.agency + "%";
+      document.getElementById("clarityMeter").style.width = agencyState.clarity + "%";
+      document.getElementById("responsibilityMeter").style.width = agencyState.responsibility + "%";
+      document.getElementById("burnoutMeter").style.width = agencyState.burnout + "%";
+      document.getElementById("stabilityMeter").style.width = agencyState.stability + "%";
+
+      document.getElementById("automationEnergy").textContent = Math.round(agencyState.automationEnergy);
+      document.getElementById("judgmentEnergy").textContent = Math.round(agencyState.judgmentEnergy);
+      document.getElementById("responsibilityEnergy").textContent = Math.round(agencyState.responsibilityEnergy);
+      document.getElementById("careEnergy").textContent = Math.round(agencyState.careEnergy);
+      document.getElementById("restEnergy").textContent = Math.round(agencyState.restEnergy);
+
+      const heatScale = 1 + agencyState.heat / 280;
+      const glow = 14 + agencyState.stability / 3;
+      const shake = agencyState.heat > 78 || agencyState.stability < 25;
+
+      reactorCoreWrap.style.transform = "translate(-50%, -50%) scale(" + heatScale + ")";
+      reactorCoreWrap.style.filter = "drop-shadow(0 0 " + glow + "px rgba(214, 173, 83, 0.48))";
+
+      if (shake) {
+        reactorCoreWrap.classList.add("reactor-unstable");
+      } else {
+        reactorCoreWrap.classList.remove("reactor-unstable");
+      }
+    }
+
+    function showNextEvent() {
+      if (!agencyState.running || agencyState.paused) {
+        return;
+      }
+
+      agencyState.currentEvent = agencyEvents[agencyState.eventIndex % agencyEvents.length];
+      agencyState.eventIndex += 1;
+
+      document.getElementById("eventType").textContent = agencyState.currentEvent.type;
+      document.getElementById("eventTitle").textContent = agencyState.currentEvent.title;
+      document.getElementById("eventText").textContent = agencyState.currentEvent.text;
+
+      agencyState.heat = clampAgency(agencyState.heat + agencyState.currentEvent.pressure * 0.6);
+      agencyState.burnout = clampAgency(agencyState.burnout + agencyState.currentEvent.pressure * 0.25);
+
+      updateAgencyDisplay();
+      checkAgencyCollapse();
+    }
+
+    function applyAgencyChange(changes) {
+      agencyState.agency = clampAgency(agencyState.agency + (changes.agency || 0));
+      agencyState.clarity = clampAgency(agencyState.clarity + (changes.clarity || 0));
+      agencyState.responsibility = clampAgency(agencyState.responsibility + (changes.responsibility || 0));
+      agencyState.burnout = clampAgency(agencyState.burnout + (changes.burnout || 0));
+      agencyState.heat = clampAgency(agencyState.heat + (changes.heat || 0));
+
+      agencyState.automationEnergy = clampAgency(agencyState.automationEnergy + (changes.automationEnergy || 0));
+      agencyState.judgmentEnergy = clampAgency(agencyState.judgmentEnergy + (changes.judgmentEnergy || 0));
+      agencyState.responsibilityEnergy = clampAgency(agencyState.responsibilityEnergy + (changes.responsibilityEnergy || 0));
+      agencyState.careEnergy = clampAgency(agencyState.careEnergy + (changes.careEnergy || 0));
+      agencyState.restEnergy = clampAgency(agencyState.restEnergy + (changes.restEnergy || 0));
+
+      agencyState.score = Math.max(0, agencyState.score + (changes.score || 0));
+
+      updateAgencyDisplay();
+      checkAgencyCollapse();
+    }
+
+    function handleAgencyAction(action) {
+      if (!agencyState.running || agencyState.paused) {
+        return;
+      }
+
+      if (action === "automate") {
+        applyAgencyChange({
+          agency: -5,
+          clarity: -3,
+          responsibility: -2,
+          burnout: -1,
+          heat: -5,
+          automationEnergy: 10,
+          judgmentEnergy: -4,
+          careEnergy: -4,
+          score: 28
+        });
+
+        setAgencyMessage("Automation relieved pressure, but agency became more fragile.");
+      }
+
+      if (action === "judge") {
+        applyAgencyChange({
+          agency: 5,
+          clarity: 8,
+          responsibility: 2,
+          burnout: 2,
+          heat: 2,
+          judgmentEnergy: 9,
+          automationEnergy: -4,
+          score: 55
+        });
+
+        setAgencyMessage("Judgment restored clarity. The core became more humanly answerable.");
+      }
+
+      if (action === "responsibility") {
+        applyAgencyChange({
+          agency: 3,
+          clarity: 2,
+          responsibility: 8,
+          burnout: 6,
+          heat: 4,
+          responsibilityEnergy: 10,
+          restEnergy: -5,
+          score: 48
+        });
+
+        setAgencyMessage("Responsibility returned, but the load increased.");
+      }
+
+      if (action === "care") {
+        applyAgencyChange({
+          agency: 2,
+          clarity: 2,
+          responsibility: 2,
+          burnout: -3,
+          heat: 1,
+          careEnergy: 10,
+          automationEnergy: -3,
+          score: 50
+        });
+
+        setAgencyMessage("Care protected the human field around the system.");
+      }
+
+      if (action === "rest") {
+        applyAgencyChange({
+          agency: 1,
+          clarity: 3,
+          responsibility: -2,
+          burnout: -11,
+          heat: -9,
+          restEnergy: 12,
+          responsibilityEnergy: -4,
+          score: 42
+        });
+
+        setAgencyMessage("Rest cooled the reactor. Slowness became protective.");
+      }
+    }
+
+    function tickAgencyTimer() {
+      if (!agencyState.running || agencyState.paused) {
+        return;
+      }
+
+      agencyState.time -= 1;
+      agencyState.level = Math.min(6, Math.floor((120 - agencyState.time) / 22) + 1);
+
+      const automationDrift = agencyState.automationEnergy > 68 ? -1.0 : -0.25;
+      const burnoutDrift = agencyState.responsibilityEnergy > 68 && agencyState.restEnergy < 42 ? 1.25 : 0.45;
+      const heatDrift = 0.45 + agencyState.level * 0.22 + Math.max(0, agencyState.automationEnergy - agencyState.judgmentEnergy) * 0.015;
+
+      applyAgencyChange({
+        agency: automationDrift,
+        clarity: agencyState.judgmentEnergy < 35 ? -0.55 : -0.12,
+        burnout: burnoutDrift,
+        heat: heatDrift,
+        automationEnergy: 0.16,
+        restEnergy: -0.18,
+        careEnergy: -0.08,
+        score: Math.round(agencyState.stability / 12)
+      });
+
+      if (agencyState.time <= 0) {
+        endAgencyGame(false);
+      }
+    }
+
+    function checkAgencyCollapse() {
+      if (!agencyState.running) {
+        return;
+      }
+
+      if (
+        agencyState.agency <= 0 ||
+        agencyState.clarity <= 0 ||
+        agencyState.stability <= 0 ||
+        agencyState.burnout >= 100 ||
+        agencyState.heat >= 100
+      ) {
+        endAgencyGame(true);
+      }
+    }
+
+    function getAgencyProfile(collapsed) {
+      if (collapsed) {
+        if (agencyState.heat >= 100) {
+          return {
+            title: "Reactor Rupture",
+            text: "The agency core overheated. The system did not collapse from one bad decision, but from accumulated pressure."
+          };
+        }
+
+        if (agencyState.burnout >= 100) {
+          return {
+            title: "Burnout Spiral",
+            text: "The reactor was kept running by human effort until the human field could no longer carry it."
+          };
+        }
+
+        if (agencyState.agency <= 0) {
+          return {
+            title: "Efficiently Captured",
+            text: "The system became fast, but agency disappeared. Automation took the centre."
+          };
+        }
+
+        return {
+          title: "Agency Collapse",
+          text: "The reactor lost stability. Human judgment, care and rest could no longer balance system pressure."
+        };
+      }
+
+      if (agencyState.agency >= 70 && agencyState.stability >= 70 && agencyState.burnout <= 55) {
+        return {
+          title: "Agency Keeper",
+          text: "You kept automation in relation to judgment, responsibility, care and rest. The core remained alive."
+        };
+      }
+
+      if (agencyState.responsibility >= 75 && agencyState.burnout >= 65) {
+        return {
+          title: "Responsible Overloader",
+          text: "You protected accountability, but carried too much without enough rest. Responsibility needs support."
+        };
+      }
+
+      if (agencyState.careEnergy >= 70 && agencyState.stability >= 55) {
+        return {
+          title: "Careful Stabilizer",
+          text: "You protected the human field around the system. The reactor survived through care."
+        };
+      }
+
+      if (agencyState.automationEnergy >= 75 && agencyState.agency < 55) {
+        return {
+          title: "Efficient Drift",
+          text: "Automation helped the system move quickly, but human agency became thinner."
+        };
+      }
+
+      return {
+        title: "Fragile Reactor",
+        text: "You kept the core alive, but the balance remained unstable. Agency is a practice, not a setting."
+      };
+    }
+
+    function endAgencyGame(collapsed) {
+      agencyState.running = false;
+      agencyState.paused = false;
+
+      clearInterval(agencyState.timerId);
+      clearInterval(agencyState.eventId);
+
+      pauseAgencyButton.textContent = "Pause";
+
+      if (collapsed) {
+        agencyArena.classList.add("reactor-collapsed");
+        setAgencyMessage("The agency reactor collapsed.");
+      } else {
+        agencyArena.classList.remove("reactor-collapsed");
+        setAgencyMessage("The agency core survived.");
+      }
+
+      const profile = getAgencyProfile(collapsed);
+
+      agencyResultTitle.textContent = profile.title;
+      agencyResultText.textContent = profile.text;
+      agencyResultStats.textContent =
+        "Final score: " + agencyState.score +
+        " · Agency: " + Math.round(agencyState.agency) +
+        " · Clarity: " + Math.round(agencyState.clarity) +
+        " · Responsibility: " + Math.round(agencyState.responsibility) +
+        " · Burnout risk: " + Math.round(agencyState.burnout) +
+        " · Stability: " + Math.round(agencyState.stability);
+
+      agencyResult.hidden = false;
+      updateAgencyDisplay();
+    }
+
+    function resetAgencyState() {
+      agencyState.running = false;
+      agencyState.paused = false;
+      agencyState.time = 120;
+      agencyState.level = 1;
+      agencyState.score = 0;
+      agencyState.agency = 65;
+      agencyState.clarity = 60;
+      agencyState.responsibility = 55;
+      agencyState.burnout = 30;
+      agencyState.heat = 30;
+      agencyState.stability = 70;
+      agencyState.automationEnergy = 50;
+      agencyState.judgmentEnergy = 50;
+      agencyState.responsibilityEnergy = 50;
+      agencyState.careEnergy = 50;
+      agencyState.restEnergy = 50;
+      agencyState.eventIndex = 0;
+      agencyState.currentEvent = null;
+
+      clearInterval(agencyState.timerId);
+      clearInterval(agencyState.eventId);
+
+      agencyArena.classList.remove("reactor-collapsed");
+      reactorCoreWrap.classList.remove("reactor-unstable");
+      agencyResult.hidden = true;
+      pauseAgencyButton.textContent = "Pause";
+
+      document.getElementById("eventType").textContent = "System event";
+      document.getElementById("eventTitle").textContent = "The reactor is waiting.";
+      document.getElementById("eventText").textContent =
+        "Start the game and respond to events before heat and burnout overwhelm agency.";
+
+      setAgencyMessage("Click Start. Keep the agency core alive.");
+      updateAgencyDisplay();
+    }
+
+    function startAgencyGame() {
+      resetAgencyState();
+
+      agencyState.running = true;
+      agencyState.paused = false;
+
+      setAgencyMessage("The reactor is active. Balance the system.");
+
+      showNextEvent();
+
+      agencyState.timerId = setInterval(tickAgencyTimer, 1000);
+      agencyState.eventId = setInterval(showNextEvent, 8500);
+    }
+
+    function toggleAgencyPause() {
+      if (!agencyState.running) {
+        return;
+      }
+
+      agencyState.paused = !agencyState.paused;
+      pauseAgencyButton.textContent = agencyState.paused ? "Resume" : "Pause";
+      setAgencyMessage(agencyState.paused ? "Paused. The core waits." : "The reactor continues.");
+    }
+
+    document.querySelectorAll(".agency-action-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        handleAgencyAction(button.getAttribute("data-action"));
+      });
+    });
+
+    startAgencyButton.addEventListener("click", startAgencyGame);
+    pauseAgencyButton.addEventListener("click", toggleAgencyPause);
+    resetAgencyButton.addEventListener("click", resetAgencyState);
+
+    resetAgencyState();
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9677cb0fa87845fe8d5de700ddd3a513"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
