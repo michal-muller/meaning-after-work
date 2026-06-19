@@ -4302,3 +4302,406 @@ body:has(.talk-intro) .page-hero .lead {
     width: 100%;
   }
 }
+/* ===== Co-being Signal game ===== */
+
+.co-being-page .page-hero,
+.co-being-page .content-section {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.co-being-page .page-hero {
+  padding-top: 72px;
+  padding-bottom: 54px;
+}
+
+.co-being-intro {
+  max-width: 920px;
+}
+
+.co-being-rules {
+  margin-top: 28px;
+  padding: 24px 26px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.2);
+  background: rgba(214, 173, 83, 0.055);
+}
+
+.co-being-rules h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.35rem;
+}
+
+.co-being-rules ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.co-being-game-shell {
+  padding: 28px;
+  border-radius: 30px;
+  border: 1px solid rgba(214, 173, 83, 0.22);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(214, 173, 83, 0.1), transparent 35%),
+    radial-gradient(circle at 8% 90%, rgba(214, 173, 83, 0.08), transparent 34%),
+    rgba(255, 255, 255, 0.025);
+}
+
+.co-being-dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.co-being-score-box {
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(214, 173, 83, 0.14);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.co-being-score-box span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.co-being-score-box strong {
+  color: var(--text);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.co-being-meters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.signal-meter {
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(214, 173, 83, 0.12);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.signal-meter-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.82rem;
+}
+
+.signal-meter-label strong {
+  color: var(--text);
+}
+
+.signal-meter-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(244, 239, 230, 0.12);
+}
+
+.signal-meter-fill {
+  width: 60%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(214, 173, 83, 0.55), rgba(244, 218, 143, 0.95));
+  transition: width 0.25s ease;
+}
+
+.danger-fill {
+  background: linear-gradient(90deg, rgba(137, 88, 67, 0.7), rgba(214, 173, 83, 0.85));
+}
+
+.signal-message {
+  min-height: 30px;
+  margin: 8px 0 18px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.co-being-arena {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(214, 173, 83, 0.2);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(214, 173, 83, 0.1), transparent 28%),
+    radial-gradient(circle at 20% 70%, rgba(244, 239, 230, 0.05), transparent 28%),
+    radial-gradient(circle at 82% 32%, rgba(244, 239, 230, 0.04), transparent 25%),
+    rgba(5, 7, 9, 0.72);
+}
+
+.signal-background-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.24;
+  background-image:
+    linear-gradient(rgba(214, 173, 83, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214, 173, 83, 0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+}
+
+.signal-person {
+  position: absolute;
+  z-index: 3;
+  bottom: 48px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.signal-person-left {
+  left: 9%;
+}
+
+.signal-person-right {
+  right: 9%;
+}
+
+.signal-person-core {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 173, 83, 0.46);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(244, 239, 230, 0.85), rgba(214, 173, 83, 0.45) 24%, rgba(214, 173, 83, 0.08) 62%, transparent 70%);
+  box-shadow:
+    0 0 24px rgba(214, 173, 83, 0.32),
+    inset 0 0 22px rgba(244, 239, 230, 0.12);
+}
+
+.connection-line {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 92px;
+  width: 66%;
+  height: 3px;
+  transform: translate(-50%, -50%) scaleX(0.9);
+  transform-origin: center;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(214, 173, 83, 0.95), transparent);
+  opacity: 0.74;
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.connection-pulse {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 122px;
+  transform: translateX(-50%);
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 173, 83, 0.18);
+  background: rgba(0, 0, 0, 0.32);
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.token-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+.signal-token {
+  position: absolute;
+  max-width: 230px;
+  min-width: 90px;
+  padding: 10px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 239, 230, 0.18);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.25;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  transition: transform 0.14s ease, opacity 0.14s ease, filter 0.14s ease;
+}
+
+.signal-token:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.signal-token.token-clicked {
+  opacity: 0;
+  transform: scale(1.14);
+  pointer-events: none;
+}
+
+.token-human {
+  border-color: rgba(244, 218, 143, 0.62);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.24), transparent 35%),
+    rgba(214, 173, 83, 0.24);
+}
+
+.token-repair {
+  border-color: rgba(160, 210, 180, 0.45);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.18), transparent 35%),
+    rgba(74, 122, 98, 0.38);
+}
+
+.token-system {
+  border-color: rgba(214, 173, 83, 0.26);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.12), transparent 35%),
+    rgba(81, 79, 90, 0.58);
+}
+
+.token-noise {
+  border-color: rgba(180, 105, 90, 0.38);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.1), transparent 35%),
+    rgba(105, 64, 70, 0.58);
+}
+
+.co-being-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.co-being-result {
+  margin-top: 24px;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px solid rgba(214, 173, 83, 0.22);
+  background: rgba(214, 173, 83, 0.06);
+}
+
+.co-being-result h2 {
+  margin-top: 0;
+}
+
+.co-being-result p:last-child {
+  margin-bottom: 0;
+}
+
+.co-being-note {
+  max-width: 920px;
+  padding: 28px 32px;
+  border-radius: 26px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.co-being-note p {
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .co-being-meters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .co-being-arena {
+    height: 500px;
+  }
+
+  .signal-person-left {
+    left: 6%;
+  }
+
+  .signal-person-right {
+    right: 6%;
+  }
+
+  .connection-line {
+    width: 72%;
+  }
+}
+
+@media (max-width: 700px) {
+  .co-being-page .page-hero,
+  .co-being-page .content-section {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .co-being-game-shell {
+    padding: 18px;
+  }
+
+  .co-being-dashboard,
+  .co-being-meters {
+    grid-template-columns: 1fr;
+  }
+
+  .co-being-arena {
+    height: 560px;
+  }
+
+  .signal-person-core {
+    width: 52px;
+    height: 52px;
+  }
+
+  .signal-person-left {
+    left: 5%;
+  }
+
+  .signal-person-right {
+    right: 5%;
+  }
+
+  .connection-line {
+    bottom: 82px;
+    width: 68%;
+  }
+
+  .connection-pulse {
+    bottom: 112px;
+    font-size: 0.68rem;
+  }
+
+  .signal-token {
+    max-width: 190px;
+    font-size: 0.76rem;
+  }
+
+  .co-being-controls .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
