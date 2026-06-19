@@ -4203,3 +4203,42 @@ body:has(.talk-intro) .page-hero .lead {
     padding: 26px;
   }
 }
+/* ===== Header navigation refinement ===== */
+
+.site-header {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  align-items: center;
+  gap: 34px;
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 38px;
+  row-gap: 18px;
+}
+
+.site-header nav a {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    text-align: center;
+  }
+
+  .site-header .brand {
+    justify-self: center;
+  }
+
+  .site-header nav {
+    justify-content: center;
+    column-gap: 24px;
+    row-gap: 16px;
+  }
+}
