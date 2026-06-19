@@ -5285,3 +5285,215 @@ body:has(.talk-intro) .page-hero .lead {
     text-align: center;
   }
 }
+/* ===== Agency Reactor compact gameplay layout ===== */
+
+.agency-game-shell {
+  padding: 22px;
+}
+
+.agency-dashboard {
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.agency-score-box {
+  padding: 14px 16px;
+  border-radius: 18px;
+}
+
+.agency-score-box span {
+  margin-bottom: 6px;
+  font-size: 0.68rem;
+}
+
+.agency-score-box strong {
+  font-size: 1.45rem;
+}
+
+.agency-meters {
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.agency-meter {
+  padding: 11px 12px;
+  border-radius: 16px;
+}
+
+.agency-meter-label {
+  margin-bottom: 7px;
+  font-size: 0.76rem;
+}
+
+.agency-meter-track {
+  height: 7px;
+}
+
+.agency-message {
+  min-height: 24px;
+  margin: 6px 0 12px;
+  font-size: 0.88rem;
+}
+
+.agency-reactor-arena {
+  min-height: 430px;
+  border-radius: 26px;
+}
+
+.reactor-event-card {
+  top: 18px;
+  left: 18px;
+  max-width: 330px;
+  padding: 18px;
+  border-radius: 20px;
+}
+
+.reactor-event-card span {
+  margin-bottom: 8px;
+  font-size: 0.66rem;
+}
+
+.reactor-event-card h3 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+  line-height: 1.22;
+}
+
+.reactor-event-card p {
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.reactor-core-wrap {
+  width: 205px;
+  height: 205px;
+  top: 57%;
+}
+
+.reactor-core {
+  inset: 62px;
+}
+
+.reactor-core span {
+  font-size: 0.58rem;
+}
+
+.reactor-core strong {
+  font-size: 0.9rem;
+}
+
+.ring-two {
+  inset: 20px;
+}
+
+.ring-three {
+  inset: 42px;
+}
+
+.reactor-orbit {
+  width: 126px;
+  padding: 11px;
+  border-radius: 18px;
+}
+
+.reactor-orbit span {
+  margin-bottom: 5px;
+  font-size: 0.6rem;
+}
+
+.reactor-orbit strong {
+  font-size: 1.08rem;
+}
+
+.orbit-automation {
+  right: 8%;
+  top: 20%;
+}
+
+.orbit-judgment {
+  right: 9%;
+  bottom: 17%;
+}
+
+.orbit-responsibility {
+  bottom: 6%;
+}
+
+.orbit-care {
+  left: 9%;
+  bottom: 17%;
+}
+
+.orbit-rest {
+  left: 8%;
+  top: 20%;
+}
+
+.agency-actions {
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.agency-action-button {
+  min-height: 72px;
+  padding: 12px 14px;
+  border-radius: 18px;
+}
+
+.agency-action-button span {
+  margin-bottom: 5px;
+  font-size: 0.88rem;
+}
+
+.agency-action-button small {
+  font-size: 0.7rem;
+}
+
+.agency-controls {
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.agency-controls .button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 1100px) {
+  .agency-reactor-arena {
+    min-height: 520px;
+  }
+
+  .reactor-event-card {
+    margin: 14px;
+    padding: 16px;
+  }
+
+  .reactor-core-wrap {
+    top: 58%;
+  }
+}
+
+@media (max-width: 700px) {
+  .agency-game-shell {
+    padding: 16px;
+  }
+
+  .agency-reactor-arena {
+    min-height: 640px;
+  }
+
+  .reactor-core-wrap {
+    width: 190px;
+    height: 190px;
+    top: 55%;
+  }
+
+  .reactor-core {
+    inset: 58px;
+  }
+
+  .agency-action-button {
+    min-height: 68px;
+  }
+}
