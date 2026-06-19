@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Co-being Signal | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A short reflective game about staying connected under intelligent noise. Preserve presence and trust while pressure and noise rise."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="co-being-page">
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Experiences &amp; Games</a>
+      <a href="book.html">Book</a>
+      <a href="public-talks.html">Public Talks</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About &amp; Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Reflective game</p>
+
+      <h1>Co-being Signal</h1>
+
+      <p class="lead">
+        A short game about staying connected under intelligent noise.
+      </p>
+    </section>
+
+    <section class="content-section co-being-intro">
+      <h2>Can you keep the signal alive?</h2>
+
+      <p>
+        Two people are trying to remain present to one another while deadlines, metrics,
+        AI summaries, optimization demands and misunderstandings move between them.
+      </p>
+
+      <p>
+        Your task is not to click everything. Human signals need to be heard.
+        Some system noise should pass. Some pressure must be named before it grows.
+        Co-being is the fragile practice of staying with another person when everything
+        pushes toward speed, function and defence.
+      </p>
+
+      <div class="co-being-rules">
+        <h3>How to play</h3>
+
+        <ul>
+          <li><strong>Click human signals</strong> to increase presence and trust.</li>
+          <li><strong>Click repair signals</strong> to restore the connection.</li>
+          <li><strong>Be careful with system noise.</strong> Clicking it may reduce pressure briefly, but can weaken trust.</li>
+          <li><strong>Do not let pressure and noise overwhelm the signal.</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="co-being-game-shell">
+        <div class="co-being-dashboard">
+          <div class="co-being-score-box">
+            <span>Score</span>
+            <strong id="signalScore">0</strong>
+          </div>
+
+          <div class="co-being-score-box">
+            <span>Time</span>
+            <strong id="signalTime">100</strong>
+          </div>
+
+          <div class="co-being-score-box">
+            <span>Level</span>
+            <strong id="signalLevel">1</strong>
+          </div>
+        </div>
+
+        <div class="co-being-meters">
+          <div class="signal-meter">
+            <div class="signal-meter-label">
+              <span>Presence</span>
+              <strong id="presenceValue">60</strong>
+            </div>
+            <div class="signal-meter-track">
+              <div class="signal-meter-fill" id="presenceMeter"></div>
+            </div>
+          </div>
+
+          <div class="signal-meter">
+            <div class="signal-meter-label">
+              <span>Trust</span>
+              <strong id="trustValue">60</strong>
+            </div>
+            <div class="signal-meter-track">
+              <div class="signal-meter-fill" id="trustMeter"></div>
+            </div>
+          </div>
+
+          <div class="signal-meter">
+            <div class="signal-meter-label">
+              <span>Pressure</span>
+              <strong id="pressureValue">35</strong>
+            </div>
+            <div class="signal-meter-track danger-track">
+              <div class="signal-meter-fill danger-fill" id="pressureMeter"></div>
+            </div>
+          </div>
+
+          <div class="signal-meter">
+            <div class="signal-meter-label">
+              <span>Noise</span>
+              <strong id="noiseValue">30</strong>
+            </div>
+            <div class="signal-meter-track danger-track">
+              <div class="signal-meter-fill danger-fill" id="noiseMeter"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="signal-message" id="signalMessage">
+          Click Start. Listen for the human signal.
+        </div>
+
+        <div class="co-being-arena" id="coBeingArena" aria-label="Co-being Signal game area">
+          <div class="signal-background-grid"></div>
+
+          <div class="signal-person signal-person-left">
+            <div class="signal-person-core"></div>
+            <span>You</span>
+          </div>
+
+          <div class="signal-person signal-person-right">
+            <div class="signal-person-core"></div>
+            <span>Other</span>
+          </div>
+
+          <div class="connection-line" id="connectionLine"></div>
+
+          <div class="connection-pulse" id="connectionPulse">
+            Co-being signal
+          </div>
+
+          <div class="token-layer" id="tokenLayer"></div>
+        </div>
+
+        <div class="co-being-controls">
+          <button type="button" class="button primary" id="startSignalButton">Start</button>
+          <button type="button" class="button secondary" id="pauseSignalButton">Pause</button>
+          <button type="button" class="button secondary" id="resetSignalButton">Reset</button>
+        </div>
+
+        <div class="co-being-result" id="coBeingResult" hidden>
+          <p class="eyebrow">Reflection</p>
+          <h2 id="resultTitle">Signal Keeper</h2>
+          <p id="resultText">
+            You protected presence under pressure.
+          </p>
+          <p id="resultStats"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section co-being-note">
+      <p>
+        This prototype is a reflective game, not a psychological test, diagnosis or assessment.
+        It stores no data and sends nothing anywhere. The score is only a metaphor for how fragile
+        connection can become under pressure.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Meaning After Work is an independent public research-and-practice initiative.
+      Co-being Signal is an experimental reflective game and not a diagnostic tool.
+    </p>
+  </footer>
+
+  <script>
+    const signalState = {
+      running: false,
+      paused: false,
+      time: 100,
+      level: 1,
+      score: 0,
+      presence: 60,
+      trust: 60,
+      pressure: 35,
+      noise: 30,
+      tokenId: 0,
+      tokens: [],
+      gameLoopId: null,
+      timerId: null,
+      spawnId: null,
+      lastTime: null
+    };
+
+    const tokenTypes = {
+      human: [
+        "I need you to hear me.",
+        "Are you still here?",
+        "I am tired.",
+        "This matters to me.",
+        "Please do not fix me yet.",
+        "Can we slow down?",
+        "I do not feel seen.",
+        "Stay with me.",
+        "I need presence, not a solution.",
+        "Please listen before answering."
+      ],
+      repair: [
+        "Ask again",
+        "Name the fear",
+        "Pause",
+        "Listen",
+        "Return",
+        "Repair",
+        "Shared silence",
+        "Say what hurts",
+        "Begin again",
+        "Stay gentle"
+      ],
+      system: [
+        "AI summary",
+        "Metric",
+        "Deadline",
+        "Optimization",
+        "Productivity score",
+        "Unread message",
+        "Faster response",
+        "Risk dashboard",
+        "Efficiency target",
+        "Automated decision"
+      ],
+      noise: [
+        "Assumption",
+        "Misunderstanding",
+        "Defensiveness",
+        "Fatigue",
+        "Comparison",
+        "Status anxiety",
+        "Performance mask",
+        "Silent resentment",
+        "Over-explanation",
+        "Shortcut"
+      ]
+    };
+
+    const arena = document.getElementById("coBeingArena");
+    const tokenLayer = document.getElementById("tokenLayer");
+    const connectionLine = document.getElementById("connectionLine");
+    const connectionPulse = document.getElementById("connectionPulse");
+    const signalMessage = document.getElementById("signalMessage");
+
+    const startButton = document.getElementById("startSignalButton");
+    const pauseButton = document.getElementById("pauseSignalButton");
+    const resetButton = document.getElementById("resetSignalButton");
+
+    const resultBox = document.getElementById("coBeingResult");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultText = document.getElementById("resultText");
+    const resultStats = document.getElementById("resultStats");
+
+    function clamp(value, min = 0, max = 100) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function randomItem(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function setMessage(text) {
+      signalMessage.textContent = text;
+    }
+
+    function updateSignalDisplay() {
+      document.getElementById("signalScore").textContent = signalState.score;
+      document.getElementById("signalTime").textContent = signalState.time;
+      document.getElementById("signalLevel").textContent = signalState.level;
+
+      document.getElementById("presenceValue").textContent = Math.round(signalState.presence);
+      document.getElementById("trustValue").textContent = Math.round(signalState.trust);
+      document.getElementById("pressureValue").textContent = Math.round(signalState.pressure);
+      document.getElementById("noiseValue").textContent = Math.round(signalState.noise);
+
+      document.getElementById("presenceMeter").style.width = signalState.presence + "%";
+      document.getElementById("trustMeter").style.width = signalState.trust + "%";
+      document.getElementById("pressureMeter").style.width = signalState.pressure + "%";
+      document.getElementById("noiseMeter").style.width = signalState.noise + "%";
+
+      const humanStrength = (signalState.presence + signalState.trust) / 2;
+      const disruption = (signalState.pressure + signalState.noise) / 2;
+      const connection = clamp(humanStrength - disruption * 0.38, 8, 100);
+
+      connectionLine.style.opacity = connection / 100;
+      connectionLine.style.filter = "drop-shadow(0 0 " + (connection / 5) + "px rgba(214, 173, 83, 0.78))";
+      connectionLine.style.transform = "translate(-50%, -50%) scaleX(" + (0.55 + connection / 180) + ")";
+
+      connectionPulse.style.opacity = clamp(connection / 100, 0.25, 1);
+    }
+
+    function resetSignalState() {
+      signalState.running = false;
+      signalState.paused = false;
+      signalState.time = 100;
+      signalState.level = 1;
+      signalState.score = 0;
+      signalState.presence = 60;
+      signalState.trust = 60;
+      signalState.pressure = 35;
+      signalState.noise = 30;
+      signalState.tokenId = 0;
+      signalState.tokens = [];
+      signalState.lastTime = null;
+
+      clearInterval(signalState.timerId);
+      clearInterval(signalState.spawnId);
+
+      if (signalState.gameLoopId) {
+        cancelAnimationFrame(signalState.gameLoopId);
+      }
+
+      tokenLayer.innerHTML = "";
+      resultBox.hidden = true;
+      pauseButton.textContent = "Pause";
+      setMessage("Click Start. Listen for the human signal.");
+      updateSignalDisplay();
+    }
+
+    function chooseTokenType() {
+      const random = Math.random();
+
+      if (signalState.level <= 2) {
+        if (random < 0.42) return "human";
+        if (random < 0.58) return "repair";
+        if (random < 0.80) return "system";
+        return "noise";
+      }
+
+      if (signalState.level <= 4) {
+        if (random < 0.34) return "human";
+        if (random < 0.48) return "repair";
+        if (random < 0.75) return "system";
+        return "noise";
+      }
+
+      if (random < 0.30) return "human";
+      if (random < 0.42) return "repair";
+      if (random < 0.72) return "system";
+      return "noise";
+    }
+
+    function spawnToken() {
+      if (!signalState.running || signalState.paused) {
+        return;
+      }
+
+      const type = chooseTokenType();
+      const text = randomItem(tokenTypes[type]);
+      const arenaRect = arena.getBoundingClientRect();
+
+      const token = document.createElement("button");
+      token.type = "button";
+      token.className = "signal-token token-" + type;
+      token.textContent = text;
+
+      const tokenWidth = Math.min(220, Math.max(120, text.length * 7));
+      const x = Math.random() * Math.max(40, arenaRect.width - tokenWidth - 32) + 16;
+
+      const speed = 34 + signalState.level * 7 + Math.random() * 20;
+
+      const tokenData = {
+        id: signalState.tokenId += 1,
+        type,
+        element: token,
+        x,
+        y: -50,
+        speed,
+        clicked: false
+      };
+
+      token.style.left = x + "px";
+      token.style.top = tokenData.y + "px";
+
+      token.addEventListener("click", () => {
+        handleTokenClick(tokenData);
+      });
+
+      tokenLayer.appendChild(token);
+      signalState.tokens.push(tokenData);
+    }
+
+    function removeToken(tokenData) {
+      tokenData.element.remove();
+      signalState.tokens = signalState.tokens.filter((token) => token.id !== tokenData.id);
+    }
+
+    function changeState(changes) {
+      signalState.presence = clamp(signalState.presence + (changes.presence || 0));
+      signalState.trust = clamp(signalState.trust + (changes.trust || 0));
+      signalState.pressure = clamp(signalState.pressure + (changes.pressure || 0));
+      signalState.noise = clamp(signalState.noise + (changes.noise || 0));
+      signalState.score = Math.max(0, signalState.score + (changes.score || 0));
+
+      updateSignalDisplay();
+      checkCollapse();
+    }
+
+    function handleTokenClick(tokenData) {
+      if (!signalState.running || signalState.paused || tokenData.clicked) {
+        return;
+      }
+
+      tokenData.clicked = true;
+      tokenData.element.classList.add("token-clicked");
+
+      if (tokenData.type === "human") {
+        changeState({
+          presence: 7,
+          trust: 8,
+          pressure: -2,
+          noise: -3,
+          score: 90 + signalState.level * 10
+        });
+
+        setMessage("Human signal heard. Presence returns.");
+      }
+
+      if (tokenData.type === "repair") {
+        changeState({
+          presence: 5,
+          trust: 5,
+          pressure: -5,
+          noise: -4,
+          score: 70 + signalState.level * 8
+        });
+
+        setMessage("Repair made space for co-being.");
+      }
+
+      if (tokenData.type === "system") {
+        changeState({
+          presence: -3,
+          trust: -4,
+          pressure: -3,
+          noise: 2,
+          score: -15
+        });
+
+        setMessage("Pressure fell briefly, but the other person became less visible.");
+      }
+
+      if (tokenData.type === "noise") {
+        changeState({
+          presence: -4,
+          trust: -3,
+          pressure: 1,
+          noise: 4,
+          score: -20
+        });
+
+        setMessage("Noise was amplified. The signal weakened.");
+      }
+
+      setTimeout(() => {
+        removeToken(tokenData);
+      }, 160);
+    }
+
+    function handleMissedToken(tokenData) {
+      if (tokenData.type === "human") {
+        changeState({
+          presence: -6,
+          trust: -8,
+          pressure: 2,
+          noise: 3,
+          score: -25
+        });
+
+        setMessage("A human signal was missed.");
+      }
+
+      if (tokenData.type === "repair") {
+        changeState({
+          pressure: 2,
+          noise: 2,
+          score: -5
+        });
+
+        setMessage("A chance to repair passed by.");
+      }
+
+      if (tokenData.type === "system") {
+        changeState({
+          pressure: 4,
+          noise: 3,
+          score: -8
+        });
+
+        setMessage("System pressure accumulated.");
+      }
+
+      if (tokenData.type === "noise") {
+        changeState({
+          pressure: 1,
+          noise: 2
+        });
+      }
+
+      removeToken(tokenData);
+    }
+
+    function gameLoop(timestamp) {
+      if (!signalState.running) {
+        return;
+      }
+
+      if (signalState.paused) {
+        signalState.lastTime = timestamp;
+        signalState.gameLoopId = requestAnimationFrame(gameLoop);
+        return;
+      }
+
+      if (!signalState.lastTime) {
+        signalState.lastTime = timestamp;
+      }
+
+      const delta = (timestamp - signalState.lastTime) / 1000;
+      signalState.lastTime = timestamp;
+
+      const arenaHeight = arena.getBoundingClientRect().height;
+
+      [...signalState.tokens].forEach((tokenData) => {
+        tokenData.y += tokenData.speed * delta;
+        tokenData.element.style.top = tokenData.y + "px";
+
+        if (tokenData.y > arenaHeight + 60) {
+          handleMissedToken(tokenData);
+        }
+      });
+
+      signalState.gameLoopId = requestAnimationFrame(gameLoop);
+    }
+
+    function levelUpIfNeeded() {
+      const elapsed = 100 - signalState.time;
+      const newLevel = Math.min(6, Math.floor(elapsed / 18) + 1);
+
+      if (newLevel !== signalState.level) {
+        signalState.level = newLevel;
+        setMessage("The noise changes shape. Level " + signalState.level + ".");
+      }
+    }
+
+    function tickTimer() {
+      if (!signalState.running || signalState.paused) {
+        return;
+      }
+
+      signalState.time -= 1;
+      levelUpIfNeeded();
+
+      changeState({
+        pressure: 0.8 + signalState.level * 0.28,
+        noise: 0.6 + signalState.level * 0.18,
+        score: Math.round(((signalState.presence + signalState.trust) / 2) / 9)
+      });
+
+      if (signalState.time <= 0) {
+        endSignalGame(false);
+      }
+    }
+
+    function checkCollapse() {
+      if (!signalState.running) {
+        return;
+      }
+
+      if (
+        signalState.presence <= 0 ||
+        signalState.trust <= 0 ||
+        signalState.pressure >= 100 ||
+        signalState.noise >= 100
+      ) {
+        endSignalGame(true);
+      }
+    }
+
+    function getResultProfile(collapsed) {
+      const humanStrength = (signalState.presence + signalState.trust) / 2;
+      const disruption = (signalState.pressure + signalState.noise) / 2;
+
+      if (collapsed) {
+        if (signalState.noise >= 100) {
+          return {
+            title: "Lost in the Noise",
+            text: "The signal did not fail because care disappeared. It failed because too much noise stood between the two people."
+          };
+        }
+
+        if (signalState.pressure >= 100) {
+          return {
+            title: "Pressure Broke the Signal",
+            text: "The connection weakened under accumulated pressure. Co-being needs time, not only intention."
+          };
+        }
+
+        return {
+          title: "Disconnected Listener",
+          text: "The human signal became too faint. The game asks how easily presence disappears when pressure rises."
+        };
+      }
+
+      if (humanStrength >= 75 && disruption <= 55) {
+        return {
+          title: "Signal Keeper",
+          text: "You protected presence and trust while pressure moved through the space. Co-being remained alive."
+        };
+      }
+
+      if (humanStrength >= 68 && signalState.pressure >= 65) {
+        return {
+          title: "Relational Rebel",
+          text: "Pressure stayed high, but you refused to let optimization replace presence. The signal survived through resistance."
+        };
+      }
+
+      if (signalState.noise >= 70 && humanStrength >= 55) {
+        return {
+          title: "Overloaded Listener",
+          text: "You tried to hear the other person while too much noise accumulated. The connection survived, but it became fragile."
+        };
+      }
+
+      if (signalState.pressure <= 45 && signalState.trust < 55) {
+        return {
+          title: "Efficient Drifter",
+          text: "You reduced some pressure, but the relational signal weakened. Efficiency is not the same as presence."
+        };
+      }
+
+      return {
+        title: "Fragile Connection",
+        text: "You kept the signal alive, but it remained vulnerable. Co-being is not a state; it is a repeated return."
+      };
+    }
+
+    function endSignalGame(collapsed) {
+      signalState.running = false;
+      signalState.paused = false;
+
+      clearInterval(signalState.timerId);
+      clearInterval(signalState.spawnId);
+
+      if (signalState.gameLoopId) {
+        cancelAnimationFrame(signalState.gameLoopId);
+      }
+
+      signalState.tokens.forEach((token) => token.element.remove());
+      signalState.tokens = [];
+
+      const profile = getResultProfile(collapsed);
+
+      resultTitle.textContent = profile.title;
+      resultText.textContent = profile.text;
+      resultStats.textContent =
+        "Final score: " + signalState.score +
+        " · Presence: " + Math.round(signalState.presence) +
+        " · Trust: " + Math.round(signalState.trust) +
+        " · Pressure: " + Math.round(signalState.pressure) +
+        " · Noise: " + Math.round(signalState.noise);
+
+      resultBox.hidden = false;
+      pauseButton.textContent = "Pause";
+
+      setMessage(collapsed ? "The signal collapsed. Try again." : "The signal survived.");
+      updateSignalDisplay();
+    }
+
+    function startSignalGame() {
+      resetSignalState();
+
+      signalState.running = true;
+      signalState.paused = false;
+
+      setMessage("The signal is alive. Listen carefully.");
+
+      spawnToken();
+
+      signalState.spawnId = setInterval(() => {
+        spawnToken();
+
+        if (signalState.level >= 4 && Math.random() > 0.45) {
+          setTimeout(spawnToken, 420);
+        }
+      }, 1250);
+
+      signalState.timerId = setInterval(tickTimer, 1000);
+      signalState.gameLoopId = requestAnimationFrame(gameLoop);
+    }
+
+    function togglePause() {
+      if (!signalState.running) {
+        return;
+      }
+
+      signalState.paused = !signalState.paused;
+      pauseButton.textContent = signalState.paused ? "Resume" : "Pause";
+      setMessage(signalState.paused ? "Paused. The signal waits." : "The signal continues.");
+    }
+
+    startButton.addEventListener("click", startSignalGame);
+    pauseButton.addEventListener("click", togglePause);
+    resetButton.addEventListener("click", resetSignalState);
+
+    resetSignalState();
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9677cb0fa87845fe8d5de700ddd3a513"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
