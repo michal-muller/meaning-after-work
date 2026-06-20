@@ -5497,3 +5497,390 @@ body:has(.talk-intro) .page-hero .lead {
     min-height: 68px;
   }
 }
+/* ===== The Human Minute game ===== */
+
+.human-minute-page .page-hero,
+.human-minute-page .content-section {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.human-minute-page .page-hero {
+  padding-top: 72px;
+  padding-bottom: 54px;
+}
+
+.human-minute-intro {
+  max-width: 920px;
+}
+
+.human-minute-rules {
+  margin-top: 28px;
+  padding: 24px 26px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.2);
+  background: rgba(214, 173, 83, 0.055);
+}
+
+.human-minute-rules h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.35rem;
+}
+
+.human-minute-rules ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.human-minute-shell {
+  padding: 24px;
+  border-radius: 30px;
+  border: 1px solid rgba(214, 173, 83, 0.22);
+  background:
+    radial-gradient(circle at 50% 16%, rgba(214, 173, 83, 0.1), transparent 35%),
+    radial-gradient(circle at 8% 90%, rgba(214, 173, 83, 0.08), transparent 34%),
+    rgba(255, 255, 255, 0.025);
+}
+
+.minute-dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.minute-score-box {
+  padding: 16px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(214, 173, 83, 0.14);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.minute-score-box span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.minute-score-box strong {
+  color: var(--text);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.minute-meters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.minute-meter {
+  padding: 13px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(214, 173, 83, 0.12);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.minute-meter-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 9px;
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+}
+
+.minute-meter-label strong {
+  color: var(--text);
+}
+
+.minute-meter-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(244, 239, 230, 0.12);
+}
+
+.minute-meter-fill {
+  width: 55%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(214, 173, 83, 0.55), rgba(244, 218, 143, 0.95));
+  transition: width 0.25s ease;
+}
+
+.minute-message {
+  min-height: 28px;
+  margin: 8px 0 14px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.human-minute-arena {
+  --minute-glow: 26px;
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid rgba(214, 173, 83, 0.2);
+  background:
+    radial-gradient(circle at 18% 24%, rgba(244, 239, 230, 0.06), transparent 22%),
+    radial-gradient(circle at 72% 72%, rgba(214, 173, 83, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(12, 14, 18, 0.86), rgba(5, 7, 9, 0.92));
+}
+
+.minute-day-background {
+  position: absolute;
+  inset: 0;
+  opacity: 0.24;
+  background-image:
+    linear-gradient(rgba(214, 173, 83, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214, 173, 83, 0.07) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+}
+
+.minute-sun {
+  position: absolute;
+  z-index: 2;
+  left: 34px;
+  top: 34px;
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 173, 83, 0.28);
+  background:
+    radial-gradient(circle, rgba(244, 239, 230, 0.32), rgba(214, 173, 83, 0.18) 40%, transparent 72%);
+  box-shadow: 0 0 var(--minute-glow) rgba(214, 173, 83, 0.28);
+}
+
+.minute-sun span {
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.minute-stream-line {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(214, 173, 83, 0.35), transparent);
+  opacity: 0.7;
+}
+
+.minute-hint {
+  position: absolute;
+  z-index: 2;
+  right: 28px;
+  bottom: 24px;
+  max-width: 280px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(214, 173, 83, 0.14);
+  background: rgba(0, 0, 0, 0.26);
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.minute-token-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+.minute-token {
+  position: absolute;
+  max-width: 235px;
+  min-width: 110px;
+  padding: 11px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 239, 230, 0.18);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.25;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  transition: transform 0.14s ease, opacity 0.14s ease, filter 0.14s ease;
+}
+
+.minute-token:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.minute-token-clicked {
+  opacity: 0;
+  transform: scale(1.14);
+  pointer-events: none;
+}
+
+.minute-token-human,
+.minute-token-care,
+.minute-token-meaning {
+  border-color: rgba(244, 218, 143, 0.62);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.24), transparent 35%),
+    rgba(214, 173, 83, 0.24);
+}
+
+.minute-token-care {
+  border-color: rgba(160, 210, 180, 0.44);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.18), transparent 35%),
+    rgba(74, 122, 98, 0.38);
+}
+
+.minute-token-meaning {
+  border-color: rgba(214, 173, 83, 0.5);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.2), transparent 35%),
+    rgba(125, 96, 46, 0.42);
+}
+
+.minute-token-noise,
+.minute-token-urgency {
+  border-color: rgba(180, 105, 90, 0.32);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.08), transparent 35%),
+    rgba(80, 82, 92, 0.56);
+}
+
+.minute-token-urgency {
+  border-color: rgba(214, 173, 83, 0.24);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 239, 230, 0.08), transparent 35%),
+    rgba(105, 64, 70, 0.56);
+}
+
+.minute-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.minute-result {
+  margin-top: 24px;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px solid rgba(214, 173, 83, 0.22);
+  background: rgba(214, 173, 83, 0.06);
+}
+
+.minute-result h2 {
+  margin-top: 0;
+}
+
+.minute-protected-list {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.minute-protected-list h3 {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.minute-protected-list ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.human-minute-note {
+  max-width: 920px;
+  padding: 28px 32px;
+  border-radius: 26px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.human-minute-note p {
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .minute-dashboard,
+  .minute-meters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .human-minute-arena {
+    height: 460px;
+  }
+}
+
+@media (max-width: 700px) {
+  .human-minute-page .page-hero,
+  .human-minute-page .content-section {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .human-minute-shell {
+    padding: 18px;
+  }
+
+  .minute-dashboard,
+  .minute-meters {
+    grid-template-columns: 1fr;
+  }
+
+  .human-minute-arena {
+    height: 520px;
+  }
+
+  .minute-token {
+    max-width: 190px;
+    font-size: 0.76rem;
+  }
+
+  .minute-sun {
+    width: 66px;
+    height: 66px;
+  }
+
+  .minute-hint {
+    right: 18px;
+    bottom: 18px;
+    max-width: 230px;
+  }
+
+  .minute-controls .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
