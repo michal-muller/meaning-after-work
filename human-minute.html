@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Human Minute | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A short reflective game about protecting small moments of being human during a crowded digital day."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="human-minute-page">
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Experiences &amp; Games</a>
+      <a href="book.html">Book</a>
+      <a href="public-talks.html">Public Talks</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About &amp; Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Reflective game</p>
+
+      <h1>The Human Minute</h1>
+
+      <p class="lead">
+        A short game about protecting small moments of being human during a crowded digital day.
+      </p>
+    </section>
+
+    <section class="content-section human-minute-intro">
+      <h2>Your day will be full anyway. Can you protect one human minute?</h2>
+
+      <p>
+        Work, messages, metrics, summaries and deadlines move through the day.
+        Some are necessary. Some are only noise. But hidden between them are small human moments:
+        a breath, an apology, a window, a call, a silence, a question, a return.
+      </p>
+
+      <p>
+        Your task is simple: protect the human moments before the day consumes them.
+        Let the noise pass. Do not click everything. The goal is not productivity.
+        The goal is to keep a little presence alive.
+      </p>
+
+      <div class="human-minute-rules">
+        <h3>How to play</h3>
+
+        <ul>
+          <li><strong>Click human moments</strong> to protect presence, care and calm.</li>
+          <li><strong>Let noise pass</strong> instead of amplifying it.</li>
+          <li><strong>Missing human moments</strong> weakens the day.</li>
+          <li><strong>Clicking noise</strong> increases pressure.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="human-minute-shell">
+        <div class="minute-dashboard">
+          <div class="minute-score-box">
+            <span>Score</span>
+            <strong id="minuteScore">0</strong>
+          </div>
+
+          <div class="minute-score-box">
+            <span>Time</span>
+            <strong id="minuteTime">90</strong>
+          </div>
+
+          <div class="minute-score-box">
+            <span>Protected</span>
+            <strong id="minuteProtected">0</strong>
+          </div>
+
+          <div class="minute-score-box">
+            <span>Noise passed</span>
+            <strong id="minuteNoisePassed">0</strong>
+          </div>
+        </div>
+
+        <div class="minute-meters">
+          <div class="minute-meter">
+            <div class="minute-meter-label">
+              <span>Presence</span>
+              <strong id="minutePresenceValue">55</strong>
+            </div>
+            <div class="minute-meter-track">
+              <div class="minute-meter-fill" id="minutePresenceMeter"></div>
+            </div>
+          </div>
+
+          <div class="minute-meter">
+            <div class="minute-meter-label">
+              <span>Care</span>
+              <strong id="minuteCareValue">50</strong>
+            </div>
+            <div class="minute-meter-track">
+              <div class="minute-meter-fill" id="minuteCareMeter"></div>
+            </div>
+          </div>
+
+          <div class="minute-meter">
+            <div class="minute-meter-label">
+              <span>Calm</span>
+              <strong id="minuteCalmValue">50</strong>
+            </div>
+            <div class="minute-meter-track">
+              <div class="minute-meter-fill" id="minuteCalmMeter"></div>
+            </div>
+          </div>
+
+          <div class="minute-meter">
+            <div class="minute-meter-label">
+              <span>Pressure</span>
+              <strong id="minutePressureValue">35</strong>
+            </div>
+            <div class="minute-meter-track danger-track">
+              <div class="minute-meter-fill danger-fill" id="minutePressureMeter"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="minute-message" id="minuteMessage">
+          Click Start. Let the day move. Protect what is human.
+        </div>
+
+        <div class="human-minute-arena" id="humanMinuteArena" aria-label="The Human Minute game area">
+          <div class="minute-day-background"></div>
+
+          <div class="minute-sun">
+            <span>Day</span>
+          </div>
+
+          <div class="minute-stream-line"></div>
+
+          <div class="minute-hint">
+            Click the small human moments. Let the noise pass.
+          </div>
+
+          <div class="minute-token-layer" id="minuteTokenLayer"></div>
+        </div>
+
+        <div class="minute-controls">
+          <button type="button" class="button primary" id="startMinuteButton">Start</button>
+          <button type="button" class="button secondary" id="pauseMinuteButton">Pause</button>
+          <button type="button" class="button secondary" id="resetMinuteButton">Reset</button>
+        </div>
+
+        <div class="minute-result" id="minuteResult" hidden>
+          <p class="eyebrow">Reflection</p>
+          <h2 id="minuteResultTitle">Minute Keeper</h2>
+          <p id="minuteResultText">
+            You protected small moments of presence before the day consumed them.
+          </p>
+          <p id="minuteResultStats"></p>
+
+          <div class="minute-protected-list" id="minuteProtectedList"></div>
+
+          <button type="button" class="button secondary" id="copyMinuteResultButton">
+            Copy reflection
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section human-minute-note">
+      <p>
+        This prototype is a reflective game, not a psychological test, therapy, diagnosis,
+        productivity assessment or mental health tool. It stores no data and sends nothing anywhere.
+        The score is only a metaphor for how easily small human moments disappear inside a crowded day.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Meaning After Work is an independent public research-and-practice initiative.
+      The Human Minute is an experimental reflective game and not a diagnostic tool.
+    </p>
+  </footer>
+
+  <script>
+    const minuteState = {
+      running: false,
+      paused: false,
+      time: 90,
+      level: 1,
+      score: 0,
+      presence: 55,
+      care: 50,
+      calm: 50,
+      pressure: 35,
+      protected: 0,
+      missedHuman: 0,
+      noisePassed: 0,
+      clickedNoise: 0,
+      tokenId: 0,
+      tokens: [],
+      protectedMoments: [],
+      gameLoopId: null,
+      timerId: null,
+      spawnId: null,
+      lastTime: null
+    };
+
+    const minuteTokens = {
+      human: [
+        "Take one breath",
+        "Look out of the window",
+        "Drink water slowly",
+        "Touch the table",
+        "Notice your shoulders",
+        "Do nothing for one minute",
+        "Let the silence stay",
+        "Take a slower step",
+        "Return to your body",
+        "Remember you are here"
+      ],
+      care: [
+        "Call someone back",
+        "Say sorry",
+        "Ask: how are you really?",
+        "Listen without fixing",
+        "Send one kind sentence",
+        "Notice the tired person",
+        "Let someone finish",
+        "Ask again gently",
+        "Return after harshness",
+        "Protect one conversation"
+      ],
+      meaning: [
+        "Remember why this matters",
+        "Choose one true thing",
+        "Name what you care about",
+        "Keep one promise",
+        "Let the work be enough",
+        "Refuse the empty hurry",
+        "Make space for gratitude",
+        "Stay with the unfinished",
+        "Begin again quietly",
+        "Protect one human minute"
+      ],
+      noise: [
+        "Reply faster",
+        "Open another tab",
+        "Check the metric again",
+        "Compare yourself",
+        "Refresh the inbox",
+        "Answer before listening",
+        "Optimize the pause",
+        "Summarize the feeling",
+        "Perform being fine",
+        "Turn care into output"
+      ],
+      urgency: [
+        "Everything is urgent",
+        "Prove you are useful",
+        "Do more before resting",
+        "Be available now",
+        "Hide the tiredness",
+        "Do not disappoint anyone",
+        "One more task",
+        "Faster, please",
+        "Keep producing",
+        "No time to feel"
+      ]
+    };
+
+    const humanMinuteArena = document.getElementById("humanMinuteArena");
+    const minuteTokenLayer = document.getElementById("minuteTokenLayer");
+    const minuteMessage = document.getElementById("minuteMessage");
+
+    const startMinuteButton = document.getElementById("startMinuteButton");
+    const pauseMinuteButton = document.getElementById("pauseMinuteButton");
+    const resetMinuteButton = document.getElementById("resetMinuteButton");
+
+    const minuteResult = document.getElementById("minuteResult");
+    const minuteResultTitle = document.getElementById("minuteResultTitle");
+    const minuteResultText = document.getElementById("minuteResultText");
+    const minuteResultStats = document.getElementById("minuteResultStats");
+    const minuteProtectedList = document.getElementById("minuteProtectedList");
+    const copyMinuteResultButton = document.getElementById("copyMinuteResultButton");
+
+    function clampMinute(value, min = 0, max = 100) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function randomMinuteItem(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function setMinuteMessage(text) {
+      minuteMessage.textContent = text;
+    }
+
+    function updateMinuteDisplay() {
+      document.getElementById("minuteScore").textContent = minuteState.score;
+      document.getElementById("minuteTime").textContent = minuteState.time;
+      document.getElementById("minuteProtected").textContent = minuteState.protected;
+      document.getElementById("minuteNoisePassed").textContent = minuteState.noisePassed;
+
+      document.getElementById("minutePresenceValue").textContent = Math.round(minuteState.presence);
+      document.getElementById("minuteCareValue").textContent = Math.round(minuteState.care);
+      document.getElementById("minuteCalmValue").textContent = Math.round(minuteState.calm);
+      document.getElementById("minutePressureValue").textContent = Math.round(minuteState.pressure);
+
+      document.getElementById("minutePresenceMeter").style.width = minuteState.presence + "%";
+      document.getElementById("minuteCareMeter").style.width = minuteState.care + "%";
+      document.getElementById("minuteCalmMeter").style.width = minuteState.calm + "%";
+      document.getElementById("minutePressureMeter").style.width = minuteState.pressure + "%";
+
+      const glow = 12 + ((minuteState.presence + minuteState.care + minuteState.calm) / 3) / 3;
+      humanMinuteArena.style.setProperty("--minute-glow", glow + "px");
+    }
+
+    function resetMinuteState() {
+      minuteState.running = false;
+      minuteState.paused = false;
+      minuteState.time = 90;
+      minuteState.level = 1;
+      minuteState.score = 0;
+      minuteState.presence = 55;
+      minuteState.care = 50;
+      minuteState.calm = 50;
+      minuteState.pressure = 35;
+      minuteState.protected = 0;
+      minuteState.missedHuman = 0;
+      minuteState.noisePassed = 0;
+      minuteState.clickedNoise = 0;
+      minuteState.tokenId = 0;
+      minuteState.tokens = [];
+      minuteState.protectedMoments = [];
+      minuteState.lastTime = null;
+
+      clearInterval(minuteState.timerId);
+      clearInterval(minuteState.spawnId);
+
+      if (minuteState.gameLoopId) {
+        cancelAnimationFrame(minuteState.gameLoopId);
+      }
+
+      minuteTokenLayer.innerHTML = "";
+      minuteResult.hidden = true;
+      pauseMinuteButton.textContent = "Pause";
+      setMinuteMessage("Click Start. Let the day move. Protect what is human.");
+      updateMinuteDisplay();
+    }
+
+    function chooseMinuteTokenType() {
+      const random = Math.random();
+
+      if (minuteState.level <= 2) {
+        if (random < 0.28) return "human";
+        if (random < 0.48) return "care";
+        if (random < 0.62) return "meaning";
+        if (random < 0.83) return "noise";
+        return "urgency";
+      }
+
+      if (minuteState.level <= 4) {
+        if (random < 0.24) return "human";
+        if (random < 0.40) return "care";
+        if (random < 0.52) return "meaning";
+        if (random < 0.78) return "noise";
+        return "urgency";
+      }
+
+      if (random < 0.20) return "human";
+      if (random < 0.34) return "care";
+      if (random < 0.44) return "meaning";
+      if (random < 0.74) return "noise";
+      return "urgency";
+    }
+
+    function spawnMinuteToken() {
+      if (!minuteState.running || minuteState.paused) {
+        return;
+      }
+
+      const type = chooseMinuteTokenType();
+      const text = randomMinuteItem(minuteTokens[type]);
+      const arenaRect = humanMinuteArena.getBoundingClientRect();
+
+      const token = document.createElement("button");
+      token.type = "button";
+      token.className = "minute-token minute-token-" + type;
+      token.textContent = text;
+
+      const y = Math.random() * Math.max(80, arenaRect.height - 120) + 48;
+      const x = arenaRect.width + 40;
+      const speed = 42 + minuteState.level * 8 + Math.random() * 18;
+
+      const tokenData = {
+        id: minuteState.tokenId += 1,
+        type,
+        text,
+        element: token,
+        x,
+        y,
+        speed,
+        clicked: false
+      };
+
+      token.style.left = x + "px";
+      token.style.top = y + "px";
+
+      token.addEventListener("click", () => {
+        handleMinuteTokenClick(tokenData);
+      });
+
+      minuteTokenLayer.appendChild(token);
+      minuteState.tokens.push(tokenData);
+    }
+
+    function removeMinuteToken(tokenData) {
+      tokenData.element.remove();
+      minuteState.tokens = minuteState.tokens.filter((token) => token.id !== tokenData.id);
+    }
+
+    function changeMinuteState(changes) {
+      minuteState.presence = clampMinute(minuteState.presence + (changes.presence || 0));
+      minuteState.care = clampMinute(minuteState.care + (changes.care || 0));
+      minuteState.calm = clampMinute(minuteState.calm + (changes.calm || 0));
+      minuteState.pressure = clampMinute(minuteState.pressure + (changes.pressure || 0));
+      minuteState.score = Math.max(0, minuteState.score + (changes.score || 0));
+
+      updateMinuteDisplay();
+      checkMinuteCollapse();
+    }
+
+    function protectMinute(tokenData) {
+      minuteState.protected += 1;
+      minuteState.protectedMoments.push(tokenData.text);
+
+      if (tokenData.type === "human") {
+        changeMinuteState({
+          presence: 8,
+          care: 2,
+          calm: 6,
+          pressure: -4,
+          score: 90 + minuteState.level * 8
+        });
+
+        setMinuteMessage("A human minute was protected.");
+      }
+
+      if (tokenData.type === "care") {
+        changeMinuteState({
+          presence: 5,
+          care: 9,
+          calm: 3,
+          pressure: -3,
+          score: 95 + minuteState.level * 8
+        });
+
+        setMinuteMessage("A moment of care survived the day.");
+      }
+
+      if (tokenData.type === "meaning") {
+        changeMinuteState({
+          presence: 5,
+          care: 4,
+          calm: 5,
+          pressure: -5,
+          score: 100 + minuteState.level * 8
+        });
+
+        setMinuteMessage("Meaning returned in a small form.");
+      }
+    }
+
+    function handleMinuteTokenClick(tokenData) {
+      if (!minuteState.running || minuteState.paused || tokenData.clicked) {
+        return;
+      }
+
+      tokenData.clicked = true;
+      tokenData.element.classList.add("minute-token-clicked");
+
+      if (tokenData.type === "human" || tokenData.type === "care" || tokenData.type === "meaning") {
+        protectMinute(tokenData);
+      } else {
+        minuteState.clickedNoise += 1;
+
+        changeMinuteState({
+          presence: -4,
+          care: -3,
+          calm: -6,
+          pressure: 7,
+          score: -30
+        });
+
+        setMinuteMessage("Noise was amplified. The day became heavier.");
+      }
+
+      setTimeout(() => {
+        removeMinuteToken(tokenData);
+      }, 150);
+    }
+
+    function handleMinuteTokenPassed(tokenData) {
+      if (tokenData.type === "noise" || tokenData.type === "urgency") {
+        minuteState.noisePassed += 1;
+
+        changeMinuteState({
+          calm: 1,
+          pressure: -1,
+          score: 10
+        });
+
+        if (minuteState.noisePassed % 5 === 0) {
+          setMinuteMessage("Some noise passed without becoming your whole day.");
+        }
+      } else {
+        minuteState.missedHuman += 1;
+
+        if (tokenData.type === "human") {
+          changeMinuteState({
+            presence: -7,
+            calm: -3,
+            pressure: 3,
+            score: -20
+          });
+
+          setMinuteMessage("A human minute was missed.");
+        }
+
+        if (tokenData.type === "care") {
+          changeMinuteState({
+            presence: -3,
+            care: -8,
+            pressure: 3,
+            score: -20
+          });
+
+          setMinuteMessage("A moment of care passed by.");
+        }
+
+        if (tokenData.type === "meaning") {
+          changeMinuteState({
+            presence: -4,
+            care: -3,
+            calm: -4,
+            pressure: 4,
+            score: -20
+          });
+
+          setMinuteMessage("A small meaning was lost in the day.");
+        }
+      }
+
+      removeMinuteToken(tokenData);
+    }
+
+    function minuteGameLoop(timestamp) {
+      if (!minuteState.running) {
+        return;
+      }
+
+      if (minuteState.paused) {
+        minuteState.lastTime = timestamp;
+        minuteState.gameLoopId = requestAnimationFrame(minuteGameLoop);
+        return;
+      }
+
+      if (!minuteState.lastTime) {
+        minuteState.lastTime = timestamp;
+      }
+
+      const delta = (timestamp - minuteState.lastTime) / 1000;
+      minuteState.lastTime = timestamp;
+
+      [...minuteState.tokens].forEach((tokenData) => {
+        tokenData.x -= tokenData.speed * delta;
+        tokenData.element.style.left = tokenData.x + "px";
+
+        if (tokenData.x < -260) {
+          handleMinuteTokenPassed(tokenData);
+        }
+      });
+
+      minuteState.gameLoopId = requestAnimationFrame(minuteGameLoop);
+    }
+
+    function tickMinuteTimer() {
+      if (!minuteState.running || minuteState.paused) {
+        return;
+      }
+
+      minuteState.time -= 1;
+      minuteState.level = Math.min(5, Math.floor((90 - minuteState.time) / 18) + 1);
+
+      changeMinuteState({
+        presence: -0.08,
+        care: -0.06,
+        calm: -0.18,
+        pressure: 0.42 + minuteState.level * 0.14,
+        score: Math.round(((minuteState.presence + minuteState.care + minuteState.calm) / 3) / 14)
+      });
+
+      if (minuteState.time <= 0) {
+        endMinuteGame(false);
+      }
+    }
+
+    function checkMinuteCollapse() {
+      if (!minuteState.running) {
+        return;
+      }
+
+      if (
+        minuteState.presence <= 0 ||
+        minuteState.care <= 0 ||
+        minuteState.calm <= 0 ||
+        minuteState.pressure >= 100
+      ) {
+        endMinuteGame(true);
+      }
+    }
+
+    function getMinuteProfile(collapsed) {
+      if (collapsed) {
+        if (minuteState.pressure >= 100) {
+          return {
+            title: "Day Overflow",
+            text: "The day became too crowded. The human moments did not disappear because they were unimportant, but because pressure filled the space."
+          };
+        }
+
+        if (minuteState.calm <= 0) {
+          return {
+            title: "Noise Survivor",
+            text: "Too much of the day became noise. The game asks what it would mean to let more of it pass."
+          };
+        }
+
+        return {
+          title: "Useful Ghost",
+          text: "The day kept moving, but presence faded. Usefulness can become a place where the human person disappears."
+        };
+      }
+
+      if (minuteState.protected >= 12 && minuteState.presence >= 62 && minuteState.calm >= 55) {
+        return {
+          title: "Minute Keeper",
+          text: "You protected small moments of presence before the day consumed them."
+        };
+      }
+
+      if (minuteState.care >= 70) {
+        return {
+          title: "Care Rescuer",
+          text: "You noticed the moments where someone needed more than efficiency."
+        };
+      }
+
+      if (minuteState.noisePassed >= 12 && minuteState.clickedNoise <= 2) {
+        return {
+          title: "Quiet Refuser",
+          text: "You let much of the noise pass without turning it into your whole day."
+        };
+      }
+
+      if (minuteState.protected <= 5 && minuteState.score > 0) {
+        return {
+          title: "Quiet Return",
+          text: "You saved only a few moments, but they were enough to begin again."
+        };
+      }
+
+      return {
+        title: "Fragile Day",
+        text: "You protected some human minutes, but the day remained heavy. Presence often begins with small returns."
+      };
+    }
+
+    function renderProtectedMoments() {
+      const uniqueMoments = [...new Set(minuteState.protectedMoments)].slice(-6);
+
+      if (uniqueMoments.length === 0) {
+        minuteProtectedList.innerHTML = "<p>You did not protect a human minute this time. Begin again gently.</p>";
+        return;
+      }
+
+      const items = uniqueMoments.map((moment) => "<li>" + moment + "</li>").join("");
+
+      minuteProtectedList.innerHTML =
+        "<h3>Today you protected:</h3>" +
+        "<ul>" + items + "</ul>";
+    }
+
+    function endMinuteGame(collapsed) {
+      minuteState.running = false;
+      minuteState.paused = false;
+
+      clearInterval(minuteState.timerId);
+      clearInterval(minuteState.spawnId);
+
+      if (minuteState.gameLoopId) {
+        cancelAnimationFrame(minuteState.gameLoopId);
+      }
+
+      minuteState.tokens.forEach((token) => token.element.remove());
+      minuteState.tokens = [];
+
+      pauseMinuteButton.textContent = "Pause";
+
+      const profile = getMinuteProfile(collapsed);
+
+      minuteResultTitle.textContent = profile.title;
+      minuteResultText.textContent = profile.text;
+      minuteResultStats.textContent =
+        "Final score: " + minuteState.score +
+        " · Protected moments: " + minuteState.protected +
+        " · Noise passed: " + minuteState.noisePassed +
+        " · Missed human moments: " + minuteState.missedHuman +
+        " · Pressure: " + Math.round(minuteState.pressure);
+
+      renderProtectedMoments();
+
+      minuteResult.hidden = false;
+      setMinuteMessage(collapsed ? "The day overflowed. Try again gently." : "The day ended. Some moments survived.");
+      updateMinuteDisplay();
+    }
+
+    function startMinuteGame() {
+      resetMinuteState();
+
+      minuteState.running = true;
+      minuteState.paused = false;
+
+      setMinuteMessage("The day is moving. Protect what is human.");
+
+      spawnMinuteToken();
+
+      minuteState.spawnId = setInterval(() => {
+        spawnMinuteToken();
+
+        if (minuteState.level >= 4 && Math.random() > 0.62) {
+          setTimeout(spawnMinuteToken, 460);
+        }
+      }, 1200);
+
+      minuteState.timerId = setInterval(tickMinuteTimer, 1000);
+      minuteState.gameLoopId = requestAnimationFrame(minuteGameLoop);
+    }
+
+    function toggleMinutePause() {
+      if (!minuteState.running) {
+        return;
+      }
+
+      minuteState.paused = !minuteState.paused;
+      pauseMinuteButton.textContent = minuteState.paused ? "Resume" : "Pause";
+      setMinuteMessage(minuteState.paused ? "Paused. The minute waits." : "The day continues.");
+    }
+
+    function copyMinuteReflection() {
+      const uniqueMoments = [...new Set(minuteState.protectedMoments)].slice(-6);
+      const momentsText = uniqueMoments.length
+        ? "Today I protected: " + uniqueMoments.join(", ") + "."
+        : "I did not protect a human minute this time. I can begin again gently.";
+
+      const reflection =
+        "The Human Minute — " +
+        minuteResultTitle.textContent +
+        "\n\n" +
+        minuteResultText.textContent +
+        "\n\n" +
+        momentsText +
+        "\n\n" +
+        minuteResultStats.textContent;
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(reflection);
+        copyMinuteResultButton.textContent = "Copied";
+        setTimeout(() => {
+          copyMinuteResultButton.textContent = "Copy reflection";
+        }, 1600);
+      }
+    }
+
+    startMinuteButton.addEventListener("click", startMinuteGame);
+    pauseMinuteButton.addEventListener("click", toggleMinutePause);
+    resetMinuteButton.addEventListener("click", resetMinuteState);
+    copyMinuteResultButton.addEventListener("click", copyMinuteReflection);
+
+    resetMinuteState();
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9677cb0fa87845fe8d5de700ddd3a513"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
