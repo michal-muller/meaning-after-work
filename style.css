@@ -6421,3 +6421,405 @@ body:has(.talk-intro) .page-hero .lead {
     text-align: center;
   }
 }
+/* ===== The Unsent Sentence game ===== */
+
+.unsent-sentence-page .page-hero,
+.unsent-sentence-page .content-section {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.unsent-sentence-page .page-hero {
+  padding-top: 72px;
+  padding-bottom: 54px;
+}
+
+.unsent-intro {
+  max-width: 920px;
+}
+
+.unsent-rules {
+  margin-top: 28px;
+  padding: 24px 26px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.2);
+  background: rgba(214, 173, 83, 0.055);
+}
+
+.unsent-rules h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.35rem;
+}
+
+.unsent-rules ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.unsent-game-shell {
+  padding: 24px;
+  border-radius: 30px;
+  border: 1px solid rgba(214, 173, 83, 0.22);
+  background:
+    radial-gradient(circle at 50% 16%, rgba(214, 173, 83, 0.1), transparent 35%),
+    radial-gradient(circle at 8% 90%, rgba(214, 173, 83, 0.08), transparent 34%),
+    rgba(255, 255, 255, 0.025);
+}
+
+.unsent-dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.unsent-score-box {
+  padding: 15px 17px;
+  border-radius: 20px;
+  border: 1px solid rgba(214, 173, 83, 0.14);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.unsent-score-box span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.unsent-score-box strong {
+  color: var(--text);
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.unsent-meters {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.unsent-meter {
+  padding: 12px 13px;
+  border-radius: 18px;
+  border: 1px solid rgba(214, 173, 83, 0.12);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.unsent-meter-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.76rem;
+}
+
+.unsent-meter-label strong {
+  color: var(--text);
+}
+
+.unsent-meter-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(244, 239, 230, 0.12);
+}
+
+.unsent-meter-fill {
+  width: 55%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(214, 173, 83, 0.55), rgba(244, 218, 143, 0.95));
+  transition: width 0.25s ease;
+}
+
+.unsent-danger-fill {
+  background: linear-gradient(90deg, rgba(137, 88, 67, 0.7), rgba(214, 173, 83, 0.85));
+}
+
+.unsent-message {
+  min-height: 26px;
+  margin: 8px 0 14px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.unsent-arena {
+  position: relative;
+  overflow: hidden;
+  padding: 26px;
+  border-radius: 30px;
+  border: 1px solid rgba(214, 173, 83, 0.2);
+  background:
+    radial-gradient(circle at 24% 18%, rgba(244, 239, 230, 0.06), transparent 24%),
+    radial-gradient(circle at 76% 72%, rgba(214, 173, 83, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(13, 15, 18, 0.92), rgba(4, 5, 7, 0.94));
+}
+
+.unsent-paper {
+  min-height: 180px;
+  padding: 28px;
+  border-radius: 28px;
+  border: 1px solid rgba(214, 173, 83, 0.2);
+  background:
+    radial-gradient(circle at 90% 12%, rgba(214, 173, 83, 0.08), transparent 30%),
+    rgba(0, 0, 0, 0.28);
+  box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.22);
+}
+
+.unsent-paper-label {
+  margin: 0 0 18px;
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.sentence-current {
+  color: var(--text);
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  line-height: 1.5;
+}
+
+.pressure-strip {
+  margin: 18px 0 12px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 173, 83, 0.18);
+  background: rgba(214, 173, 83, 0.055);
+  color: var(--gold);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sentence-timer-bar {
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: rgba(244, 239, 230, 0.12);
+}
+
+.sentence-timer-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(214, 173, 83, 0.85), rgba(244, 218, 143, 0.95));
+  transition: width 0.3s ease;
+}
+
+.sentence-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.sentence-placeholder {
+  grid-column: 1 / -1;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px dashed rgba(214, 173, 83, 0.24);
+  color: var(--muted);
+  text-align: center;
+}
+
+.sentence-choice-card {
+  min-height: 210px;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.18);
+  background:
+    radial-gradient(circle at 88% 14%, rgba(214, 173, 83, 0.08), transparent 32%),
+    rgba(255, 255, 255, 0.025);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease, opacity 0.16s ease;
+}
+
+.sentence-choice-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(214, 173, 83, 0.5);
+  background:
+    radial-gradient(circle at 88% 14%, rgba(214, 173, 83, 0.15), transparent 34%),
+    rgba(214, 173, 83, 0.045);
+}
+
+.sentence-choice-card:disabled {
+  cursor: default;
+  opacity: 0.58;
+  transform: none;
+}
+
+.sentence-choice-card span,
+.sentence-choice-card p,
+.sentence-choice-card small {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sentence-choice-card span {
+  margin-bottom: 14px;
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sentence-choice-card p {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.sentence-choice-card small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.sentence-choice-human {
+  border-color: rgba(244, 218, 143, 0.36);
+  background:
+    radial-gradient(circle at 88% 14%, rgba(244, 218, 143, 0.15), transparent 34%),
+    rgba(214, 173, 83, 0.06);
+}
+
+.sentence-choice-guarded {
+  border-color: rgba(160, 210, 180, 0.26);
+  background:
+    radial-gradient(circle at 88% 14%, rgba(160, 210, 180, 0.1), transparent 34%),
+    rgba(74, 122, 98, 0.08);
+}
+
+.sentence-choice-optimized {
+  border-color: rgba(180, 105, 90, 0.24);
+  background:
+    radial-gradient(circle at 88% 14%, rgba(244, 239, 230, 0.08), transparent 34%),
+    rgba(80, 82, 92, 0.22);
+}
+
+.unsent-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.unsent-result {
+  margin-top: 24px;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px solid rgba(214, 173, 83, 0.22);
+  background: rgba(214, 173, 83, 0.06);
+}
+
+.unsent-result h2 {
+  margin-top: 0;
+}
+
+.final-sentence-box {
+  margin: 22px 0;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.18);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.final-sentence-box h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.final-sentence-box p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.unsent-note {
+  max-width: 920px;
+  padding: 28px 32px;
+  border-radius: 26px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.unsent-note p {
+  margin: 0;
+}
+
+@media (max-width: 1050px) {
+  .unsent-dashboard,
+  .unsent-meters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sentence-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sentence-choice-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .unsent-sentence-page .page-hero,
+  .unsent-sentence-page .content-section {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .unsent-game-shell {
+    padding: 18px;
+  }
+
+  .unsent-dashboard,
+  .unsent-meters {
+    grid-template-columns: 1fr;
+  }
+
+  .unsent-arena {
+    padding: 18px;
+  }
+
+  .unsent-paper {
+    padding: 22px;
+  }
+
+  .sentence-current {
+    font-size: 1.22rem;
+  }
+
+  .unsent-controls .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
