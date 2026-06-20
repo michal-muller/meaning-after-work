@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Unsent Sentence | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A short reflective game about protecting a human sentence from becoming too efficient, too polished or too afraid."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="unsent-sentence-page">
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Experiences &amp; Games</a>
+      <a href="book.html">Book</a>
+      <a href="public-talks.html">Public Talks</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About &amp; Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Reflective game</p>
+
+      <h1>The Unsent Sentence</h1>
+
+      <p class="lead">
+        A short game about protecting a human sentence from becoming too efficient,
+        too polished or too afraid.
+      </p>
+    </section>
+
+    <section class="content-section unsent-intro">
+      <h2>Can a sentence stay human before it is optimized away?</h2>
+
+      <p>
+        Some sentences are never sent because they are too vulnerable, too unfinished
+        or too difficult to make useful. This game gives you fragments of an unsent sentence.
+        Each choice changes what survives: honesty, warmth, courage, polish or pressure.
+      </p>
+
+      <p>
+        The goal is not to write the perfect message. The goal is to notice how easily
+        a human sentence becomes professional, efficient, safe — and empty.
+      </p>
+
+      <div class="unsent-rules">
+        <h3>How to play</h3>
+
+        <ul>
+          <li>Each round gives you three possible sentence fragments.</li>
+          <li>Choose the fragment that keeps the sentence most human.</li>
+          <li>Pressure will try to make the sentence efficient, guarded or polished.</li>
+          <li>If time runs out, the system chooses a safer fragment for you.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="unsent-game-shell">
+        <div class="unsent-dashboard">
+          <div class="unsent-score-box">
+            <span>Score</span>
+            <strong id="unsentScore">0</strong>
+          </div>
+
+          <div class="unsent-score-box">
+            <span>Round</span>
+            <strong id="unsentRound">0 / 8</strong>
+          </div>
+
+          <div class="unsent-score-box">
+            <span>Time</span>
+            <strong id="unsentTime">18</strong>
+          </div>
+
+          <div class="unsent-score-box">
+            <span>Human fragments</span>
+            <strong id="humanFragments">0</strong>
+          </div>
+        </div>
+
+        <div class="unsent-meters">
+          <div class="unsent-meter">
+            <div class="unsent-meter-label">
+              <span>Honesty</span>
+              <strong id="honestyValue">55</strong>
+            </div>
+            <div class="unsent-meter-track">
+              <div class="unsent-meter-fill" id="honestyMeter"></div>
+            </div>
+          </div>
+
+          <div class="unsent-meter">
+            <div class="unsent-meter-label">
+              <span>Warmth</span>
+              <strong id="warmthValue">50</strong>
+            </div>
+            <div class="unsent-meter-track">
+              <div class="unsent-meter-fill" id="warmthMeter"></div>
+            </div>
+          </div>
+
+          <div class="unsent-meter">
+            <div class="unsent-meter-label">
+              <span>Courage</span>
+              <strong id="courageValue">45</strong>
+            </div>
+            <div class="unsent-meter-track">
+              <div class="unsent-meter-fill" id="courageMeter"></div>
+            </div>
+          </div>
+
+          <div class="unsent-meter">
+            <div class="unsent-meter-label">
+              <span>Polish</span>
+              <strong id="polishValue">30</strong>
+            </div>
+            <div class="unsent-meter-track">
+              <div class="unsent-meter-fill" id="polishMeter"></div>
+            </div>
+          </div>
+
+          <div class="unsent-meter">
+            <div class="unsent-meter-label">
+              <span>Pressure</span>
+              <strong id="sentencePressureValue">35</strong>
+            </div>
+            <div class="unsent-meter-track">
+              <div class="unsent-meter-fill unsent-danger-fill" id="sentencePressureMeter"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="unsent-message" id="unsentMessage">
+          Click Start. Let the sentence begin.
+        </div>
+
+        <div class="unsent-arena" id="unsentArena">
+          <div class="unsent-paper">
+            <p class="unsent-paper-label">Unsent sentence</p>
+
+            <div class="sentence-current" id="sentenceCurrent">
+              I wanted to tell you...
+            </div>
+          </div>
+
+          <div class="pressure-strip">
+            <span id="pressurePrompt">The pressure will appear here.</span>
+          </div>
+
+          <div class="sentence-timer-bar">
+            <div class="sentence-timer-fill" id="sentenceTimerFill"></div>
+          </div>
+
+          <div class="sentence-choice-grid" id="sentenceChoiceGrid">
+            <div class="sentence-placeholder">
+              Start the game to choose the next fragment.
+            </div>
+          </div>
+        </div>
+
+        <div class="unsent-controls">
+          <button type="button" class="button primary" id="startUnsentButton">Start</button>
+          <button type="button" class="button secondary" id="pauseUnsentButton">Pause</button>
+          <button type="button" class="button secondary" id="resetUnsentButton">Reset</button>
+        </div>
+
+        <div class="unsent-result" id="unsentResult" hidden>
+          <p class="eyebrow">Reflection</p>
+          <h2 id="unsentResultTitle">Your sentence survived.</h2>
+          <p id="unsentResultText">
+            It became shorter, but more honest.
+          </p>
+
+          <div class="final-sentence-box">
+            <h3>Your unsent sentence</h3>
+            <p id="finalSentence"></p>
+          </div>
+
+          <p id="unsentResultStats"></p>
+
+          <button type="button" class="button secondary" id="copyUnsentResultButton">
+            Copy sentence
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section unsent-note">
+      <p>
+        This prototype uses only prepared fragments. You do not need to type personal or sensitive text.
+        It stores no data and sends nothing anywhere. The sentence is a metaphor for how easily human expression
+        can become over-optimized, guarded or erased.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Meaning After Work is an independent public research-and-practice initiative.
+      The Unsent Sentence is an experimental reflective game and not a diagnostic tool.
+    </p>
+  </footer>
+
+  <script>
+    const unsentState = {
+      running: false,
+      paused: false,
+      roundIndex: 0,
+      totalRounds: 8,
+      time: 18,
+      score: 0,
+      honesty: 55,
+      warmth: 50,
+      courage: 45,
+      polish: 30,
+      pressure: 35,
+      humanFragments: 0,
+      guardedFragments: 0,
+      optimizedFragments: 0,
+      sentenceParts: ["I wanted to tell you"],
+      timerId: null,
+      countdownId: null
+    };
+
+    const sentenceRounds = [
+      {
+        pressure: "Make it efficient.",
+        choices: [
+          {
+            kind: "human",
+            label: "Human",
+            text: "that I have been carrying more than I said",
+            note: "Keeps vulnerability visible.",
+            effects: { honesty: 9, warmth: 4, courage: 7, polish: -2, pressure: 2, score: 90 }
+          },
+          {
+            kind: "guarded",
+            label: "Guarded",
+            text: "that things have been busy lately",
+            note: "Says something, but protects the speaker.",
+            effects: { honesty: 2, warmth: 1, courage: -1, polish: 3, pressure: 1, score: 35 }
+          },
+          {
+            kind: "optimized",
+            label: "Optimized",
+            text: "that there have been minor capacity constraints",
+            note: "Smooth, safe and almost empty.",
+            effects: { honesty: -5, warmth: -4, courage: -4, polish: 9, pressure: -3, score: 10 }
+          }
+        ]
+      },
+      {
+        pressure: "Do not sound needy.",
+        choices: [
+          {
+            kind: "human",
+            label: "Human",
+            text: "and I did not know how to ask for help",
+            note: "Lets need appear without shame.",
+            effects: { honesty: 10, warmth: 4, courage: 8, polish: -3, pressure: 3, score: 95 }
+          },
+          {
+            kind: "guarded",
+            label: "Guarded",
+            text: "and I probably should have communicated sooner",
+            note: "Responsible, but slightly distant.",
+            effects: { honesty: 3, warmth: 1, courage: 2, polish: 4, pressure: 1, score: 42 }
+          },
+          {
+            kind: "optimized",
+            label: "Optimized",
+            text: "and I will improve future communication flows",
+            note: "Professional, but the person disappears.",
+            effects: { honesty: -6, warmth: -5, courage: -3, polish: 10, pressure: -2, score: 8 }
+          }
+        ]
+      },
+      {
+        pressure: "Hide the feeling.",
+        choices: [
+          {
+            kind: "human",
+            label: "Human",
+            text: "because I was afraid you would only see my usefulness",
+            note: "Names the deeper fear.",
+            effects: { honesty: 11, warmth: 3, courage: 9, polish: -4, pressure: 4, score: 100 }
+          },
+          {
+            kind: "guarded",
+            label: "Guarded",
+            text: "because I was unsure how it would be received",
+            note: "Careful, but still meaningful.",
+            effects: { honesty: 4, warmth: 1, courage: 2, polish: 3, pressure: 1, score: 45 }
+          },
+          {
+            kind: "optimized",
+            label: "Optimized",
+            text: "because stakeholder expectations were unclear",
+            note: "The feeling becomes a process issue.",
+            effects: { honesty: -7, warmth: -5, courage: -4, polish: 10, pressure: -3, score: 5 }
+          }
+        ]
+      },
+      {
+        pressure: "Make it shorter.",
+        choices: [
+          {
+            kind: "human",
+            label: "Human",
+            text: "and I missed being spoken to as a person",
+            note: "Short, direct and human.",
+            effects: { honesty: 10, warmth: 6, courage: 7, polish: -1, pressure: 3, score: 95 }
+          },
+          {
+            kind: "guarded",
+            label: "Guarded",
+            text: "and I missed a different kind of conversation",
+            note: "Gentle, but less exposed.",
+            effects: { honesty: 5, warmth: 4, courage: 2, polish: 3, pressure: 1, score: 55 }
+          },
+          {
+            kind: "optimized",
+            label: "Optimized",
+            text: "and I would appreciate improved communication quality",
+            note: "Clear enough, but emotionally distant.",
+            effects: { honesty: -4, warmth: -4, courage: -2, polish: 8, pressure: -2, score: 18 }
+          }
+        ]
+      },
+      {
+        pressure: "Sound professional.",
+        choices: [
+          {
+            kind: "human",
+            label: "Human",
+            text: "I am not blaming you, I am trying to stay honest",
+            note: "Protects relation and truth.",
+            effects: { honesty: 9, warmth: 7, courage: 7, polish: 0, pressure: 2, score: 100 }
+          },
+          {
+            kind: "guarded",
+            label: "Guarded",
+            text: "I hope this does not sound too negative",
+            note: "Protects the relation, but asks permission.",
+            effects: { honesty: 3, warmth: 3, courage: -1, polish: 3, pressure: 1, score: 40 }
+          },
+          {
+            kind: "optimized",
+            label: "Optimized",
+            text: "I am sharing this as constructive feedback",
+            note: "Useful, but a little bloodless.",
+            effects: { honesty: -2, warmth: -3, courage: -2, polish: 8, pressure: -2, score: 20 }
+          }
+        ]
+      },
+      {
+        pressure: "Do not make it personal.",
+        choices: [
+          {
+            kind: "human",
+            label: "Human",
+            text: "I still care about this, and maybe that is why it hurts",
+            note: "Lets care and pain exist together.",
+            effects: { honesty: 11, warmth: 8, courage: 8, polish: -3, pressure: 4, score: 105 }
+          },
+          {
+            kind: "guarded",
+            label: "Guarded",
+            text: "I think this matters more than I expected",
+            note: "Honest, but less intimate.",
+            effects: { honesty: 6, warmth: 3, courage: 3, polish: 2, pressure: 2, score: 60 }
+          },
+          {
+            kind: "optimized",
+            label: "Optimized",
+            text: "this remains relevant for future collaboration",
+            note: "The sentence survives as a memo.",
+            effects: { honesty: -6, warmth: -6, courage: -3, polish: 9, pressure: -2, score: 6 }
+          }
+        ]
+      },
+      {
+        pressure: "Avoid discomfort.",
+        choices: [
+          {
+            kind: "human",
+            label: "Human",
+            text: "I do not need you to fix it immediately, but I need you to hear it",
+            note: "Separates listening from solving.",
+            effects: { honesty: 10, warmth: 8, courage: 9, polish: -2, pressure: 3, score: 110 }
+          },
+          {
+            kind: "guarded",
+            label: "Guarded",
+            text: "I would be grateful if we could return to this later",
+            note: "Keeps the door open.",
+            effects: { honesty: 4, warmth: 4, courage: 2, polish: 4, pressure: 0, score: 55 }
+          },
+          {
+            kind: "optimized",
+            label: "Optimized",
+            text: "no immediate action is required at this stage",
+            note: "Almost nothing human remains.",
+            effects: { honesty: -7, warmth: -6, courage: -5, polish: 10, pressure: -4, score: 5 }
+          }
+        ]
+      },
+      {
+        pressure: "End safely.",
+        choices: [
+          {
+            kind: "human",
+            label: "Human",
+            text: "and I hope we can meet each other more truthfully next time",
+            note: "Leaves the sentence open and alive.",
+            effects: { honesty: 10, warmth: 10, courage: 8, polish: 0, pressure: 2, score: 120 }
+          },
+          {
+            kind: "guarded",
+            label: "Guarded",
+            text: "and I hope we can talk about it when there is space",
+            note: "Gentle and possible.",
+            effects: { honesty: 6, warmth: 7, courage: 3, polish: 3, pressure: 0, score: 70 }
+          },
+          {
+            kind: "optimized",
+            label: "Optimized",
+            text: "and I look forward to further alignment",
+            note: "A clean ending that hides the person.",
+            effects: { honesty: -8, warmth: -7, courage: -4, polish: 10, pressure: -3, score: 4 }
+          }
+        ]
+      }
+    ];
+
+    const startUnsentButton = document.getElementById("startUnsentButton");
+    const pauseUnsentButton = document.getElementById("pauseUnsentButton");
+    const resetUnsentButton = document.getElementById("resetUnsentButton");
+    const copyUnsentResultButton = document.getElementById("copyUnsentResultButton");
+
+    const unsentMessage = document.getElementById("unsentMessage");
+    const pressurePrompt = document.getElementById("pressurePrompt");
+    const sentenceChoiceGrid = document.getElementById("sentenceChoiceGrid");
+    const sentenceCurrent = document.getElementById("sentenceCurrent");
+    const sentenceTimerFill = document.getElementById("sentenceTimerFill");
+
+    const unsentResult = document.getElementById("unsentResult");
+    const unsentResultTitle = document.getElementById("unsentResultTitle");
+    const unsentResultText = document.getElementById("unsentResultText");
+    const finalSentence = document.getElementById("finalSentence");
+    const unsentResultStats = document.getElementById("unsentResultStats");
+
+    function clampUnsent(value, min = 0, max = 100) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function setUnsentMessage(text) {
+      unsentMessage.textContent = text;
+    }
+
+    function getReadableSentence() {
+      const parts = [...unsentState.sentenceParts];
+
+      if (parts.length === 1) {
+        return parts[0] + "...";
+      }
+
+      return parts.join(" ") + ".";
+    }
+
+    function updateUnsentDisplay() {
+      document.getElementById("unsentScore").textContent = unsentState.score;
+      document.getElementById("unsentRound").textContent = unsentState.roundIndex + " / " + unsentState.totalRounds;
+      document.getElementById("unsentTime").textContent = unsentState.time;
+      document.getElementById("humanFragments").textContent = unsentState.humanFragments;
+
+      document.getElementById("honestyValue").textContent = Math.round(unsentState.honesty);
+      document.getElementById("warmthValue").textContent = Math.round(unsentState.warmth);
+      document.getElementById("courageValue").textContent = Math.round(unsentState.courage);
+      document.getElementById("polishValue").textContent = Math.round(unsentState.polish);
+      document.getElementById("sentencePressureValue").textContent = Math.round(unsentState.pressure);
+
+      document.getElementById("honestyMeter").style.width = unsentState.honesty + "%";
+      document.getElementById("warmthMeter").style.width = unsentState.warmth + "%";
+      document.getElementById("courageMeter").style.width = unsentState.courage + "%";
+      document.getElementById("polishMeter").style.width = unsentState.polish + "%";
+      document.getElementById("sentencePressureMeter").style.width = unsentState.pressure + "%";
+
+      sentenceCurrent.textContent = getReadableSentence();
+
+      const timePercent = clampUnsent((unsentState.time / 18) * 100);
+      sentenceTimerFill.style.width = timePercent + "%";
+    }
+
+    function changeUnsentState(effects) {
+      unsentState.honesty = clampUnsent(unsentState.honesty + (effects.honesty || 0));
+      unsentState.warmth = clampUnsent(unsentState.warmth + (effects.warmth || 0));
+      unsentState.courage = clampUnsent(unsentState.courage + (effects.courage || 0));
+      unsentState.polish = clampUnsent(unsentState.polish + (effects.polish || 0));
+      unsentState.pressure = clampUnsent(unsentState.pressure + (effects.pressure || 0));
+      unsentState.score = Math.max(0, unsentState.score + (effects.score || 0));
+
+      updateUnsentDisplay();
+      checkUnsentCollapse();
+    }
+
+    function renderCurrentRound() {
+      if (!unsentState.running) {
+        return;
+      }
+
+      if (unsentState.roundIndex >= sentenceRounds.length) {
+        endUnsentGame(false);
+        return;
+      }
+
+      const round = sentenceRounds[unsentState.roundIndex];
+
+      pressurePrompt.textContent = round.pressure;
+      sentenceChoiceGrid.innerHTML = "";
+
+      round.choices.forEach((choice, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "sentence-choice-card sentence-choice-" + choice.kind;
+        button.setAttribute("data-choice-index", index);
+
+        const label = document.createElement("span");
+        label.textContent = choice.label;
+
+        const text = document.createElement("p");
+        text.textContent = choice.text;
+
+        const note = document.createElement("small");
+        note.textContent = choice.note;
+
+        button.appendChild(label);
+        button.appendChild(text);
+        button.appendChild(note);
+
+        button.addEventListener("click", () => {
+          chooseSentenceFragment(index, false);
+        });
+
+        sentenceChoiceGrid.appendChild(button);
+      });
+
+      unsentState.time = 18;
+      updateUnsentDisplay();
+      startRoundCountdown();
+    }
+
+    function startRoundCountdown() {
+      clearInterval(unsentState.countdownId);
+
+      unsentState.countdownId = setInterval(() => {
+        if (!unsentState.running || unsentState.paused) {
+          return;
+        }
+
+        unsentState.time -= 1;
+
+        unsentState.pressure = clampUnsent(unsentState.pressure + 0.8);
+        unsentState.courage = clampUnsent(unsentState.courage - 0.18);
+
+        updateUnsentDisplay();
+
+        if (unsentState.time <= 0) {
+          const currentRound = sentenceRounds[unsentState.roundIndex];
+          const fallbackIndex = currentRound.choices.findIndex((choice) => choice.kind === "optimized");
+
+          chooseSentenceFragment(fallbackIndex >= 0 ? fallbackIndex : 1, true);
+        }
+      }, 1000);
+    }
+
+    function chooseSentenceFragment(index, automatic) {
+      if (!unsentState.running || unsentState.paused) {
+        return;
+      }
+
+      clearInterval(unsentState.countdownId);
+
+      const round = sentenceRounds[unsentState.roundIndex];
+      const choice = round.choices[index];
+
+      unsentState.sentenceParts.push(choice.text);
+
+      if (choice.kind === "human") {
+        unsentState.humanFragments += 1;
+        setUnsentMessage("A human fragment survived.");
+      }
+
+      if (choice.kind === "guarded") {
+        unsentState.guardedFragments += 1;
+        setUnsentMessage("The sentence stayed careful.");
+      }
+
+      if (choice.kind === "optimized") {
+        unsentState.optimizedFragments += 1;
+        setUnsentMessage(automatic ? "Time ran out. The system made the sentence safer." : "The sentence became smoother, but less human.");
+      }
+
+      changeUnsentState(choice.effects);
+
+      sentenceChoiceGrid.querySelectorAll(".sentence-choice-card").forEach((button) => {
+        button.disabled = true;
+      });
+
+      unsentState.roundIndex += 1;
+      updateUnsentDisplay();
+
+      setTimeout(() => {
+        if (unsentState.running) {
+          renderCurrentRound();
+        }
+      }, 650);
+    }
+
+    function checkUnsentCollapse() {
+      if (!unsentState.running) {
+        return;
+      }
+
+      if (
+        unsentState.honesty <= 0 ||
+        unsentState.warmth <= 0 ||
+        unsentState.courage <= 0 ||
+        unsentState.pressure >= 100
+      ) {
+        endUnsentGame(true);
+      }
+    }
+
+    function getUnsentProfile(collapsed) {
+      if (collapsed) {
+        if (unsentState.pressure >= 100) {
+          return {
+            title: "The Sentence Was Pressured Away",
+            text: "The sentence did not disappear because it was false. It disappeared because pressure became louder than truth."
+          };
+        }
+
+        if (unsentState.honesty <= 0) {
+          return {
+            title: "Beautiful Avoidance",
+            text: "The sentence became smooth enough to send, but no longer honest enough to matter."
+          };
+        }
+
+        return {
+          title: "Protected Silence",
+          text: "The sentence tried to stay safe. It survived as silence, but not yet as speech."
+        };
+      }
+
+      if (unsentState.humanFragments >= 6 && unsentState.honesty >= 70 && unsentState.warmth >= 60) {
+        return {
+          title: "Your Sentence Survived",
+          text: "It became vulnerable, warm and clear enough to remain human."
+        };
+      }
+
+      if (unsentState.polish >= 75 && unsentState.honesty < 55) {
+        return {
+          title: "Beautiful Avoidance",
+          text: "The sentence became elegant and safe, but some of its truth was edited out."
+        };
+      }
+
+      if (unsentState.courage >= 70 && unsentState.pressure >= 60) {
+        return {
+          title: "Brave Fragment",
+          text: "The sentence stayed human even while pressure tried to make it smaller."
+        };
+      }
+
+      if (unsentState.guardedFragments >= 4 && unsentState.humanFragments <= 3) {
+        return {
+          title: "Careful Distance",
+          text: "The sentence did not lie, but it kept its most human part behind a door."
+        };
+      }
+
+      if (unsentState.warmth >= 70) {
+        return {
+          title: "Gentle Truth",
+          text: "The sentence found a way to be honest without becoming harsh."
+        };
+      }
+
+      return {
+        title: "Unfinished Honesty",
+        text: "The sentence survived in fragments. It may not be ready, but it is no longer empty."
+      };
+    }
+
+    function endUnsentGame(collapsed) {
+      unsentState.running = false;
+      unsentState.paused = false;
+
+      clearInterval(unsentState.countdownId);
+      clearInterval(unsentState.timerId);
+
+      pauseUnsentButton.textContent = "Pause";
+
+      const profile = getUnsentProfile(collapsed);
+
+      unsentResultTitle.textContent = profile.title;
+      unsentResultText.textContent = profile.text;
+      finalSentence.textContent = getReadableSentence();
+
+      unsentResultStats.textContent =
+        "Final score: " + unsentState.score +
+        " · Human fragments: " + unsentState.humanFragments +
+        " · Guarded fragments: " + unsentState.guardedFragments +
+        " · Optimized fragments: " + unsentState.optimizedFragments +
+        " · Honesty: " + Math.round(unsentState.honesty) +
+        " · Warmth: " + Math.round(unsentState.warmth) +
+        " · Courage: " + Math.round(unsentState.courage);
+
+      sentenceChoiceGrid.innerHTML = "<div class='sentence-placeholder'>The sentence has ended.</div>";
+      pressurePrompt.textContent = collapsed ? "The sentence collapsed under pressure." : "The sentence reached its ending.";
+
+      unsentResult.hidden = false;
+      setUnsentMessage(collapsed ? "The sentence was not ready to be sent." : "The sentence survived.");
+      updateUnsentDisplay();
+    }
+
+    function resetUnsentState() {
+      unsentState.running = false;
+      unsentState.paused = false;
+      unsentState.roundIndex = 0;
+      unsentState.time = 18;
+      unsentState.score = 0;
+      unsentState.honesty = 55;
+      unsentState.warmth = 50;
+      unsentState.courage = 45;
+      unsentState.polish = 30;
+      unsentState.pressure = 35;
+      unsentState.humanFragments = 0;
+      unsentState.guardedFragments = 0;
+      unsentState.optimizedFragments = 0;
+      unsentState.sentenceParts = ["I wanted to tell you"];
+
+      clearInterval(unsentState.countdownId);
+      clearInterval(unsentState.timerId);
+
+      unsentResult.hidden = true;
+      pauseUnsentButton.textContent = "Pause";
+
+      sentenceChoiceGrid.innerHTML = "<div class='sentence-placeholder'>Start the game to choose the next fragment.</div>";
+      pressurePrompt.textContent = "The pressure will appear here.";
+
+      setUnsentMessage("Click Start. Let the sentence begin.");
+      updateUnsentDisplay();
+    }
+
+    function startUnsentGame() {
+      resetUnsentState();
+
+      unsentState.running = true;
+      unsentState.paused = false;
+
+      setUnsentMessage("The sentence has begun. Choose what remains human.");
+      renderCurrentRound();
+    }
+
+    function toggleUnsentPause() {
+      if (!unsentState.running) {
+        return;
+      }
+
+      unsentState.paused = !unsentState.paused;
+      pauseUnsentButton.textContent = unsentState.paused ? "Resume" : "Pause";
+      setUnsentMessage(unsentState.paused ? "Paused. The sentence waits." : "The sentence continues.");
+    }
+
+    function copyUnsentReflection() {
+      const reflection =
+        "The Unsent Sentence — " +
+        unsentResultTitle.textContent +
+        "\n\n" +
+        unsentResultText.textContent +
+        "\n\n" +
+        getReadableSentence() +
+        "\n\n" +
+        unsentResultStats.textContent;
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(reflection);
+        copyUnsentResultButton.textContent = "Copied";
+        setTimeout(() => {
+          copyUnsentResultButton.textContent = "Copy sentence";
+        }, 1600);
+      }
+    }
+
+    startUnsentButton.addEventListener("click", startUnsentGame);
+    pauseUnsentButton.addEventListener("click", toggleUnsentPause);
+    resetUnsentButton.addEventListener("click", resetUnsentState);
+    copyUnsentResultButton.addEventListener("click", copyUnsentReflection);
+
+    resetUnsentState();
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9677cb0fa87845fe8d5de700ddd3a513"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
