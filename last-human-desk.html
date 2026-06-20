@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Last Human Desk | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A short reflective game about arranging work, AI, care and meaning on the last human desk."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="last-human-desk-page">
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Experiences &amp; Games</a>
+      <a href="book.html">Book</a>
+      <a href="public-talks.html">Public Talks</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About &amp; Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Reflective game</p>
+
+      <h1>The Last Human Desk</h1>
+
+      <p class="lead">
+        A short game about arranging work, AI, care and meaning on the last human desk.
+      </p>
+    </section>
+
+    <section class="content-section desk-intro">
+      <h2>Not everything on your desk belongs to the system.</h2>
+
+      <p>
+        Your desk fills with tasks, messages, AI recommendations, ethical concerns,
+        unfinished conversations, tiredness, care and small signs of life.
+      </p>
+
+      <p>
+        Your task is not to clear everything. Your task is to decide what should be done,
+        what can be delegated, what must remain human and what should be allowed to leave.
+      </p>
+
+      <div class="desk-rules">
+        <h3>How to play</h3>
+
+        <ul>
+          <li><strong>Click an item on the desk</strong> to select it.</li>
+          <li>Then choose: <strong>Do now</strong>, <strong>Delegate to AI</strong>, <strong>Keep human</strong> or <strong>Let go</strong>.</li>
+          <li>Some items are tasks. Some are people. Some are noise. Some are warnings.</li>
+          <li>The goal is not an empty desk. The goal is a humanly arranged desk.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="desk-game-shell">
+        <div class="desk-dashboard">
+          <div class="desk-score-box">
+            <span>Score</span>
+            <strong id="deskScore">0</strong>
+          </div>
+
+          <div class="desk-score-box">
+            <span>Time</span>
+            <strong id="deskTime">100</strong>
+          </div>
+
+          <div class="desk-score-box">
+            <span>Arranged</span>
+            <strong id="deskArranged">0</strong>
+          </div>
+
+          <div class="desk-score-box">
+            <span>Clutter</span>
+            <strong id="deskClutter">0</strong>
+          </div>
+        </div>
+
+        <div class="desk-meters">
+          <div class="desk-meter">
+            <div class="desk-meter-label">
+              <span>Agency</span>
+              <strong id="deskAgencyValue">60</strong>
+            </div>
+            <div class="desk-meter-track">
+              <div class="desk-meter-fill" id="deskAgencyMeter"></div>
+            </div>
+          </div>
+
+          <div class="desk-meter">
+            <div class="desk-meter-label">
+              <span>Presence</span>
+              <strong id="deskPresenceValue">55</strong>
+            </div>
+            <div class="desk-meter-track">
+              <div class="desk-meter-fill" id="deskPresenceMeter"></div>
+            </div>
+          </div>
+
+          <div class="desk-meter">
+            <div class="desk-meter-label">
+              <span>Care</span>
+              <strong id="deskCareValue">50</strong>
+            </div>
+            <div class="desk-meter-track">
+              <div class="desk-meter-fill" id="deskCareMeter"></div>
+            </div>
+          </div>
+
+          <div class="desk-meter">
+            <div class="desk-meter-label">
+              <span>Meaning</span>
+              <strong id="deskMeaningValue">55</strong>
+            </div>
+            <div class="desk-meter-track">
+              <div class="desk-meter-fill" id="deskMeaningMeter"></div>
+            </div>
+          </div>
+
+          <div class="desk-meter">
+            <div class="desk-meter-label">
+              <span>Workload</span>
+              <strong id="deskWorkloadValue">35</strong>
+            </div>
+            <div class="desk-meter-track">
+              <div class="desk-meter-fill desk-danger-fill" id="deskWorkloadMeter"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desk-message" id="deskMessage">
+          Click Start. Arrange the desk without losing the human.
+        </div>
+
+        <div class="desk-selected" id="deskSelected">
+          No item selected.
+        </div>
+
+        <div class="human-desk-arena" id="humanDeskArena" aria-label="The Last Human Desk game area">
+          <div class="desk-wall"></div>
+          <div class="desk-lamp"></div>
+          <div class="desk-surface"></div>
+
+          <div class="desk-photo">
+            <span>not everything is a task</span>
+          </div>
+
+          <div class="desk-plant">
+            <span></span>
+          </div>
+
+          <div class="desk-coffee"></div>
+
+          <div class="desk-item-layer" id="deskItemLayer"></div>
+        </div>
+
+        <div class="desk-actions">
+          <button type="button" class="desk-action-button" data-zone="do">
+            <span>Do now</span>
+            <small>act directly</small>
+          </button>
+
+          <button type="button" class="desk-action-button" data-zone="delegate">
+            <span>Delegate to AI</span>
+            <small>use the system carefully</small>
+          </button>
+
+          <button type="button" class="desk-action-button" data-zone="keep">
+            <span>Keep human</span>
+            <small>protect judgment or care</small>
+          </button>
+
+          <button type="button" class="desk-action-button" data-zone="letgo">
+            <span>Let go</span>
+            <small>refuse the noise</small>
+          </button>
+        </div>
+
+        <div class="desk-controls">
+          <button type="button" class="button primary" id="startDeskButton">Start</button>
+          <button type="button" class="button secondary" id="pauseDeskButton">Pause</button>
+          <button type="button" class="button secondary" id="resetDeskButton">Reset</button>
+        </div>
+
+        <div class="desk-result" id="deskResult" hidden>
+          <p class="eyebrow">Reflection</p>
+          <h2 id="deskResultTitle">The Human Desk Survived</h2>
+          <p id="deskResultText">
+            You delegated tasks, but kept judgment close.
+          </p>
+          <p id="deskResultStats"></p>
+
+          <div class="desk-reflection-list" id="deskReflectionList"></div>
+
+          <button type="button" class="button secondary" id="copyDeskResultButton">
+            Copy reflection
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section desk-note">
+      <p>
+        This prototype is a reflective game, not a productivity assessment, psychological test,
+        therapy, diagnosis or workplace assessment. It stores no data and sends nothing anywhere.
+        The desk is a metaphor for how easily work, systems and care become mixed together.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Meaning After Work is an independent public research-and-practice initiative.
+      The Last Human Desk is an experimental reflective game and not a diagnostic tool.
+    </p>
+  </footer>
+
+  <script>
+    const deskState = {
+      running: false,
+      paused: false,
+      time: 100,
+      level: 1,
+      score: 0,
+      agency: 60,
+      presence: 55,
+      care: 50,
+      meaning: 55,
+      workload: 35,
+      arranged: 0,
+      delegated: 0,
+      keptHuman: 0,
+      letGo: 0,
+      overProcessed: 0,
+      missedHuman: 0,
+      tokenId: 0,
+      selectedId: null,
+      items: [],
+      reflection: [],
+      timerId: null,
+      spawnId: null
+    };
+
+    const deskItems = [
+      {
+        kind: "admin",
+        title: "Meeting notes",
+        text: "Useful, but not sacred.",
+        symbol: "Notes"
+      },
+      {
+        kind: "system",
+        title: "AI recommendation",
+        text: "Fast and plausible. Still needs judgment.",
+        symbol: "AI"
+      },
+      {
+        kind: "admin",
+        title: "Routine report",
+        text: "Someone needs it. Maybe not you.",
+        symbol: "Report"
+      },
+      {
+        kind: "noise",
+        title: "Another refresh",
+        text: "The inbox pretends to be a life.",
+        symbol: "Inbox"
+      },
+      {
+        kind: "noise",
+        title: "Comparison",
+        text: "Someone else seems ahead.",
+        symbol: "Compare"
+      },
+      {
+        kind: "human",
+        title: "Message from a colleague",
+        text: "It looks small. It is asking for presence.",
+        symbol: "Person"
+      },
+      {
+        kind: "care",
+        title: "Unfinished apology",
+        text: "Not urgent. Still important.",
+        symbol: "Sorry"
+      },
+      {
+        kind: "care",
+        title: "Tired voice",
+        text: "The person says they are fine.",
+        symbol: "Care"
+      },
+      {
+        kind: "ethical",
+        title: "Ethical concern",
+        text: "The shortcut works. The discomfort remains.",
+        symbol: "Concern"
+      },
+      {
+        kind: "ethical",
+        title: "Responsibility gap",
+        text: "The system acted. Someone must still answer.",
+        symbol: "Duty"
+      },
+      {
+        kind: "rest",
+        title: "Cold coffee",
+        text: "The body has been waiting.",
+        symbol: "Rest"
+      },
+      {
+        kind: "rest",
+        title: "A small pause",
+        text: "Nothing collapses if you breathe.",
+        symbol: "Pause"
+      },
+      {
+        kind: "creative",
+        title: "Unwritten idea",
+        text: "AI can help, but it cannot care for it.",
+        symbol: "Idea"
+      },
+      {
+        kind: "creative",
+        title: "Half-formed sentence",
+        text: "It needs time before it becomes useful.",
+        symbol: "Draft"
+      },
+      {
+        kind: "human",
+        title: "Family photo",
+        text: "It does not ask for output.",
+        symbol: "Home"
+      },
+      {
+        kind: "meaning",
+        title: "Why this matters",
+        text: "A quiet question under the tasks.",
+        symbol: "Why"
+      },
+      {
+        kind: "meaning",
+        title: "Promise to yourself",
+        text: "It was easy to postpone because it was yours.",
+        symbol: "Promise"
+      },
+      {
+        kind: "system",
+        title: "Generated answer",
+        text: "Useful. Maybe too smooth.",
+        symbol: "Output"
+      },
+      {
+        kind: "admin",
+        title: "Calendar conflict",
+        text: "A decision disguised as scheduling.",
+        symbol: "Time"
+      },
+      {
+        kind: "noise",
+        title: "Perform being fine",
+        text: "A mask asks to become the whole face.",
+        symbol: "Mask"
+      }
+    ];
+
+    const humanDeskArena = document.getElementById("humanDeskArena");
+    const deskItemLayer = document.getElementById("deskItemLayer");
+    const deskMessage = document.getElementById("deskMessage");
+    const deskSelected = document.getElementById("deskSelected");
+
+    const startDeskButton = document.getElementById("startDeskButton");
+    const pauseDeskButton = document.getElementById("pauseDeskButton");
+    const resetDeskButton = document.getElementById("resetDeskButton");
+
+    const deskResult = document.getElementById("deskResult");
+    const deskResultTitle = document.getElementById("deskResultTitle");
+    const deskResultText = document.getElementById("deskResultText");
+    const deskResultStats = document.getElementById("deskResultStats");
+    const deskReflectionList = document.getElementById("deskReflectionList");
+    const copyDeskResultButton = document.getElementById("copyDeskResultButton");
+
+    function clampDesk(value, min = 0, max = 100) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function randomDeskItem(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function setDeskMessage(text) {
+      deskMessage.textContent = text;
+    }
+
+    function updateDeskDisplay() {
+      document.getElementById("deskScore").textContent = deskState.score;
+      document.getElementById("deskTime").textContent = deskState.time;
+      document.getElementById("deskArranged").textContent = deskState.arranged;
+      document.getElementById("deskClutter").textContent = deskState.items.length;
+
+      document.getElementById("deskAgencyValue").textContent = Math.round(deskState.agency);
+      document.getElementById("deskPresenceValue").textContent = Math.round(deskState.presence);
+      document.getElementById("deskCareValue").textContent = Math.round(deskState.care);
+      document.getElementById("deskMeaningValue").textContent = Math.round(deskState.meaning);
+      document.getElementById("deskWorkloadValue").textContent = Math.round(deskState.workload);
+
+      document.getElementById("deskAgencyMeter").style.width = deskState.agency + "%";
+      document.getElementById("deskPresenceMeter").style.width = deskState.presence + "%";
+      document.getElementById("deskCareMeter").style.width = deskState.care + "%";
+      document.getElementById("deskMeaningMeter").style.width = deskState.meaning + "%";
+      document.getElementById("deskWorkloadMeter").style.width = deskState.workload + "%";
+
+      if (deskState.selectedId === null) {
+        deskSelected.textContent = "No item selected.";
+      } else {
+        const selectedItem = deskState.items.find((item) => item.id === deskState.selectedId);
+
+        if (selectedItem) {
+          deskSelected.textContent = "Selected: " + selectedItem.title + " — choose where it belongs.";
+        } else {
+          deskSelected.textContent = "No item selected.";
+        }
+      }
+
+      humanDeskArena.classList.toggle("desk-overloaded", deskState.workload > 78 || deskState.items.length > 8);
+    }
+
+    function changeDeskState(changes) {
+      deskState.agency = clampDesk(deskState.agency + (changes.agency || 0));
+      deskState.presence = clampDesk(deskState.presence + (changes.presence || 0));
+      deskState.care = clampDesk(deskState.care + (changes.care || 0));
+      deskState.meaning = clampDesk(deskState.meaning + (changes.meaning || 0));
+      deskState.workload = clampDesk(deskState.workload + (changes.workload || 0));
+      deskState.score = Math.max(0, deskState.score + (changes.score || 0));
+
+      updateDeskDisplay();
+      checkDeskCollapse();
+    }
+
+    function spawnDeskItem() {
+      if (!deskState.running || deskState.paused) {
+        return;
+      }
+
+      if (deskState.items.length >= 12) {
+        changeDeskState({
+          workload: 5,
+          agency: -2,
+          presence: -2,
+          score: -10
+        });
+
+        setDeskMessage("The desk is too full to see what matters.");
+        return;
+      }
+
+      const itemTemplate = randomDeskItem(deskItems);
+      const arenaRect = humanDeskArena.getBoundingClientRect();
+
+      const element = document.createElement("button");
+      element.type = "button";
+      element.className = "desk-item desk-item-" + itemTemplate.kind;
+      element.innerHTML =
+        "<span>" + itemTemplate.symbol + "</span>" +
+        "<strong>" + itemTemplate.title + "</strong>" +
+        "<small>" + itemTemplate.text + "</small>";
+
+      const x = Math.random() * Math.max(60, arenaRect.width - 210) + 20;
+      const y = Math.random() * Math.max(80, arenaRect.height - 190) + 95;
+
+      const item = {
+        id: deskState.tokenId += 1,
+        kind: itemTemplate.kind,
+        title: itemTemplate.title,
+        text: itemTemplate.text,
+        symbol: itemTemplate.symbol,
+        element,
+        age: 0,
+        ttl: 13 + Math.random() * 8 - deskState.level
+      };
+
+      element.style.left = x + "px";
+      element.style.top = y + "px";
+
+      element.addEventListener("click", () => {
+        selectDeskItem(item.id);
+      });
+
+      deskItemLayer.appendChild(element);
+      deskState.items.push(item);
+
+      updateDeskDisplay();
+    }
+
+    function selectDeskItem(itemId) {
+      if (!deskState.running || deskState.paused) {
+        return;
+      }
+
+      deskState.selectedId = itemId;
+
+      deskState.items.forEach((item) => {
+        item.element.classList.toggle("desk-item-selected", item.id === itemId);
+      });
+
+      updateDeskDisplay();
+    }
+
+    function removeDeskItem(item) {
+      item.element.remove();
+      deskState.items = deskState.items.filter((deskItem) => deskItem.id !== item.id);
+
+      if (deskState.selectedId === item.id) {
+        deskState.selectedId = null;
+      }
+
+      updateDeskDisplay();
+    }
+
+    function isHumanKind(kind) {
+      return kind === "human" || kind === "care" || kind === "ethical" || kind === "rest" || kind === "creative" || kind === "meaning";
+    }
+
+    function assignDeskItem(zone) {
+      if (!deskState.running || deskState.paused) {
+        return;
+      }
+
+      if (deskState.selectedId === null) {
+        setDeskMessage("Select an item on the desk first.");
+        return;
+      }
+
+      const item = deskState.items.find((deskItem) => deskItem.id === deskState.selectedId);
+
+      if (!item) {
+        deskState.selectedId = null;
+        updateDeskDisplay();
+        return;
+      }
+
+      deskState.arranged += 1;
+
+      if (zone === "do") {
+        handleDoNow(item);
+      }
+
+      if (zone === "delegate") {
+        handleDelegate(item);
+      }
+
+      if (zone === "keep") {
+        handleKeepHuman(item);
+      }
+
+      if (zone === "letgo") {
+        handleLetGo(item);
+      }
+
+      removeDeskItem(item);
+    }
+
+    function handleDoNow(item) {
+      if (item.kind === "admin" || item.kind === "system") {
+        changeDeskState({
+          agency: 3,
+          meaning: 1,
+          workload: 3,
+          score: 55
+        });
+
+        deskState.reflection.push("You handled " + item.title + " directly.");
+        setDeskMessage("A task was handled. The desk became a little clearer.");
+        return;
+      }
+
+      if (item.kind === "creative" || item.kind === "ethical" || item.kind === "meaning") {
+        changeDeskState({
+          agency: 5,
+          meaning: 6,
+          workload: 4,
+          score: 65
+        });
+
+        deskState.reflection.push("You gave direct attention to " + item.title + ".");
+        setDeskMessage("Direct attention protected meaning, but required energy.");
+        return;
+      }
+
+      if (item.kind === "human" || item.kind === "care" || item.kind === "rest") {
+        changeDeskState({
+          presence: -3,
+          care: -3,
+          meaning: -1,
+          workload: 5,
+          score: 8
+        });
+
+        deskState.overProcessed += 1;
+        deskState.reflection.push("You treated " + item.title + " as a task.");
+        setDeskMessage("Something human was handled too quickly.");
+        return;
+      }
+
+      if (item.kind === "noise") {
+        changeDeskState({
+          agency: -2,
+          presence: -3,
+          care: -2,
+          workload: 8,
+          score: -25
+        });
+
+        deskState.overProcessed += 1;
+        setDeskMessage("Noise became work.");
+      }
+    }
+
+    function handleDelegate(item) {
+      if (item.kind === "admin" || item.kind === "system") {
+        changeDeskState({
+          agency: -1,
+          presence: 1,
+          workload: -8,
+          score: 62
+        });
+
+        deskState.delegated += 1;
+        deskState.reflection.push("You delegated " + item.title + " without losing the desk.");
+        setDeskMessage("Delegation helped. The system served the human desk.");
+        return;
+      }
+
+      if (item.kind === "creative") {
+        changeDeskState({
+          agency: -6,
+          meaning: -6,
+          workload: -4,
+          score: 5
+        });
+
+        deskState.delegated += 1;
+        deskState.overProcessed += 1;
+        deskState.reflection.push("You delegated " + item.title + ", but something living became thinner.");
+        setDeskMessage("The idea became efficient, but less yours.");
+        return;
+      }
+
+      if (isHumanKind(item.kind)) {
+        changeDeskState({
+          agency: -5,
+          presence: -7,
+          care: -8,
+          meaning: -6,
+          workload: -3,
+          score: -30
+        });
+
+        deskState.delegated += 1;
+        deskState.overProcessed += 1;
+        deskState.reflection.push("You delegated " + item.title + ", though it needed human presence.");
+        setDeskMessage("Something that needed a human was handed to the system.");
+        return;
+      }
+
+      if (item.kind === "noise") {
+        changeDeskState({
+          workload: 2,
+          pressure: 0,
+          score: -5
+        });
+
+        setDeskMessage("Delegating noise did not make it disappear.");
+      }
+    }
+
+    function handleKeepHuman(item) {
+      if (isHumanKind(item.kind)) {
+        changeDeskState({
+          agency: 4,
+          presence: 7,
+          care: 7,
+          meaning: 7,
+          workload: 1,
+          score: 78
+        });
+
+        deskState.keptHuman += 1;
+        deskState.reflection.push("You kept " + item.title + " human.");
+        setDeskMessage("Something human stayed visible on the desk.");
+        return;
+      }
+
+      if (item.kind === "admin" || item.kind === "system") {
+        changeDeskState({
+          agency: 1,
+          presence: -1,
+          workload: 6,
+          score: -5
+        });
+
+        setDeskMessage("A task was kept too close. The desk became heavier.");
+        return;
+      }
+
+      if (item.kind === "noise") {
+        changeDeskState({
+          agency: -2,
+          presence: -2,
+          care: -2,
+          workload: 6,
+          score: -20
+        });
+
+        deskState.overProcessed += 1;
+        setDeskMessage("Noise was invited to stay.");
+      }
+    }
+
+    function handleLetGo(item) {
+      if (item.kind === "noise") {
+        changeDeskState({
+          agency: 4,
+          presence: 3,
+          care: 2,
+          workload: -7,
+          score: 60
+        });
+
+        deskState.letGo += 1;
+        deskState.reflection.push("You let go of " + item.title + ".");
+        setDeskMessage("Noise left the desk.");
+        return;
+      }
+
+      if (item.kind === "admin" || item.kind === "system") {
+        changeDeskState({
+          agency: 1,
+          workload: 4,
+          score: 0
+        });
+
+        deskState.letGo += 1;
+        setDeskMessage("Some work returned later.");
+        return;
+      }
+
+      if (isHumanKind(item.kind)) {
+        changeDeskState({
+          agency: -3,
+          presence: -6,
+          care: -7,
+          meaning: -6,
+          workload: -2,
+          score: -25
+        });
+
+        deskState.letGo += 1;
+        deskState.missedHuman += 1;
+        deskState.reflection.push("You let go of " + item.title + ", though it still called for attention.");
+        setDeskMessage("Something human left the desk unheard.");
+      }
+    }
+
+    function handleDeskItemExpired(item) {
+      if (item.kind === "noise") {
+        deskState.letGo += 1;
+
+        changeDeskState({
+          presence: 1,
+          workload: -2,
+          score: 12
+        });
+
+        removeDeskItem(item);
+        return;
+      }
+
+      if (item.kind === "admin" || item.kind === "system") {
+        changeDeskState({
+          agency: -1,
+          workload: 5,
+          score: -8
+        });
+
+        setDeskMessage("A task waited too long and became heavier.");
+        removeDeskItem(item);
+        return;
+      }
+
+      if (isHumanKind(item.kind)) {
+        deskState.missedHuman += 1;
+
+        changeDeskState({
+          agency: -2,
+          presence: -5,
+          care: -5,
+          meaning: -5,
+          workload: 2,
+          score: -18
+        });
+
+        setDeskMessage("Something human was buried under the day.");
+        removeDeskItem(item);
+      }
+    }
+
+    function tickDeskTimer() {
+      if (!deskState.running || deskState.paused) {
+        return;
+      }
+
+      deskState.time -= 1;
+      deskState.level = Math.min(6, Math.floor((100 - deskState.time) / 18) + 1);
+
+      [...deskState.items].forEach((item) => {
+        item.age += 1;
+
+        if (item.age > item.ttl * 0.65) {
+          item.element.classList.add("desk-item-aging");
+        }
+
+        if (item.age > item.ttl) {
+          handleDeskItemExpired(item);
+        }
+      });
+
+      const clutterPressure = Math.max(0, deskState.items.length - 4);
+
+      changeDeskState({
+        agency: deskState.items.length > 7 ? -0.5 : -0.08,
+        presence: deskState.items.length > 7 ? -0.4 : -0.05,
+        care: deskState.items.length > 8 ? -0.35 : -0.04,
+        meaning: deskState.items.length > 8 ? -0.35 : -0.06,
+        workload: 0.35 + deskState.level * 0.12 + clutterPressure * 0.45,
+        score: Math.round(((deskState.agency + deskState.presence + deskState.care + deskState.meaning) / 4) / 16)
+      });
+
+      if (deskState.time <= 0) {
+        endDeskGame(false);
+      }
+    }
+
+    function checkDeskCollapse() {
+      if (!deskState.running) {
+        return;
+      }
+
+      if (
+        deskState.agency <= 0 ||
+        deskState.presence <= 0 ||
+        deskState.care <= 0 ||
+        deskState.meaning <= 0 ||
+        deskState.workload >= 100
+      ) {
+        endDeskGame(true);
+      }
+    }
+
+    function getDeskProfile(collapsed) {
+      if (collapsed) {
+        if (deskState.workload >= 100) {
+          return {
+            title: "Overloaded Desk",
+            text: "The desk became too full to see what mattered. The collapse came from accumulation, not from one task."
+          };
+        }
+
+        if (deskState.presence <= 0 || deskState.care <= 0) {
+          return {
+            title: "Efficient Empty Desk",
+            text: "Many things were processed, but the human presence disappeared from the desk."
+          };
+        }
+
+        return {
+          title: "The Vanishing Worker",
+          text: "Work continued, but agency and meaning became too thin to hold the desk together."
+        };
+      }
+
+      if (deskState.keptHuman >= 7 && deskState.workload <= 70 && deskState.agency >= 55) {
+        return {
+          title: "The Human Desk Survived",
+          text: "You delegated tasks, but kept judgment, care and meaning close enough to remain human."
+        };
+      }
+
+      if (deskState.delegated >= 7 && deskState.keptHuman < 4) {
+        return {
+          title: "Efficient Empty Desk",
+          text: "The desk became cleaner, but something human was missing from the surface."
+        };
+      }
+
+      if (deskState.keptHuman >= 8 && deskState.workload >= 75) {
+        return {
+          title: "Overloaded Human Desk",
+          text: "You protected many human things, but kept too much too close. Care also needs arrangement."
+        };
+      }
+
+      if (deskState.letGo >= 7 && deskState.missedHuman <= 3) {
+        return {
+          title: "Careful Arranger",
+          text: "You let noise leave, kept what mattered and allowed the desk to breathe."
+        };
+      }
+
+      if (deskState.meaning >= 70) {
+        return {
+          title: "Meaning Keeper",
+          text: "You did not only clear the desk. You remembered why some things belonged there."
+        };
+      }
+
+      return {
+        title: "Unfinished Desk",
+        text: "The desk survived, but remained unsettled. A human life is not a perfectly cleared surface."
+      };
+    }
+
+    function renderDeskReflection() {
+      const selected = deskState.reflection.slice(-6);
+
+      if (selected.length === 0) {
+        deskReflectionList.innerHTML = "<p>No clear pattern emerged this time. Begin again and watch what you keep close.</p>";
+        return;
+      }
+
+      const items = selected.map((item) => "<li>" + item + "</li>").join("");
+
+      deskReflectionList.innerHTML =
+        "<h3>What happened on your desk:</h3>" +
+        "<ul>" + items + "</ul>";
+    }
+
+    function endDeskGame(collapsed) {
+      deskState.running = false;
+      deskState.paused = false;
+
+      clearInterval(deskState.timerId);
+      clearInterval(deskState.spawnId);
+
+      deskState.items.forEach((item) => item.element.remove());
+      deskState.items = [];
+      deskState.selectedId = null;
+
+      pauseDeskButton.textContent = "Pause";
+
+      const profile = getDeskProfile(collapsed);
+
+      deskResultTitle.textContent = profile.title;
+      deskResultText.textContent = profile.text;
+      deskResultStats.textContent =
+        "Final score: " + deskState.score +
+        " · Arranged: " + deskState.arranged +
+        " · Delegated: " + deskState.delegated +
+        " · Kept human: " + deskState.keptHuman +
+        " · Let go: " + deskState.letGo +
+        " · Missed human items: " + deskState.missedHuman +
+        " · Workload: " + Math.round(deskState.workload);
+
+      renderDeskReflection();
+
+      deskResult.hidden = false;
+      setDeskMessage(collapsed ? "The desk collapsed. Try again gently." : "The day ended. The desk tells a story.");
+      updateDeskDisplay();
+    }
+
+    function resetDeskState() {
+      deskState.running = false;
+      deskState.paused = false;
+      deskState.time = 100;
+      deskState.level = 1;
+      deskState.score = 0;
+      deskState.agency = 60;
+      deskState.presence = 55;
+      deskState.care = 50;
+      deskState.meaning = 55;
+      deskState.workload = 35;
+      deskState.arranged = 0;
+      deskState.delegated = 0;
+      deskState.keptHuman = 0;
+      deskState.letGo = 0;
+      deskState.overProcessed = 0;
+      deskState.missedHuman = 0;
+      deskState.tokenId = 0;
+      deskState.selectedId = null;
+      deskState.items = [];
+      deskState.reflection = [];
+
+      clearInterval(deskState.timerId);
+      clearInterval(deskState.spawnId);
+
+      deskItemLayer.innerHTML = "";
+      deskResult.hidden = true;
+      pauseDeskButton.textContent = "Pause";
+
+      setDeskMessage("Click Start. Arrange the desk without losing the human.");
+      updateDeskDisplay();
+    }
+
+    function startDeskGame() {
+      resetDeskState();
+
+      deskState.running = true;
+      deskState.paused = false;
+
+      setDeskMessage("The workday has begun. Choose what belongs where.");
+
+      spawnDeskItem();
+      setTimeout(spawnDeskItem, 600);
+
+      deskState.spawnId = setInterval(() => {
+        spawnDeskItem();
+
+        if (deskState.level >= 4 && Math.random() > 0.55) {
+          setTimeout(spawnDeskItem, 520);
+        }
+      }, 2400);
+
+      deskState.timerId = setInterval(tickDeskTimer, 1000);
+    }
+
+    function toggleDeskPause() {
+      if (!deskState.running) {
+        return;
+      }
+
+      deskState.paused = !deskState.paused;
+      pauseDeskButton.textContent = deskState.paused ? "Resume" : "Pause";
+      setDeskMessage(deskState.paused ? "Paused. The desk waits." : "The desk fills again.");
+    }
+
+    function copyDeskReflection() {
+      const selected = deskState.reflection.slice(-6);
+      const reflectionText = selected.length
+        ? "What happened on my desk: " + selected.join(" ")
+        : "No clear pattern emerged this time.";
+
+      const reflection =
+        "The Last Human Desk — " +
+        deskResultTitle.textContent +
+        "\n\n" +
+        deskResultText.textContent +
+        "\n\n" +
+        reflectionText +
+        "\n\n" +
+        deskResultStats.textContent;
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(reflection);
+        copyDeskResultButton.textContent = "Copied";
+        setTimeout(() => {
+          copyDeskResultButton.textContent = "Copy reflection";
+        }, 1600);
+      }
+    }
+
+    document.querySelectorAll(".desk-action-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        assignDeskItem(button.getAttribute("data-zone"));
+      });
+    });
+
+    startDeskButton.addEventListener("click", startDeskGame);
+    pauseDeskButton.addEventListener("click", toggleDeskPause);
+    resetDeskButton.addEventListener("click", resetDeskState);
+    copyDeskResultButton.addEventListener("click", copyDeskReflection);
+
+    resetDeskState();
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9677cb0fa87845fe8d5de700ddd3a513"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
