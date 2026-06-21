@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>EHCAI Dilemma Lab | Meaning After Work</title>
+
+  <meta
+    name="description"
+    content="A bilingual teaching simulation on AI, management, responsibility and human-centred decision-making."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ===== EHCAI Dilemma Lab ===== */
+
+    .dilemma-lab-page .page-hero,
+    .dilemma-lab-page .content-section {
+      max-width: 1180px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    .dilemma-lab-page .page-hero {
+      padding-top: 72px;
+      padding-bottom: 46px;
+    }
+
+    .lab-topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 22px 0 34px;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(214, 173, 83, 0.18);
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .lab-language-toggle,
+    .lab-mode-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .lab-language-toggle button,
+    .case-tab,
+    .round-tab,
+    .decision-button,
+    .actor-card,
+    .lab-small-button {
+      border: 1px solid rgba(214, 173, 83, 0.2);
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+
+    .lab-language-toggle button:hover,
+    .case-tab:hover,
+    .round-tab:hover,
+    .decision-button:hover,
+    .actor-card:hover,
+    .lab-small-button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(214, 173, 83, 0.5);
+      background: rgba(214, 173, 83, 0.06);
+    }
+
+    .lab-language-toggle button.active,
+    .case-tab.active,
+    .round-tab.active,
+    .decision-button.active {
+      border-color: rgba(244, 218, 143, 0.78);
+      background: rgba(214, 173, 83, 0.14);
+      color: var(--gold);
+    }
+
+    .lab-mode-note {
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .lab-shell {
+      padding: 26px;
+      border-radius: 32px;
+      border: 1px solid rgba(214, 173, 83, 0.22);
+      background:
+        radial-gradient(circle at 50% 8%, rgba(214, 173, 83, 0.1), transparent 30%),
+        radial-gradient(circle at 5% 92%, rgba(214, 173, 83, 0.07), transparent 34%),
+        rgba(255, 255, 255, 0.025);
+    }
+
+    .case-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .lab-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .lab-panel {
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(214, 173, 83, 0.16);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .lab-panel + .lab-panel {
+      margin-top: 18px;
+    }
+
+    .lab-panel h2,
+    .lab-panel h3 {
+      margin-top: 0;
+    }
+
+    .case-hook {
+      margin: 16px 0;
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(214, 173, 83, 0.2);
+      background: rgba(214, 173, 83, 0.055);
+      color: var(--text);
+      font-size: 1.18rem;
+      line-height: 1.55;
+    }
+
+    .case-dilemma {
+      margin: 18px 0;
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(180, 105, 90, 0.28);
+      background: rgba(180, 105, 90, 0.08);
+    }
+
+    .case-dilemma strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag-list span {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(214, 173, 83, 0.16);
+      color: rgba(244, 239, 230, 0.7);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.74rem;
+    }
+
+    .round-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 20px;
+    }
+
+    .evidence-card,
+    .role-card,
+    .debrief-card,
+    .instructor-card {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(214, 173, 83, 0.14);
+      background: rgba(255, 255, 255, 0.025);
+      margin-bottom: 14px;
+    }
+
+    .evidence-card span,
+    .role-card span,
+    .debrief-card span,
+    .instructor-card span {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .evidence-card h4,
+    .role-card h4 {
+      margin: 0 0 10px;
+      color: var(--text);
+      font-size: 1.08rem;
+    }
+
+    .evidence-card p,
+    .role-card p,
+    .debrief-card p,
+    .instructor-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .role-grid,
+    .debrief-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .role-card {
+      margin-bottom: 0;
+    }
+
+    .decision-buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+
+    .decision-button {
+      width: 100%;
+      border-radius: 18px;
+      text-align: left;
+      padding: 14px 16px;
+      line-height: 1.45;
+    }
+
+    .responsibility-map {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+
+    .actor-card {
+      border-radius: 18px;
+      text-align: left;
+      white-space: normal;
+      line-height: 1.35;
+      min-height: 76px;
+    }
+
+    .actor-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .actor-card small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .actor-card.level-0 {
+      opacity: 0.72;
+    }
+
+    .actor-card.level-1 {
+      border-color: rgba(214, 173, 83, 0.48);
+      background: rgba(214, 173, 83, 0.07);
+    }
+
+    .actor-card.level-2 {
+      border-color: rgba(244, 218, 143, 0.75);
+      background: rgba(214, 173, 83, 0.13);
+      box-shadow: 0 0 22px rgba(214, 173, 83, 0.12);
+    }
+
+    .memo-builder label {
+      display: block;
+      margin: 14px 0 8px;
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .memo-builder textarea,
+    .memo-builder input,
+    .memo-output {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(214, 173, 83, 0.16);
+      background: rgba(0, 0, 0, 0.22);
+      color: var(--text);
+      padding: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      box-sizing: border-box;
+    }
+
+    .memo-builder textarea {
+      min-height: 78px;
+      resize: vertical;
+    }
+
+    .memo-output {
+      min-height: 220px;
+      margin-top: 16px;
+      white-space: pre-wrap;
+    }
+
+    .lab-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .teaching-note {
+      margin-top: 26px;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(214, 173, 83, 0.18);
+      background: rgba(214, 173, 83, 0.055);
+    }
+
+    .teaching-note p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px) {
+      .lab-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .role-grid,
+      .responsibility-map,
+      .debrief-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .dilemma-lab-page .page-hero,
+      .dilemma-lab-page .content-section {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .lab-shell {
+        padding: 18px;
+      }
+
+      .lab-panel {
+        padding: 18px;
+      }
+
+      .case-tabs,
+      .round-tabs {
+        flex-direction: column;
+      }
+
+      .case-tab,
+      .round-tab {
+        width: 100%;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body class="dilemma-lab-page">
+  <header class="site-header">
+    <a class="brand" href="index.html">Meaning After Work</a>
+
+    <nav>
+      <a href="meaning-after-work.html">Manifesto</a>
+      <a href="essays.html">Essays</a>
+      <a href="research.html">EHCAI Forum</a>
+      <a href="contradiction-diary.html">Experiences &amp; Games</a>
+      <a href="book.html">Book</a>
+      <a href="public-talks.html">Public Talks</a>
+      <a href="products.html">Future Practice</a>
+      <a href="about.html">About &amp; Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Teaching simulation</p>
+
+      <h1>EHCAI Dilemma Lab</h1>
+
+      <p class="lead" id="heroLead">
+        A bilingual classroom simulation on AI, management, responsibility and human-centred decision-making.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <div class="lab-topbar">
+        <div class="lab-language-toggle" aria-label="Language selector">
+          <button type="button" id="langEnButton" class="active">English</button>
+          <button type="button" id="langCsButton">Česky</button>
+        </div>
+
+        <div class="lab-mode-note" id="modeNote">
+          Designed for management seminars. No personal data is stored or sent.
+        </div>
+      </div>
+
+      <div class="lab-shell">
+        <div class="case-tabs" id="caseTabs"></div>
+
+        <div class="lab-grid">
+          <div>
+            <div class="lab-panel">
+              <p class="eyebrow" id="caseNumber">Case 01</p>
+              <h2 id="caseTitle">The Low Performer</h2>
+
+              <div class="case-hook" id="caseHook"></div>
+
+              <p id="caseBrief"></p>
+
+              <div class="case-dilemma">
+                <strong id="dilemmaLabel">Core dilemma</strong>
+                <p id="caseDilemma"></p>
+              </div>
+
+              <h3 id="themesTitle">Themes</h3>
+              <div class="tag-list" id="caseThemes"></div>
+            </div>
+
+            <div class="lab-panel">
+              <h3 id="rolesTitle">Stakeholder roles</h3>
+              <p id="rolesIntro"></p>
+              <div class="role-grid" id="roleGrid"></div>
+            </div>
+
+            <div class="lab-panel">
+              <h3 id="debriefTitle">Debrief questions</h3>
+              <div class="debrief-grid" id="debriefGrid"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="lab-panel">
+              <h3 id="roundsTitle">Evidence rounds</h3>
+              <p id="roundsIntro"></p>
+
+              <div class="round-tabs" id="roundTabs"></div>
+
+              <div id="roundContent"></div>
+            </div>
+
+            <div class="lab-panel">
+              <h3 id="decisionTitle">Decision board</h3>
+              <p id="decisionIntro"></p>
+
+              <div class="decision-buttons" id="decisionButtons"></div>
+
+              <h3 id="responsibilityTitle">Responsibility map</h3>
+              <p id="responsibilityIntro"></p>
+              <div class="responsibility-map" id="responsibilityMap"></div>
+
+              <div class="lab-actions">
+                <button type="button" class="lab-small-button" id="resetResponsibilityButton">
+                  Reset map
+                </button>
+              </div>
+            </div>
+
+            <div class="lab-panel memo-builder">
+              <h3 id="memoTitle">EHCAI decision memo</h3>
+              <p id="memoIntro"></p>
+
+              <label for="memoVisible" id="memoVisibleLabel">What the AI made visible</label>
+              <textarea id="memoVisible"></textarea>
+
+              <label for="memoInvisible" id="memoInvisibleLabel">What the AI made invisible</label>
+              <textarea id="memoInvisible"></textarea>
+
+              <label for="memoIntervention" id="memoInterventionLabel">Human-centred intervention</label>
+              <textarea id="memoIntervention"></textarea>
+
+              <label for="memoRisks" id="memoRisksLabel">Risks of our decision</label>
+              <textarea id="memoRisks"></textarea>
+
+              <label for="memoNext" id="memoNextLabel">What a responsible manager should do next</label>
+              <textarea id="memoNext"></textarea>
+
+              <div class="lab-actions">
+                <button type="button" class="lab-small-button" id="generateMemoButton">
+                  Generate memo
+                </button>
+                <button type="button" class="lab-small-button" id="copyMemoButton">
+                  Copy memo
+                </button>
+                <button type="button" class="lab-small-button" id="clearMemoButton">
+                  Clear fields
+                </button>
+              </div>
+
+              <div class="memo-output" id="memoOutput"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="teaching-note">
+          <p id="disclaimerText"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Meaning After Work / EHCAI. This page is a teaching prototype and intentionally does not include individual result tracking.
+    </p>
+  </footer>
+
+  <script>
+    let currentLang = "en";
+    let currentCaseIndex = 0;
+    let currentRoundIndex = 0;
+    let selectedDecisionIndex = null;
+    let responsibilityLevels = {};
+
+    const ui = {
+      en: {
+        heroLead: "A bilingual classroom simulation on AI, management, responsibility and human-centred decision-making.",
+        modeNote: "Designed for management seminars. No personal data is stored or sent.",
+        case: "Case",
+        coreDilemma: "Core dilemma",
+        themes: "Themes",
+        roles: "Stakeholder roles",
+        rolesIntro: "Assign roles in small groups or use them as perspectives for discussion.",
+        debrief: "Debrief questions",
+        rounds: "Evidence rounds",
+        roundsIntro: "Reveal the materials progressively. Ask students to revise their interpretation after each round.",
+        decisionBoard: "Decision board",
+        decisionIntro: "Choose the group’s provisional decision. The final memo may refine it.",
+        responsibilityMap: "Responsibility map",
+        responsibilityIntro: "Click each actor to cycle responsibility level: none → shared → primary.",
+        resetMap: "Reset map",
+        memoTitle: "EHCAI decision memo",
+        memoIntro: "Students can complete the fields and generate a local memo. Nothing is saved or sent.",
+        visible: "What the AI made visible",
+        invisible: "What the AI made invisible",
+        intervention: "Human-centred intervention",
+        risks: "Risks of our decision",
+        next: "What a responsible manager should do next",
+        generate: "Generate memo",
+        copy: "Copy memo",
+        copied: "Copied",
+        clear: "Clear fields",
+        noDecision: "No decision selected yet.",
+        primary: "Primary responsibility",
+        shared: "Shared responsibility",
+        none: "Not selected",
+        disclaimer: "This teaching simulation is used for educational purposes. It does not collect personal data and is not a psychological, legal, clinical or workplace assessment. Students should not enter sensitive personal, medical, workplace or third-party information. If reflections are later used for research, separate informed consent is required.",
+        memoHeaders: {
+          case: "Case",
+          decision: "Decision",
+          visible: "What the AI made visible",
+          invisible: "What the AI made invisible",
+          responsibility: "Responsibility chain",
+          intervention: "Human-centred intervention",
+          risks: "Risks of our decision",
+          next: "What a responsible manager should do next",
+          insight: "Main EHCAI insight"
+        }
+      },
+      cs: {
+        heroLead: "Dvojjazyčná výuková simulace o AI, managementu, odpovědnosti a lidsky orientovaném rozhodování.",
+        modeNote: "Určeno pro semináře managementu. Žádná osobní data se neukládají ani neodesílají.",
+        case: "Případ",
+        coreDilemma: "Hlavní dilema",
+        themes: "Témata",
+        roles: "Role aktérů",
+        rolesIntro: "Rozdělte role ve skupinách nebo je použijte jako perspektivy pro diskusi.",
+        debrief: "Otázky pro reflexi",
+        rounds: "Kola s podklady",
+        roundsIntro: "Odkrývejte materiály postupně. Po každém kole nechte studenty upravit interpretaci.",
+        decisionBoard: "Rozhodovací panel",
+        decisionIntro: "Zvolte předběžné rozhodnutí skupiny. Finální memo jej může zpřesnit.",
+        responsibilityMap: "Mapa odpovědnosti",
+        responsibilityIntro: "Kliknutím na aktéra měníte úroveň odpovědnosti: žádná → sdílená → primární.",
+        resetMap: "Resetovat mapu",
+        memoTitle: "EHCAI rozhodovací memo",
+        memoIntro: "Studenti mohou vyplnit pole a vygenerovat lokální memo. Nic se neukládá ani neodesílá.",
+        visible: "Co AI zviditelnila",
+        invisible: "Co AI zneviditelnila",
+        intervention: "Lidsky orientovaný zásah",
+        risks: "Rizika našeho rozhodnutí",
+        next: "Co má odpovědný manažer udělat dál",
+        generate: "Vygenerovat memo",
+        copy: "Kopírovat memo",
+        copied: "Zkopírováno",
+        clear: "Vymazat pole",
+        noDecision: "Zatím nebylo vybráno žádné rozhodnutí.",
+        primary: "Primární odpovědnost",
+        shared: "Sdílená odpovědnost",
+        none: "Nevybráno",
+        disclaimer: "Tato výuková simulace slouží pouze pro vzdělávací účely. Nesbírá osobní data a není psychologickým, právním, klinickým ani pracovně-diagnostickým nástrojem. Studenti by neměli vkládat citlivé osobní, zdravotní, pracovní ani informace o třetích osobách. Pokud by se reflexe později používaly pro výzkum, je nutný samostatný informovaný souhlas.",
+        memoHeaders: {
+          case: "Případ",
+          decision: "Rozhodnutí",
+          visible: "Co AI zviditelnila",
+          invisible: "Co AI zneviditelnila",
+          responsibility: "Řetězec odpovědnosti",
+          intervention: "Lidsky orientovaný zásah",
+          risks: "Rizika našeho rozhodnutí",
+          next: "Co má odpovědný manažer udělat dál",
+          insight: "Hlavní EHCAI vhled"
+        }
+      }
+    };
+
+    const cases = [
+      {
+        id: "low-performer",
+        number: "01",
+        title: {
+          en: "The Low Performer",
+          cs: "Nízký výkon"
+        },
+        hook: {
+          en: "The AI system has flagged an employee. The data looks clear. The situation is not.",
+          cs: "AI systém označil zaměstnance za slabě výkonného. Data vypadají jasně. Situace jasná není."
+        },
+        brief: {
+          en: "A GenAI-supported management dashboard identifies a senior analyst as a low performer. The system recommends a formal performance warning. The manager must decide whether to follow the recommendation, delay it, or reinterpret the signal.",
+          cs: "Manažerský dashboard podporovaný GenAI označí seniorního analytika za zaměstnance s nízkým výkonem. Systém doporučí formální upozornění na nízký výkon. Manažer musí rozhodnout, zda doporučení následovat, odložit, nebo signál reinterpretovat."
+        },
+        dilemma: {
+          en: "Should the manager follow the AI-supported recommendation and issue a formal performance warning?",
+          cs: "Má manažer následovat doporučení AI a vydat formální upozornění na nízký výkon?"
+        },
+        themes: {
+          en: ["performance management", "invisible workload", "managerial judgment", "wellbeing", "responsibility", "AI as signal vs decision-maker"],
+          cs: ["řízení výkonu", "neviditelná práce", "manažerský úsudek", "wellbeing", "odpovědnost", "AI jako signál vs. rozhodovatel"]
+        },
+        roles: [
+          {
+            name: { en: "Line manager", cs: "Přímý manažer" },
+            text: {
+              en: "You are responsible for delivery. You know the team is overloaded, but the dashboard is now part of official performance review.",
+              cs: "Odpovídáte za výsledky. Víte, že tým je přetížený, ale dashboard je nyní součástí oficiálního hodnocení výkonu."
+            }
+          },
+          {
+            name: { en: "HR representative", cs: "Zástupce HR" },
+            text: {
+              en: "You want consistency and defensibility. You worry that ignoring the AI signal may create unfair treatment.",
+              cs: "Chcete konzistentnost a obhajitelnost. Obáváte se, že ignorování AI signálu může vést k nerovnému zacházení."
+            }
+          },
+          {
+            name: { en: "Employee advocate", cs: "Zástupce zaměstnance" },
+            text: {
+              en: "You are concerned that measurable output hides informal work, care work and overload.",
+              cs: "Obáváte se, že měřitelný výstup zakrývá neformální práci, péči a přetížení."
+            }
+          },
+          {
+            name: { en: "AI systems officer", cs: "Specialista AI systémů" },
+            text: {
+              en: "You know the model detects output patterns but was not designed to capture relational labour or silent workload shifts.",
+              cs: "Víte, že model zachycuje vzorce výstupu, ale nebyl navržen pro zachycení vztahové práce nebo tichého přesunu zátěže."
+            }
+          }
+        ],
+        rounds: [
+          {
+            title: { en: "Round 1: Data signal", cs: "Kolo 1: Datový signál" },
+            question: {
+              en: "What does the AI system make visible?",
+              cs: "Co AI systém zviditelňuje?"
+            },
+            evidence: [
+              {
+                source: { en: "AI dashboard", cs: "AI dashboard" },
+                title: { en: "Performance alert", cs: "Upozornění na výkon" },
+                text: {
+                  en: "Responsiveness decreased by 42%. Task completion decreased by 28%. Collaboration frequency decreased by 31%. Recommendation: formal performance warning.",
+                  cs: "Rychlost reakcí klesla o 42 %. Dokončení úkolů kleslo o 28 %. Frekvence spolupráce klesla o 31 %. Doporučení: formální upozornění na nízký výkon."
+                }
+              },
+              {
+                source: { en: "KPI report", cs: "KPI report" },
+                title: { en: "Output trend", cs: "Trend výstupu" },
+                text: {
+                  en: "The employee was previously among the strongest performers. The decline began after a team restructuring.",
+                  cs: "Zaměstnanec dříve patřil mezi nejsilnější členy týmu. Pokles začal po restrukturalizaci týmu."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 2: Human context", cs: "Kolo 2: Lidský kontext" },
+            question: {
+              en: "What does the data fail to capture?",
+              cs: "Co data nezachycují?"
+            },
+            evidence: [
+              {
+                source: { en: "Employee statement", cs: "Vyjádření zaměstnance" },
+                title: { en: "Silent workload", cs: "Tichá zátěž" },
+                text: {
+                  en: "After my colleague left, I absorbed part of her workload. I stopped asking for help because everyone seemed overloaded.",
+                  cs: "Po odchodu kolegyně jsem převzal část její práce. Přestal jsem žádat o pomoc, protože všichni působili přetíženě."
+                }
+              },
+              {
+                source: { en: "Team chat excerpt", cs: "Výňatek z týmového chatu" },
+                title: { en: "Invisible support", cs: "Neviditelná podpora" },
+                text: {
+                  en: "Several colleagues mention that the employee often helped them informally, especially with urgent client issues.",
+                  cs: "Několik kolegů uvádí, že jim zaměstnanec často neformálně pomáhal, zvláště s naléhavými klientskými problémy."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 3: Responsibility", cs: "Kolo 3: Odpovědnost" },
+            question: {
+              en: "Who remains responsible if the organization follows the AI recommendation?",
+              cs: "Kdo zůstává odpovědný, pokud organizace doporučení AI následuje?"
+            },
+            evidence: [
+              {
+                source: { en: "AI vendor note", cs: "Poznámka dodavatele AI" },
+                title: { en: "Decision support only", cs: "Pouze podpora rozhodování" },
+                text: {
+                  en: "The vendor states that the system provides probabilistic decision support and should not replace human managerial judgment.",
+                  cs: "Dodavatel uvádí, že systém poskytuje pravděpodobnostní podporu rozhodování a nemá nahrazovat lidský manažerský úsudek."
+                }
+              },
+              {
+                source: { en: "HR policy", cs: "HR politika" },
+                title: { en: "Context-sensitive review", cs: "Kontextové posouzení" },
+                text: {
+                  en: "Performance warnings require documented human review, including workload distribution and relevant team-level conditions.",
+                  cs: "Upozornění na výkon vyžaduje dokumentované lidské posouzení, včetně rozdělení zátěže a relevantních týmových podmínek."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 4: Decision", cs: "Kolo 4: Rozhodnutí" },
+            question: {
+              en: "How should management act now?",
+              cs: "Jak má management nyní jednat?"
+            },
+            evidence: [
+              {
+                source: { en: "Manager’s note", cs: "Poznámka manažera" },
+                title: { en: "Delivery pressure", cs: "Tlak na dodávku" },
+                text: {
+                  en: "Client deadlines are close. Delaying action may look weak, but issuing a warning may punish the person who carried hidden work.",
+                  cs: "Klientské termíny se blíží. Odložení zásahu může působit slabě, ale upozornění může potrestat člověka, který nesl skrytou práci."
+                }
+              }
+            ]
+          }
+        ],
+        decisions: [
+          { en: "Issue the formal warning.", cs: "Vydat formální upozornění." },
+          { en: "Delay the warning and conduct a human review.", cs: "Odložit upozornění a provést lidské posouzení." },
+          { en: "Reject the AI recommendation and redesign workload distribution.", cs: "Odmítnout doporučení AI a přepracovat rozdělení práce." },
+          { en: "Use the AI alert as a signal, not as a decision.", cs: "Použít AI upozornění jako signál, nikoli jako rozhodnutí." }
+        ],
+        actors: [
+          { en: "Line manager", cs: "Přímý manažer" },
+          { en: "HR", cs: "HR" },
+          { en: "AI vendor", cs: "Dodavatel AI" },
+          { en: "Senior management", cs: "Vrcholové vedení" },
+          { en: "Team", cs: "Tým" },
+          { en: "Organization", cs: "Organizace" }
+        ],
+        debrief: {
+          en: [
+            "What did the AI system correctly notice?",
+            "What did the AI system fail to see?",
+            "When does performance management become a responsibility problem?",
+            "What would a human-centred manager do before acting?"
+          ],
+          cs: [
+            "Čeho si AI systém správně všiml?",
+            "Co AI systém neviděl?",
+            "Kdy se řízení výkonu stává problémem odpovědnosti?",
+            "Co by měl lidsky orientovaný manažer udělat před rozhodnutím?"
+          ]
+        },
+        insight: {
+          en: "A responsible organization does not ask only whether the AI output is accurate. It asks what kind of human situation the output has simplified.",
+          cs: "Odpovědná organizace se neptá jen na to, zda je výstup AI přesný. Ptá se, jakou lidskou situaci tento výstup zjednodušil."
+        }
+      },
+
+      {
+        id: "hiring-filter",
+        number: "02",
+        title: {
+          en: "The Hiring Filter",
+          cs: "Výběrový filtr"
+        },
+        hook: {
+          en: "The AI hiring tool rejected a candidate. The profile looks irregular. The potential is not visible in the score.",
+          cs: "AI nástroj vyřadil kandidátku. Profil vypadá nestandardně. Potenciál není ve skóre vidět."
+        },
+        brief: {
+          en: "A company uses an AI-supported recruitment tool to rank applicants for a management trainee role. One candidate is rejected because of gaps, career changes and nonstandard experience.",
+          cs: "Firma používá AI nástroj pro řazení uchazečů o pozici management trainee. Jedna kandidátka je vyřazena kvůli mezerám, změnám kariéry a nestandardní zkušenosti."
+        },
+        dilemma: {
+          en: "Should the hiring committee accept the AI ranking and reject the candidate?",
+          cs: "Má výběrová komise přijmout pořadí podle AI a kandidátku vyřadit?"
+        },
+        themes: {
+          en: ["hiring", "fairness", "bias", "standardization", "nonlinear careers", "human potential"],
+          cs: ["nábor", "férovost", "bias", "standardizace", "nelineární kariéry", "lidský potenciál"]
+        },
+        roles: [
+          {
+            name: { en: "Hiring manager", cs: "Hiring manažer" },
+            text: {
+              en: "You need an efficient process and want to avoid subjective favoritism.",
+              cs: "Potřebujete efektivní proces a chcete se vyhnout subjektivnímu zvýhodňování."
+            }
+          },
+          {
+            name: { en: "Candidate advocate", cs: "Zástupce kandidátky" },
+            text: {
+              en: "You believe the candidate’s irregular path may indicate resilience and maturity.",
+              cs: "Domníváte se, že nestandardní cesta kandidátky může ukazovat odolnost a zralost."
+            }
+          },
+          {
+            name: { en: "AI procurement lead", cs: "Zástupce pro nákup AI" },
+            text: {
+              en: "You are responsible for the tool’s adoption and want to show that it improves consistency.",
+              cs: "Odpovídáte za zavedení nástroje a chcete ukázat, že zvyšuje konzistentnost."
+            }
+          },
+          {
+            name: { en: "Diversity and inclusion officer", cs: "Specialista diverzity a inkluze" },
+            text: {
+              en: "You worry that the model rewards conventional career paths and silently excludes difference.",
+              cs: "Obáváte se, že model odměňuje konvenční kariérní dráhy a tiše vylučuje odlišnost."
+            }
+          }
+        ],
+        rounds: [
+          {
+            title: { en: "Round 1: Ranking", cs: "Kolo 1: Pořadí" },
+            question: {
+              en: "What does the AI ranking make visible?",
+              cs: "Co AI pořadí zviditelňuje?"
+            },
+            evidence: [
+              {
+                source: { en: "AI ranking output", cs: "Výstup AI pořadí" },
+                title: { en: "Candidate score", cs: "Skóre kandidátky" },
+                text: {
+                  en: "Overall fit: 61/100. Risk flags: non-linear career path, two employment gaps, limited corporate management experience.",
+                  cs: "Celková vhodnost: 61/100. Rizikové signály: nelineární kariéra, dvě mezery v zaměstnání, omezená korporátní manažerská zkušenost."
+                }
+              },
+              {
+                source: { en: "Recruitment dashboard", cs: "Náborový dashboard" },
+                title: { en: "Efficiency gain", cs: "Zvýšení efektivity" },
+                text: {
+                  en: "The tool reduced screening time by 47% and improved consistency across reviewers.",
+                  cs: "Nástroj zkrátil čas screeningu o 47 % a zvýšil konzistentnost mezi hodnotiteli."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 2: Candidate context", cs: "Kolo 2: Kontext kandidátky" },
+            question: {
+              en: "What potential is not captured by the score?",
+              cs: "Jaký potenciál skóre nezachycuje?"
+            },
+            evidence: [
+              {
+                source: { en: "Candidate statement", cs: "Vyjádření kandidátky" },
+                title: { en: "Career gap", cs: "Kariérní mezera" },
+                text: {
+                  en: "One employment gap was spent caring for a family member. During that time, the candidate coordinated services, finances and medical communication.",
+                  cs: "Jedna pracovní mezera souvisela s péčí o člena rodiny. V té době kandidátka koordinovala služby, finance a komunikaci se zdravotnickými zařízeními."
+                }
+              },
+              {
+                source: { en: "Interview note", cs: "Poznámka z pohovoru" },
+                title: { en: "Judgment under uncertainty", cs: "Úsudek v nejistotě" },
+                text: {
+                  en: "In a situational interview, the candidate showed strong judgment, empathy and capacity to coordinate under ambiguity.",
+                  cs: "V situačním pohovoru kandidátka prokázala silný úsudek, empatii a schopnost koordinace v nejasné situaci."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 3: Model limits", cs: "Kolo 3: Limity modelu" },
+            question: {
+              en: "What kind of person does the model recognize most easily?",
+              cs: "Jaký typ člověka model nejsnáze rozpoznává?"
+            },
+            evidence: [
+              {
+                source: { en: "Model documentation", cs: "Dokumentace modelu" },
+                title: { en: "Training data", cs: "Trénovací data" },
+                text: {
+                  en: "The model was trained on historical successful hires. Most came from conventional business school and corporate internship pathways.",
+                  cs: "Model byl trénován na historicky úspěšných náborech. Většina pocházela z konvenčních business school a korporátních stáží."
+                }
+              },
+              {
+                source: { en: "Legal note", cs: "Právní poznámka" },
+                title: { en: "Human review requirement", cs: "Požadavek lidského posouzení" },
+                text: {
+                  en: "Automated ranking may support screening, but final exclusion decisions require documented human reasoning.",
+                  cs: "Automatizované pořadí může podporovat screening, ale finální rozhodnutí o vyřazení vyžaduje dokumentované lidské zdůvodnění."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 4: Decision", cs: "Kolo 4: Rozhodnutí" },
+            question: {
+              en: "How should the committee treat the AI ranking?",
+              cs: "Jak má komise zacházet s AI pořadím?"
+            },
+            evidence: [
+              {
+                source: { en: "Committee pressure", cs: "Tlak komise" },
+                title: { en: "Time constraint", cs: "Časové omezení" },
+                text: {
+                  en: "There are 120 candidates and only 12 interview slots. Reopening rejected profiles may slow the process.",
+                  cs: "Je 120 kandidátů a pouze 12 míst pro pohovor. Znovuotevření vyřazených profilů může proces zpomalit."
+                }
+              }
+            ]
+          }
+        ],
+        decisions: [
+          { en: "Accept the AI ranking and reject the candidate.", cs: "Přijmout AI pořadí a kandidátku vyřadit." },
+          { en: "Invite the candidate for human review interview.", cs: "Pozvat kandidátku k lidskému doplňujícímu posouzení." },
+          { en: "Audit the model for hidden bias against non-linear careers.", cs: "Provést audit modelu na skrytý bias vůči nelineárním kariérám." },
+          { en: "Use AI ranking only as one signal among several.", cs: "Použít AI pořadí pouze jako jeden signál z více zdrojů." }
+        ],
+        actors: [
+          { en: "Hiring committee", cs: "Výběrová komise" },
+          { en: "HR", cs: "HR" },
+          { en: "AI vendor", cs: "Dodavatel AI" },
+          { en: "Candidate", cs: "Kandidátka" },
+          { en: "Organization", cs: "Organizace" },
+          { en: "Legal/compliance", cs: "Právní/compliance" }
+        ],
+        debrief: {
+          en: [
+            "When does consistency become standardized exclusion?",
+            "What kinds of potential are difficult to quantify?",
+            "Who is responsible for candidates made invisible by historical data?",
+            "How can AI support fairness without replacing judgment?"
+          ],
+          cs: [
+            "Kdy se konzistentnost mění ve standardizované vyloučení?",
+            "Jaké druhy potenciálu se těžko kvantifikují?",
+            "Kdo odpovídá za kandidáty, které historická data zneviditelní?",
+            "Jak může AI podporovat férovost, aniž by nahradila úsudek?"
+          ]
+        },
+        insight: {
+          en: "Human-centred hiring asks not only who fits the past, but who may responsibly shape the future.",
+          cs: "Lidsky orientovaný nábor se neptá jen na to, kdo odpovídá minulosti, ale kdo může odpovědně utvářet budoucnost."
+        }
+      },
+
+      {
+        id: "burnout-prediction",
+        number: "03",
+        title: {
+          en: "The Burnout Prediction",
+          cs: "Predikce vyhoření"
+        },
+        hook: {
+          en: "The system predicts burnout risk. Care begins to look like surveillance.",
+          cs: "Systém predikuje riziko vyhoření. Péče začíná vypadat jako dohled."
+        },
+        brief: {
+          en: "HR pilots an AI wellbeing analytics tool that predicts burnout risk from digital behaviour patterns. One employee is flagged as high risk. HR must decide whether and how to intervene.",
+          cs: "HR pilotuje AI nástroj pro wellbeing analytiku, který predikuje riziko vyhoření z digitálních vzorců chování. Jeden zaměstnanec je označen jako vysoce rizikový. HR musí rozhodnout, zda a jak zasáhnout."
+        },
+        dilemma: {
+          en: "Should HR intervene based on an AI-generated burnout risk prediction?",
+          cs: "Má HR zasáhnout na základě AI predikce rizika vyhoření?"
+        },
+        themes: {
+          en: ["care vs surveillance", "privacy", "psychological safety", "wellbeing analytics", "trust", "responsibility"],
+          cs: ["péče vs dohled", "soukromí", "psychologické bezpečí", "wellbeing analytika", "důvěra", "odpovědnost"]
+        },
+        roles: [
+          {
+            name: { en: "HR wellbeing lead", cs: "HR wellbeing specialista" },
+            text: {
+              en: "You want to help early, before burnout becomes severe.",
+              cs: "Chcete pomoci včas, než se vyhoření zhorší."
+            }
+          },
+          {
+            name: { en: "Employee representative", cs: "Zástupce zaměstnanců" },
+            text: {
+              en: "You worry that care may become monitoring and that risk labels may follow people.",
+              cs: "Obáváte se, že péče se může změnit v monitorování a rizikové nálepky mohou lidi provázet dál."
+            }
+          },
+          {
+            name: { en: "Data protection officer", cs: "Pověřenec pro ochranu dat" },
+            text: {
+              en: "You focus on consent, purpose limitation, access and data minimization.",
+              cs: "Zaměřujete se na souhlas, omezení účelu, přístup a minimalizaci dat."
+            }
+          },
+          {
+            name: { en: "Team manager", cs: "Týmový manažer" },
+            text: {
+              en: "You want to support the employee but do not want to misuse sensitive information.",
+              cs: "Chcete zaměstnance podpořit, ale nechcete zneužít citlivé informace."
+            }
+          }
+        ],
+        rounds: [
+          {
+            title: { en: "Round 1: Risk alert", cs: "Kolo 1: Rizikové upozornění" },
+            question: {
+              en: "What does the system claim to know?",
+              cs: "Co systém tvrdí, že ví?"
+            },
+            evidence: [
+              {
+                source: { en: "Wellbeing dashboard", cs: "Wellbeing dashboard" },
+                title: { en: "High burnout risk", cs: "Vysoké riziko vyhoření" },
+                text: {
+                  en: "Late-night activity increased by 63%. Response latency increased. Meeting load is above team average. Risk level: high.",
+                  cs: "Noční aktivita vzrostla o 63 %. Zpoždění odpovědí vzrostlo. Počet schůzek je nad týmovým průměrem. Úroveň rizika: vysoká."
+                }
+              },
+              {
+                source: { en: "Tool description", cs: "Popis nástroje" },
+                title: { en: "Predictive signal", cs: "Prediktivní signál" },
+                text: {
+                  en: "The model predicts risk patterns. It does not diagnose burnout or mental health conditions.",
+                  cs: "Model predikuje rizikové vzorce. Nediagnostikuje vyhoření ani duševní stav."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 2: Employee trust", cs: "Kolo 2: Důvěra zaměstnance" },
+            question: {
+              en: "How might the employee interpret the intervention?",
+              cs: "Jak může zaměstnanec zásah interpretovat?"
+            },
+            evidence: [
+              {
+                source: { en: "Employee survey comment", cs: "Komentář ze zaměstnaneckého průzkumu" },
+                title: { en: "Unclear monitoring", cs: "Nejasné monitorování" },
+                text: {
+                  en: "I do not know what the company tracks. If I ask for help, I worry it will be used against me.",
+                  cs: "Nevím, co firma sleduje. Když požádám o pomoc, bojím se, že to bude použito proti mně."
+                }
+              },
+              {
+                source: { en: "Manager observation", cs: "Pozorování manažera" },
+                title: { en: "Visible fatigue", cs: "Viditelná únava" },
+                text: {
+                  en: "The employee has seemed withdrawn, but there has been no direct conversation yet.",
+                  cs: "Zaměstnanec působí staženě, ale zatím neproběhl žádný přímý rozhovor."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 3: Governance", cs: "Kolo 3: Governance" },
+            question: {
+              en: "What conditions would make care legitimate?",
+              cs: "Za jakých podmínek je péče legitimní?"
+            },
+            evidence: [
+              {
+                source: { en: "Data policy", cs: "Datová politika" },
+                title: { en: "Access limits", cs: "Omezení přístupu" },
+                text: {
+                  en: "Only HR wellbeing leads can see risk categories. Managers should not receive individual risk scores.",
+                  cs: "Rizikové kategorie vidí pouze HR wellbeing specialisté. Manažeři nemají dostávat individuální riziková skóre."
+                }
+              },
+              {
+                source: { en: "Ethics memo", cs: "Etické memo" },
+                title: { en: "Care without coercion", cs: "Péče bez nátlaku" },
+                text: {
+                  en: "Any intervention should be voluntary, non-punitive and transparent about data use.",
+                  cs: "Jakýkoli zásah má být dobrovolný, nepostihující a transparentní ohledně využití dat."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 4: Decision", cs: "Kolo 4: Rozhodnutí" },
+            question: {
+              en: "What should HR do now?",
+              cs: "Co má HR nyní udělat?"
+            },
+            evidence: [
+              {
+                source: { en: "Organizational pressure", cs: "Organizační tlak" },
+                title: { en: "Pilot evaluation", cs: "Vyhodnocení pilotu" },
+                text: {
+                  en: "Leadership wants evidence that the wellbeing analytics pilot creates value.",
+                  cs: "Vedení chce důkazy, že pilot wellbeing analytiky vytváří hodnotu."
+                }
+              }
+            ]
+          }
+        ],
+        decisions: [
+          { en: "Intervene directly and inform the manager.", cs: "Zasáhnout přímo a informovat manažera." },
+          { en: "Offer a voluntary wellbeing conversation without sharing the score.", cs: "Nabídnout dobrovolný wellbeing rozhovor bez sdílení skóre." },
+          { en: "Pause the tool until consent and governance are clarified.", cs: "Pozastavit nástroj, dokud nebude vyjasněn souhlas a governance." },
+          { en: "Use only aggregated team-level signals, not individual risk labels.", cs: "Používat pouze agregované týmové signály, ne individuální rizikové štítky." }
+        ],
+        actors: [
+          { en: "HR", cs: "HR" },
+          { en: "Employee", cs: "Zaměstnanec" },
+          { en: "Manager", cs: "Manažer" },
+          { en: "Data protection officer", cs: "Pověřenec pro ochranu dat" },
+          { en: "AI vendor", cs: "Dodavatel AI" },
+          { en: "Leadership", cs: "Vedení" }
+        ],
+        debrief: {
+          en: [
+            "When does care become surveillance?",
+            "Who should be allowed to see wellbeing predictions?",
+            "Can an organization help without labelling people?",
+            "What does psychological safety require here?"
+          ],
+          cs: [
+            "Kdy se péče mění v dohled?",
+            "Kdo smí vidět wellbeing predikce?",
+            "Může organizace pomoci, aniž by lidi nálepkovala?",
+            "Co zde vyžaduje psychologické bezpečí?"
+          ]
+        },
+        insight: {
+          en: "Human-centred care requires more than prediction. It requires consent, trust, transparency and non-punitive support.",
+          cs: "Lidsky orientovaná péče vyžaduje víc než predikci. Vyžaduje souhlas, důvěru, transparentnost a nepostihující podporu."
+        }
+      },
+
+      {
+        id: "smooth-summary",
+        number: "04",
+        title: {
+          en: "The Smooth Summary",
+          cs: "Hladké shrnutí"
+        },
+        hook: {
+          en: "The AI summary says the meeting was constructive. Everyone knows something important disappeared.",
+          cs: "AI shrnutí říká, že schůzka byla konstruktivní. Všichni vědí, že něco důležitého zmizelo."
+        },
+        brief: {
+          en: "After a tense leadership meeting, an AI tool generates a clean summary. The official record says the discussion was constructive and aligned. Several participants feel the summary removed conflict, fear and dissent.",
+          cs: "Po napjaté schůzce vedení vytvoří AI nástroj hladké shrnutí. Oficiální zápis říká, že diskuse byla konstruktivní a sladěná. Několik účastníků cítí, že shrnutí odstranilo konflikt, strach a nesouhlas."
+        },
+        dilemma: {
+          en: "Should the manager accept the AI-generated meeting summary as the official record?",
+          cs: "Má manažer přijmout AI shrnutí schůzky jako oficiální zápis?"
+        },
+        themes: {
+          en: ["conflict", "voice", "silence", "power", "meeting culture", "AI summarization"],
+          cs: ["konflikt", "hlas", "mlčení", "moc", "kultura schůzek", "AI sumarizace"]
+        },
+        roles: [
+          {
+            name: { en: "Meeting chair", cs: "Vedoucí schůzky" },
+            text: {
+              en: "You want a usable record and do not want to reignite conflict.",
+              cs: "Chcete použitelný zápis a nechcete znovu rozdmýchat konflikt."
+            }
+          },
+          {
+            name: { en: "Dissenting participant", cs: "Nesouhlasící účastník" },
+            text: {
+              en: "You feel your concern was softened until it disappeared.",
+              cs: "Máte pocit, že vaše obava byla zjemněna, až zmizela."
+            }
+          },
+          {
+            name: { en: "AI tool owner", cs: "Správce AI nástroje" },
+            text: {
+              en: "You argue that the summary captures action items and avoids unnecessary emotional noise.",
+              cs: "Tvrdíte, že shrnutí zachycuje úkoly a vyhýbá se zbytečnému emočnímu šumu."
+            }
+          },
+          {
+            name: { en: "Team member", cs: "Člen týmu" },
+            text: {
+              en: "You worry that silence in the room will become fake agreement in the record.",
+              cs: "Obáváte se, že mlčení v místnosti se v zápisu změní ve falešný souhlas."
+            }
+          }
+        ],
+        rounds: [
+          {
+            title: { en: "Round 1: AI summary", cs: "Kolo 1: AI shrnutí" },
+            question: {
+              en: "What does the summary make easy?",
+              cs: "Co shrnutí usnadňuje?"
+            },
+            evidence: [
+              {
+                source: { en: "AI meeting summary", cs: "AI zápis ze schůzky" },
+                title: { en: "Constructive alignment", cs: "Konstruktivní sladění" },
+                text: {
+                  en: "The team discussed implementation concerns and agreed to proceed with the proposed restructuring timeline.",
+                  cs: "Tým diskutoval implementační obavy a dohodl se pokračovat podle navrženého harmonogramu restrukturalizace."
+                }
+              },
+              {
+                source: { en: "Action list", cs: "Seznam úkolů" },
+                title: { en: "Clean outputs", cs: "Čisté výstupy" },
+                text: {
+                  en: "The summary produced clear owners, deadlines and next steps.",
+                  cs: "Shrnutí vytvořilo jasné odpovědné osoby, termíny a další kroky."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 2: Missing voice", cs: "Kolo 2: Chybějící hlas" },
+            question: {
+              en: "What disappeared from the official record?",
+              cs: "Co zmizelo z oficiálního záznamu?"
+            },
+            evidence: [
+              {
+                source: { en: "Participant note", cs: "Poznámka účastníka" },
+                title: { en: "Unrecorded dissent", cs: "Nezaznamenaný nesouhlas" },
+                text: {
+                  en: "I explicitly said the timeline would harm the support team. The summary translated that into implementation concerns.",
+                  cs: "Výslovně jsem řekl, že harmonogram poškodí podpůrný tým. Shrnutí to přeložilo jako implementační obavy."
+                }
+              },
+              {
+                source: { en: "Observer note", cs: "Poznámka pozorovatele" },
+                title: { en: "Silence", cs: "Mlčení" },
+                text: {
+                  en: "Three people stopped speaking after the director dismissed the first concern.",
+                  cs: "Tři lidé přestali mluvit poté, co ředitel odmítl první obavu."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 3: Power", cs: "Kolo 3: Moc" },
+            question: {
+              en: "Who benefits from a smooth record?",
+              cs: "Komu prospívá hladký zápis?"
+            },
+            evidence: [
+              {
+                source: { en: "Director email", cs: "E-mail ředitele" },
+                title: { en: "Need alignment", cs: "Potřeba sladění" },
+                text: {
+                  en: "Please finalize the summary today. We need alignment before the board update.",
+                  cs: "Prosím dokončete zápis dnes. Před informováním správní rady potřebujeme ukázat sladění."
+                }
+              },
+              {
+                source: { en: "Communication policy", cs: "Komunikační politika" },
+                title: { en: "Accurate record", cs: "Přesný záznam" },
+                text: {
+                  en: "Meeting records should reflect material disagreement when it affects risk, implementation or employee wellbeing.",
+                  cs: "Zápisy ze schůzek mají odrážet podstatný nesouhlas, pokud ovlivňuje rizika, implementaci nebo wellbeing zaměstnanců."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 4: Decision", cs: "Kolo 4: Rozhodnutí" },
+            question: {
+              en: "How should the official record be handled?",
+              cs: "Jak má být naloženo s oficiálním zápisem?"
+            },
+            evidence: [
+              {
+                source: { en: "Manager dilemma", cs: "Dilema manažera" },
+                title: { en: "Usability vs truth", cs: "Použitelnost vs pravdivost" },
+                text: {
+                  en: "A smooth summary helps execution. A truer summary may slow action but preserve responsibility.",
+                  cs: "Hladké shrnutí pomáhá exekuci. Pravdivější shrnutí může zpomalit akci, ale zachovat odpovědnost."
+                }
+              }
+            ]
+          }
+        ],
+        decisions: [
+          { en: "Accept the AI summary as the official record.", cs: "Přijmout AI shrnutí jako oficiální zápis." },
+          { en: "Add a section documenting unresolved concerns.", cs: "Přidat sekci s nevyřešenými obavami." },
+          { en: "Ask participants to validate the summary before finalizing.", cs: "Nechat účastníky ověřit shrnutí před finalizací." },
+          { en: "Use AI summary only as a draft, not as the official record.", cs: "Použít AI shrnutí pouze jako návrh, ne jako oficiální zápis." }
+        ],
+        actors: [
+          { en: "Meeting chair", cs: "Vedoucí schůzky" },
+          { en: "Participants", cs: "Účastníci" },
+          { en: "Director", cs: "Ředitel" },
+          { en: "AI tool owner", cs: "Správce AI nástroje" },
+          { en: "Organization", cs: "Organizace" },
+          { en: "Affected team", cs: "Dotčený tým" }
+        ],
+        debrief: {
+          en: [
+            "When does summarization become distortion?",
+            "What is the difference between emotional noise and morally relevant conflict?",
+            "Who is responsible for silence?",
+            "How can AI support meetings without erasing dissent?"
+          ],
+          cs: [
+            "Kdy se sumarizace mění ve zkreslení?",
+            "Jaký je rozdíl mezi emočním šumem a morálně relevantním konfliktem?",
+            "Kdo odpovídá za mlčení?",
+            "Jak může AI podporovat schůzky, aniž by mazala nesouhlas?"
+          ]
+        },
+        insight: {
+          en: "A useful record is not always a truthful record. Human-centred management must ask what the summary made unsayable.",
+          cs: "Použitelný zápis není vždy pravdivý zápis. Lidsky orientovaný management se musí ptát, co shrnutí učinilo nevyslovitelným."
+        }
+      },
+
+      {
+        id: "strategy-without-humans",
+        number: "05",
+        title: {
+          en: "The Strategy Without Humans",
+          cs: "Strategie bez lidí"
+        },
+        hook: {
+          en: "The AI-generated strategy is efficient. It removes the work that made the organization human.",
+          cs: "AI strategie je efektivní. Odstraňuje práci, která dělala organizaci lidskou."
+        },
+        brief: {
+          en: "Leadership uses GenAI to design a restructuring strategy. The strategy improves measurable efficiency by removing informal coordination, relational work and duplicated conversations.",
+          cs: "Vedení použije GenAI k návrhu restrukturalizační strategie. Strategie zvyšuje měřitelnou efektivitu tím, že omezuje neformální koordinaci, vztahovou práci a zdvojené rozhovory."
+        },
+        dilemma: {
+          en: "Should leadership adopt an AI-generated restructuring strategy that improves measurable efficiency but weakens relational work?",
+          cs: "Má vedení přijmout AI strategii restrukturalizace, která zvyšuje měřitelnou efektivitu, ale oslabuje vztahovou práci?"
+        },
+        themes: {
+          en: ["strategy", "tacit knowledge", "relational work", "organizational culture", "efficiency", "meaningful work"],
+          cs: ["strategie", "tacitní znalost", "vztahová práce", "organizační kultura", "efektivita", "smysluplná práce"]
+        },
+        roles: [
+          {
+            name: { en: "CEO", cs: "CEO" },
+            text: {
+              en: "You need a credible efficiency plan and must show measurable improvement.",
+              cs: "Potřebujete důvěryhodný plán efektivity a musíte ukázat měřitelné zlepšení."
+            }
+          },
+          {
+            name: { en: "Middle manager", cs: "Střední manažer" },
+            text: {
+              en: "You know much of the organization works through informal coordination that the strategy treats as waste.",
+              cs: "Víte, že mnoho práce organizace funguje díky neformální koordinaci, kterou strategie považuje za plýtvání."
+            }
+          },
+          {
+            name: { en: "Employee representative", cs: "Zástupce zaměstnanců" },
+            text: {
+              en: "You worry that the strategy removes spaces where people learn, repair and support each other.",
+              cs: "Obáváte se, že strategie odstraní místa, kde se lidé učí, opravují chyby a podporují se."
+            }
+          },
+          {
+            name: { en: "Strategy analyst", cs: "Strategický analytik" },
+            text: {
+              en: "You trust the model’s ability to identify inefficiency but know it cannot easily value tacit work.",
+              cs: "Důvěřujete schopnosti modelu odhalit neefektivitu, ale víte, že obtížně oceňuje tacitní práci."
+            }
+          }
+        ],
+        rounds: [
+          {
+            title: { en: "Round 1: Strategy output", cs: "Kolo 1: Strategický výstup" },
+            question: {
+              en: "What does the AI strategy optimize?",
+              cs: "Co AI strategie optimalizuje?"
+            },
+            evidence: [
+              {
+                source: { en: "AI strategy deck", cs: "AI strategická prezentace" },
+                title: { en: "Efficiency plan", cs: "Plán efektivity" },
+                text: {
+                  en: "Reduce duplicated meetings by 60%. Centralize decision approvals. Replace informal coordination with standardized workflow tickets.",
+                  cs: "Snížit duplicitní schůzky o 60 %. Centralizovat schvalování rozhodnutí. Nahradit neformální koordinaci standardizovanými workflow tikety."
+                }
+              },
+              {
+                source: { en: "Financial projection", cs: "Finanční projekce" },
+                title: { en: "Measurable gain", cs: "Měřitelný přínos" },
+                text: {
+                  en: "Projected administrative time savings: 18%. Faster escalation paths and clearer ownership.",
+                  cs: "Odhadovaná úspora administrativního času: 18 %. Rychlejší eskalace a jasnější vlastnictví úkolů."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 2: Tacit work", cs: "Kolo 2: Tacitní práce" },
+            question: {
+              en: "What kind of work may disappear?",
+              cs: "Jaký druh práce může zmizet?"
+            },
+            evidence: [
+              {
+                source: { en: "Middle manager note", cs: "Poznámka středního manažera" },
+                title: { en: "Informal repair", cs: "Neformální opravy" },
+                text: {
+                  en: "Many duplicated conversations are not waste. They are how teams detect misunderstandings before they become failures.",
+                  cs: "Mnoho zdvojených rozhovorů není plýtvání. Právě tak týmy odhalují nedorozumění dříve, než se změní v selhání."
+                }
+              },
+              {
+                source: { en: "Employee comment", cs: "Komentář zaměstnance" },
+                title: { en: "Learning spaces", cs: "Prostory učení" },
+                text: {
+                  en: "The unofficial check-ins are where new people learn how things really work.",
+                  cs: "Neoficiální krátké rozhovory jsou místa, kde se noví lidé učí, jak věci opravdu fungují."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 3: Culture", cs: "Kolo 3: Kultura" },
+            question: {
+              en: "Can relational work be strategically important?",
+              cs: "Může být vztahová práce strategicky důležitá?"
+            },
+            evidence: [
+              {
+                source: { en: "Culture survey", cs: "Průzkum kultury" },
+                title: { en: "Trust dependency", cs: "Závislost na důvěře" },
+                text: {
+                  en: "Employees report that trust, informal access and quick human clarification are the main reasons complex work gets done.",
+                  cs: "Zaměstnanci uvádějí, že důvěra, neformální dostupnost a rychlé lidské vyjasnění jsou hlavní důvody, proč se daří dokončit složitou práci."
+                }
+              },
+              {
+                source: { en: "Risk note", cs: "Riziková poznámka" },
+                title: { en: "Efficiency side effect", cs: "Vedlejší efekt efektivity" },
+                text: {
+                  en: "Removing relational buffers may increase formal clarity while reducing resilience.",
+                  cs: "Odstranění vztahových nárazníků může zvýšit formální jasnost, ale snížit odolnost."
+                }
+              }
+            ]
+          },
+          {
+            title: { en: "Round 4: Decision", cs: "Kolo 4: Rozhodnutí" },
+            question: {
+              en: "How should leadership adopt or modify the strategy?",
+              cs: "Jak má vedení strategii přijmout nebo upravit?"
+            },
+            evidence: [
+              {
+                source: { en: "Board pressure", cs: "Tlak správní rady" },
+                title: { en: "Need for visible action", cs: "Potřeba viditelné akce" },
+                text: {
+                  en: "The board expects a concrete efficiency plan this quarter.",
+                  cs: "Správní rada očekává konkrétní plán efektivity v tomto kvartálu."
+                }
+              }
+            ]
+          }
+        ],
+        decisions: [
+          { en: "Adopt the AI strategy as proposed.", cs: "Přijmout AI strategii v navržené podobě." },
+          { en: "Adopt only measurable efficiency measures and protect relational work.", cs: "Přijmout pouze měřitelné prvky efektivity a chránit vztahovou práci." },
+          { en: "Run a human-centred strategy review before adoption.", cs: "Provést lidsky orientované strategické posouzení před přijetím." },
+          { en: "Redesign the strategy to distinguish waste from tacit relational work.", cs: "Přepracovat strategii tak, aby rozlišila plýtvání od tacitní vztahové práce." }
+        ],
+        actors: [
+          { en: "CEO", cs: "CEO" },
+          { en: "Board", cs: "Správní rada" },
+          { en: "Middle managers", cs: "Střední manažeři" },
+          { en: "Employees", cs: "Zaměstnanci" },
+          { en: "Strategy team", cs: "Strategický tým" },
+          { en: "Organization", cs: "Organizace" }
+        ],
+        debrief: {
+          en: [
+            "When is inefficiency actually a form of care, learning or resilience?",
+            "What does AI make easier to measure?",
+            "What does the strategy risk removing?",
+            "How can leadership protect meaningful work while improving efficiency?"
+          ],
+          cs: [
+            "Kdy je neefektivita ve skutečnosti formou péče, učení nebo odolnosti?",
+            "Co AI usnadňuje měřit?",
+            "Co strategie riskuje odstranit?",
+            "Jak může vedení chránit smysluplnou práci a zároveň zvyšovat efektivitu?"
+          ]
+        },
+        insight: {
+          en: "Human-centred strategy distinguishes waste from the relational work that makes an organization capable of staying human.",
+          cs: "Lidsky orientovaná strategie rozlišuje plýtvání od vztahové práce, která organizaci umožňuje zůstat lidskou."
+        }
+      }
+    ];
+
+    const caseTabs = document.getElementById("caseTabs");
+    const roundTabs = document.getElementById("roundTabs");
+    const roundContent = document.getElementById("roundContent");
+    const decisionButtons = document.getElementById("decisionButtons");
+    const responsibilityMap = document.getElementById("responsibilityMap");
+
+    function text(value) {
+      return value[currentLang];
+    }
+
+    function renderStaticUi() {
+      document.getElementById("heroLead").textContent = ui[currentLang].heroLead;
+      document.getElementById("modeNote").textContent = ui[currentLang].modeNote;
+      document.getElementById("dilemmaLabel").textContent = ui[currentLang].coreDilemma;
+      document.getElementById("themesTitle").textContent = ui[currentLang].themes;
+      document.getElementById("rolesTitle").textContent = ui[currentLang].roles;
+      document.getElementById("rolesIntro").textContent = ui[currentLang].rolesIntro;
+      document.getElementById("debriefTitle").textContent = ui[currentLang].debrief;
+      document.getElementById("roundsTitle").textContent = ui[currentLang].rounds;
+      document.getElementById("roundsIntro").textContent = ui[currentLang].roundsIntro;
+      document.getElementById("decisionTitle").textContent = ui[currentLang].decisionBoard;
+      document.getElementById("decisionIntro").textContent = ui[currentLang].decisionIntro;
+      document.getElementById("responsibilityTitle").textContent = ui[currentLang].responsibilityMap;
+      document.getElementById("responsibilityIntro").textContent = ui[currentLang].responsibilityIntro;
+      document.getElementById("resetResponsibilityButton").textContent = ui[currentLang].resetMap;
+      document.getElementById("memoTitle").textContent = ui[currentLang].memoTitle;
+      document.getElementById("memoIntro").textContent = ui[currentLang].memoIntro;
+      document.getElementById("memoVisibleLabel").textContent = ui[currentLang].visible;
+      document.getElementById("memoInvisibleLabel").textContent = ui[currentLang].invisible;
+      document.getElementById("memoInterventionLabel").textContent = ui[currentLang].intervention;
+      document.getElementById("memoRisksLabel").textContent = ui[currentLang].risks;
+      document.getElementById("memoNextLabel").textContent = ui[currentLang].next;
+      document.getElementById("generateMemoButton").textContent = ui[currentLang].generate;
+      document.getElementById("copyMemoButton").textContent = ui[currentLang].copy;
+      document.getElementById("clearMemoButton").textContent = ui[currentLang].clear;
+      document.getElementById("disclaimerText").textContent = ui[currentLang].disclaimer;
+
+      document.getElementById("langEnButton").classList.toggle("active", currentLang === "en");
+      document.getElementById("langCsButton").classList.toggle("active", currentLang === "cs");
+    }
+
+    function renderCaseTabs() {
+      caseTabs.innerHTML = "";
+
+      cases.forEach((caseItem, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "case-tab";
+        button.classList.toggle("active", index === currentCaseIndex);
+        button.textContent = caseItem.number + " " + text(caseItem.title);
+
+        button.addEventListener("click", () => {
+          currentCaseIndex = index;
+          currentRoundIndex = 0;
+          selectedDecisionIndex = null;
+          responsibilityLevels = {};
+          clearMemo(false);
+          renderAll();
+        });
+
+        caseTabs.appendChild(button);
+      });
+    }
+
+    function renderCase() {
+      const caseItem = cases[currentCaseIndex];
+
+      document.getElementById("caseNumber").textContent = ui[currentLang].case + " " + caseItem.number;
+      document.getElementById("caseTitle").textContent = text(caseItem.title);
+      document.getElementById("caseHook").textContent = text(caseItem.hook);
+      document.getElementById("caseBrief").textContent = text(caseItem.brief);
+      document.getElementById("caseDilemma").textContent = text(caseItem.dilemma);
+
+      const caseThemes = document.getElementById("caseThemes");
+      caseThemes.innerHTML = "";
+
+      caseItem.themes[currentLang].forEach((theme) => {
+        const span = document.createElement("span");
+        span.textContent = theme;
+        caseThemes.appendChild(span);
+      });
+
+      renderRoles(caseItem);
+      renderDebrief(caseItem);
+    }
+
+    function renderRoles(caseItem) {
+      const roleGrid = document.getElementById("roleGrid");
+      roleGrid.innerHTML = "";
+
+      caseItem.roles.forEach((role, index) => {
+        const card = document.createElement("div");
+        card.className = "role-card";
+        card.innerHTML =
+          "<span>" + ui[currentLang].roles + " " + (index + 1) + "</span>" +
+          "<h4>" + text(role.name) + "</h4>" +
+          "<p>" + text(role.text) + "</p>";
+        roleGrid.appendChild(card);
+      });
+    }
+
+    function renderDebrief(caseItem) {
+      const debriefGrid = document.getElementById("debriefGrid");
+      debriefGrid.innerHTML = "";
+
+      caseItem.debrief[currentLang].forEach((question, index) => {
+        const card = document.createElement("div");
+        card.className = "debrief-card";
+        card.innerHTML =
+          "<span>Q" + (index + 1) + "</span>" +
+          "<p>" + question + "</p>";
+        debriefGrid.appendChild(card);
+      });
+    }
+
+    function renderRounds() {
+      const caseItem = cases[currentCaseIndex];
+      roundTabs.innerHTML = "";
+
+      caseItem.rounds.forEach((round, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "round-tab";
+        button.classList.toggle("active", index === currentRoundIndex);
+        button.textContent = text(round.title);
+
+        button.addEventListener("click", () => {
+          currentRoundIndex = index;
+          renderRounds();
+        });
+
+        roundTabs.appendChild(button);
+      });
+
+      const round = caseItem.rounds[currentRoundIndex];
+
+      roundContent.innerHTML =
+        "<div class='case-dilemma'>" +
+          "<strong>" + text(round.title) + "</strong>" +
+          "<p>" + text(round.question) + "</p>" +
+        "</div>";
+
+      round.evidence.forEach((evidence) => {
+        const card = document.createElement("div");
+        card.className = "evidence-card";
+        card.innerHTML =
+          "<span>" + text(evidence.source) + "</span>" +
+          "<h4>" + text(evidence.title) + "</h4>" +
+          "<p>" + text(evidence.text) + "</p>";
+        roundContent.appendChild(card);
+      });
+    }
+
+    function renderDecisions() {
+      const caseItem = cases[currentCaseIndex];
+      decisionButtons.innerHTML = "";
+
+      caseItem.decisions.forEach((decision, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "decision-button";
+        button.classList.toggle("active", selectedDecisionIndex === index);
+        button.textContent = text(decision);
+
+        button.addEventListener("click", () => {
+          selectedDecisionIndex = index;
+          renderDecisions();
+        });
+
+        decisionButtons.appendChild(button);
+      });
+    }
+
+    function renderResponsibilityMap() {
+      const caseItem = cases[currentCaseIndex];
+      responsibilityMap.innerHTML = "";
+
+      caseItem.actors.forEach((actor, index) => {
+        const key = "actor_" + index;
+        const level = responsibilityLevels[key] || 0;
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "actor-card level-" + level;
+
+        let levelLabel = ui[currentLang].none;
+        if (level === 1) {
+          levelLabel = ui[currentLang].shared;
+        }
+        if (level === 2) {
+          levelLabel = ui[currentLang].primary;
+        }
+
+        button.innerHTML =
+          "<strong>" + text(actor) + "</strong>" +
+          "<small>" + levelLabel + "</small>";
+
+        button.addEventListener("click", () => {
+          responsibilityLevels[key] = (level + 1) % 3;
+          renderResponsibilityMap();
+        });
+
+        responsibilityMap.appendChild(button);
+      });
+    }
+
+    function getResponsibilityText() {
+      const caseItem = cases[currentCaseIndex];
+      const selected = [];
+
+      caseItem.actors.forEach((actor, index) => {
+        const level = responsibilityLevels["actor_" + index] || 0;
+
+        if (level > 0) {
+          selected.push(text(actor) + " — " + (level === 2 ? ui[currentLang].primary : ui[currentLang].shared));
+        }
+      });
+
+      return selected.length ? selected.join("; ") : ui[currentLang].none;
+    }
+
+    function generateMemo() {
+      const caseItem = cases[currentCaseIndex];
+      const selectedDecision = selectedDecisionIndex !== null
+        ? text(caseItem.decisions[selectedDecisionIndex])
+        : ui[currentLang].noDecision;
+
+      const h = ui[currentLang].memoHeaders;
+
+      const visible = document.getElementById("memoVisible").value.trim();
+      const invisible = document.getElementById("memoInvisible").value.trim();
+      const intervention = document.getElementById("memoIntervention").value.trim();
+      const risks = document.getElementById("memoRisks").value.trim();
+      const next = document.getElementById("memoNext").value.trim();
+
+      const output =
+        "EHCAI Decision Memo\n\n" +
+        h.case + ":\n" +
+        caseItem.number + " — " + text(caseItem.title) + "\n\n" +
+        h.decision + ":\n" +
+        selectedDecision + "\n\n" +
+        h.visible + ":\n" +
+        (visible || "—") + "\n\n" +
+        h.invisible + ":\n" +
+        (invisible || "—") + "\n\n" +
+        h.responsibility + ":\n" +
+        getResponsibilityText() + "\n\n" +
+        h.intervention + ":\n" +
+        (intervention || "—") + "\n\n" +
+        h.risks + ":\n" +
+        (risks || "—") + "\n\n" +
+        h.next + ":\n" +
+        (next || "—") + "\n\n" +
+        h.insight + ":\n" +
+        text(caseItem.insight);
+
+      document.getElementById("memoOutput").textContent = output;
+    }
+
+    function copyMemo() {
+      const output = document.getElementById("memoOutput").textContent.trim();
+
+      if (!output) {
+        generateMemo();
+      }
+
+      const finalOutput = document.getElementById("memoOutput").textContent;
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(finalOutput);
+        const button = document.getElementById("copyMemoButton");
+        button.textContent = ui[currentLang].copied;
+
+        setTimeout(() => {
+          button.textContent = ui[currentLang].copy;
+        }, 1600);
+      }
+    }
+
+    function clearMemo(resetOutput = true) {
+      document.getElementById("memoVisible").value = "";
+      document.getElementById("memoInvisible").value = "";
+      document.getElementById("memoIntervention").value = "";
+      document.getElementById("memoRisks").value = "";
+      document.getElementById("memoNext").value = "";
+
+      if (resetOutput) {
+        document.getElementById("memoOutput").textContent = "";
+      }
+    }
+
+    function renderAll() {
+      renderStaticUi();
+      renderCaseTabs();
+      renderCase();
+      renderRounds();
+      renderDecisions();
+      renderResponsibilityMap();
+    }
+
+    document.getElementById("langEnButton").addEventListener("click", () => {
+      currentLang = "en";
+      renderAll();
+    });
+
+    document.getElementById("langCsButton").addEventListener("click", () => {
+      currentLang = "cs";
+      renderAll();
+    });
+
+    document.getElementById("generateMemoButton").addEventListener("click", generateMemo);
+    document.getElementById("copyMemoButton").addEventListener("click", copyMemo);
+
+    document.getElementById("clearMemoButton").addEventListener("click", () => {
+      clearMemo(true);
+    });
+
+    document.getElementById("resetResponsibilityButton").addEventListener("click", () => {
+      responsibilityLevels = {};
+      renderResponsibilityMap();
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
