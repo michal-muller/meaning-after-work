@@ -6849,3 +6849,28 @@ body:has(.talk-intro) .page-hero .lead {
 .sentence-choice-dimmed:hover {
   transform: none;
 }
+/* ===== EHCAI Dilemma Lab teaser on research page ===== */
+
+.ehcai-dilemma-teaser {
+  max-width: 1180px;
+  margin: 72px auto;
+  padding: 52px 58px;
+  box-sizing: border-box;
+  border-radius: 40px;
+  border: 1px solid rgba(214, 173, 83, 0.18);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(214, 173, 83, 0.08), transparent 32%),
+    rgba(255, 255, 255, 0.025);
+}
+
+.ehcai-dilemma-teaser p {
+  max-width: 980px;
+}
+
+@media (max-width: 900px) {
+  .ehcai-dilemma-teaser {
+    margin: 48px 22px;
+    padding: 34px 28px;
+    border-radius: 28px;
+  }
+}
