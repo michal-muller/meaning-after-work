@@ -6823,3 +6823,29 @@ body:has(.talk-intro) .page-hero .lead {
     text-align: center;
   }
 }
+/* ===== The Unsent Sentence: hidden choice labels and reveal ===== */
+
+.sentence-choice-card .choice-label {
+  color: rgba(214, 173, 83, 0.72);
+}
+
+.sentence-choice-card .choice-note:empty {
+  display: none;
+}
+
+.sentence-choice-revealed .choice-label {
+  color: var(--gold);
+}
+
+.sentence-choice-revealed .choice-note {
+  display: block;
+  color: var(--muted);
+}
+
+.sentence-choice-dimmed {
+  opacity: 0.42;
+}
+
+.sentence-choice-dimmed:hover {
+  transform: none;
+}
