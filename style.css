@@ -6874,3 +6874,27 @@ body:has(.talk-intro) .page-hero .lead {
     border-radius: 28px;
   }
 }
+/* ===== Essay references ===== */
+
+.essay-references {
+  margin-top: 42px;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.essay-references h3 {
+  margin-top: 0;
+}
+
+.essay-references p {
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.essay-references p:last-child {
+  margin-bottom: 0;
+}
