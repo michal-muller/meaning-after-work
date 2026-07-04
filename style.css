@@ -6898,3 +6898,47 @@ body:has(.talk-intro) .page-hero .lead {
 .essay-references p:last-child {
   margin-bottom: 0;
 }
+/* ===== Essay academic roots ===== */
+
+.essay-academic-roots {
+  margin-top: 46px;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px solid rgba(214, 173, 83, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.essay-academic-roots .essay-section-title {
+  margin-top: 0;
+}
+
+.essay-academic-roots p {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.essay-academic-roots ul {
+  margin: 20px 0 0;
+  padding-left: 22px;
+}
+
+.essay-academic-roots li {
+  margin-bottom: 12px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.essay-academic-roots li:last-child {
+  margin-bottom: 0;
+}
+
+.essay-academic-roots a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(214, 173, 83, 0.35);
+}
+
+.essay-academic-roots a:hover {
+  border-bottom-color: var(--gold);
+}
