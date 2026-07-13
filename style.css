@@ -6942,3 +6942,170 @@ body:has(.talk-intro) .page-hero .lead {
 .essay-academic-roots a:hover {
   border-bottom-color: var(--gold);
 }
+/* ===== Essay page normalization ===== */
+
+/* Same article container for all essays */
+.essay-page .essay-article {
+  max-width: 920px;
+  margin: 0 0 42px;
+  padding: 34px 38px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+/* Same main essay title, whether the HTML uses h1 or h2 */
+.essay-page .essay-article > .eyebrow + h1,
+.essay-page .essay-article > .eyebrow + h2 {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.35rem, 5vw, 4.35rem);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+/* Same subtitle across all essays */
+.essay-page .essay-subtitle {
+  margin: 0 0 34px;
+  color: var(--gold);
+  font-size: 1.24rem;
+  line-height: 1.5;
+}
+
+/* Same body rhythm */
+.essay-page .essay-article p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.82;
+}
+
+.essay-page .essay-article ul,
+.essay-page .essay-article ol {
+  margin: 20px 0 30px;
+  padding-left: 1.4rem;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.essay-page .essay-article li {
+  margin: 0.45rem 0;
+}
+
+/* Same section heading style across Essay 01, Essay 02 and Essay 03 */
+.essay-page #essay-camus-management > h3,
+.essay-page #essay-staying-human-skill > h2,
+.essay-page #essay-useful-tool-bad-conscience .essay-section-title {
+  margin: 50px 0 18px;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 2.45vw, 2.25rem);
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+}
+
+/* Keep Academic roots from becoming too dominant */
+.essay-page .academic-roots h3,
+.essay-page .essay-roots h3,
+.essay-page .essay-academic-roots .essay-section-title {
+  margin: 0 0 16px;
+  color: var(--text);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Same Academic roots box across old and new versions */
+.essay-page .academic-roots,
+.essay-page .essay-roots,
+.essay-page .essay-academic-roots {
+  margin-top: 54px;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.18);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.essay-page .academic-roots p,
+.essay-page .essay-roots p,
+.essay-page .essay-academic-roots p {
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.essay-page .academic-roots ul,
+.essay-page .essay-roots ul,
+.essay-page .essay-academic-roots ul {
+  margin: 18px 0 0;
+  padding-left: 1.3rem;
+}
+
+.essay-page .academic-roots li,
+.essay-page .essay-roots li,
+.essay-page .essay-academic-roots li {
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+/* Same link style everywhere inside essays */
+.essay-page .essay-article a,
+.essay-page .essay-index a,
+.essay-page .essay-cta a,
+.essay-page .back-to-index {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(214, 173, 83, 0.35);
+}
+
+.essay-page .essay-article a:hover,
+.essay-page .essay-index a:hover,
+.essay-page .essay-cta a:hover,
+.essay-page .back-to-index:hover {
+  border-bottom-color: var(--gold);
+}
+
+/* Same CTA box */
+.essay-page .essay-cta {
+  margin-top: 34px;
+  padding: 24px 26px;
+  border-radius: 24px;
+  border: 1px solid rgba(214, 173, 83, 0.22);
+  background: rgba(214, 173, 83, 0.06);
+}
+
+.essay-page .essay-cta p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Same divider */
+.essay-page .essay-divider {
+  margin: 54px 0 34px;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 700px) {
+  .essay-page .essay-article {
+    padding: 26px;
+  }
+
+  .essay-page .essay-article > .eyebrow + h1,
+  .essay-page .essay-article > .eyebrow + h2 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .essay-page #essay-camus-management > h3,
+  .essay-page #essay-staying-human-skill > h2,
+  .essay-page #essay-useful-tool-bad-conscience .essay-section-title {
+    font-size: 1.42rem;
+    line-height: 1.25;
+  }
+}
